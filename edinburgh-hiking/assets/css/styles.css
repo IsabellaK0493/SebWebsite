@@ -1,0 +1,737 @@
+/* ============================================================
+   EDINBURGH HIKING — Sebastian
+   Guided walks on Edinburgh's seven hills and the Pentlands
+   ------------------------------------------------------------
+   Palette is taken from the hills themselves: wet basalt, haar,
+   gorse (whin), winter bracken, reservoir steel. Whin yellow is
+   the signature and is spent only on the Section and on markers
+   that carry real measurement.
+   ============================================================ */
+
+:root {
+  --basalt:      #2B3A42;
+  --basalt-2:    #35464F;
+  --ink:         #141C21;
+  --stone:       #E7E8E3;
+  --stone-2:     #DCDDD6;
+  --stone-3:     #CFD1C8;
+  --paper:       #F2F2EE;
+
+  --whin:        #E4B740;   /* gorse — on dark only, 6.24:1 */
+  --whin-ink:    #7A5A0E;   /* gorse — on light, 5.17:1 */
+  --bracken:     #A85A2A;
+  --bracken-ink: #8A4620;   /* 5.73:1 on stone */
+  --reservoir:   #5B7C8D;   /* graphic use only (3.62:1) */
+
+  --muted:       #5E6A70;   /* on light, 4.52:1 */
+  --muted-dark:  #C3C8C6;   /* on dark, 6.94:1 */
+
+  --focus: var(--bracken-ink);
+
+  --font-display: "Young Serif", "Iowan Old Style", Georgia, serif;
+  --font-body: "Hanken Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "Martian Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  --gutter: clamp(1.25rem, 4vw, 3.5rem);
+  --max: 76rem;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ---------- reset ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body, h1, h2, h3, h4, p, figure, blockquote, dl, dd { margin: 0; }
+ul { list-style: none; margin: 0; padding: 0; }
+img, video { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+input, textarea, select { font: inherit; color: inherit; }
+
+body {
+  background: var(--stone);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .001ms !important; animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+  }
+}
+
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; border-radius: 2px; }
+.on-dark { --focus: var(--whin); }
+
+.wrap { max-width: var(--max); margin-inline: auto; padding-inline: var(--gutter); }
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.skip-link {
+  position: absolute; left: 1rem; top: -3.5rem; z-index: 300;
+  background: var(--whin); color: var(--ink);
+  padding: .7rem 1.1rem; font-family: var(--font-mono); font-size: .72rem;
+  transition: top .2s var(--ease);
+}
+.skip-link:focus { top: 1rem; }
+
+/* ---------- type ---------- */
+h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; letter-spacing: -0.005em; }
+h1 { font-size: clamp(2.4rem, 6.2vw, 5rem); line-height: 1.02; }
+h2 { font-size: clamp(1.85rem, 3.6vw, 3rem); line-height: 1.08; }
+h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: .62rem; font-weight: 500;
+  letter-spacing: .2em; text-transform: uppercase;
+  color: var(--whin-ink);
+  display: inline-flex; align-items: center; gap: .7em;
+}
+.eyebrow::before { content: ""; width: 1.6em; height: 1px; background: currentColor; }
+.on-dark .eyebrow { color: var(--whin); }
+
+.lede { font-size: clamp(1.02rem, 1.15vw, 1.15rem); color: var(--muted); max-width: 52ch; }
+.on-dark .lede { color: var(--muted-dark); }
+
+.datum {
+  font-family: var(--font-mono);
+  font-size: .66rem; font-weight: 500;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--muted);
+}
+.on-dark .datum { color: var(--muted-dark); }
+
+/* ---------- buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .6rem;
+  font-family: var(--font-mono); font-size: .72rem; font-weight: 500;
+  letter-spacing: .1em; text-transform: uppercase;
+  padding: 1.05rem 1.7rem; border-radius: 2px;
+  min-height: 44px;
+  position: relative; overflow: hidden;
+  transition: background .35s var(--ease), color .35s var(--ease), border-color .35s var(--ease);
+}
+.btn-primary { background: var(--whin); color: var(--ink); }
+.btn-primary:hover { background: #F1C95C; }
+.btn-line { border: 1px solid currentColor; }
+.btn-line::after {
+  content: ""; position: absolute; inset: auto 0 0 0; height: 1px;
+  background: currentColor; transform: scaleX(0); transform-origin: left;
+  transition: transform .5s var(--ease-out);
+}
+.btn-line:hover::after { transform: scaleX(1); }
+
+/* ============================================================
+   Header
+   ============================================================ */
+.site-header {
+  position: fixed; inset: 0 0 auto 0; z-index: 100;
+  padding: 1.1rem 0;
+  transition: background .45s var(--ease), padding .45s var(--ease), box-shadow .45s var(--ease);
+}
+.site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.site-header.is-stuck {
+  background: rgba(20,28,33,.93); backdrop-filter: blur(12px);
+  padding: .6rem 0; box-shadow: 0 10px 34px rgba(0,0,0,.22);
+}
+
+.mark { display: flex; align-items: center; gap: .7rem; color: var(--paper); }
+.mark svg { width: 30px; height: 30px; flex: none; }
+.mark b { font-family: var(--font-display); font-size: 1.12rem; font-weight: 400; line-height: 1; }
+.mark span {
+  display: block; font-family: var(--font-mono);
+  font-size: .54rem; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--muted-dark); margin-top: .28rem;
+}
+
+.nav { display: flex; align-items: center; gap: 2rem; }
+.nav-links { display: flex; gap: 1.7rem; }
+.nav-links a {
+  font-family: var(--font-mono); font-size: .68rem; font-weight: 500;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--paper); position: relative; padding: .35rem 0;
+}
+.nav-links a::after {
+  content: ""; position: absolute; inset: auto 0 0 0; height: 1px; background: currentColor;
+  transform: scaleX(0); transform-origin: left; transition: transform .45s var(--ease-out);
+}
+.nav-links a:hover::after { transform: scaleX(1); }
+.nav-links a[aria-current="page"] { color: var(--whin); }
+.nav-links a[aria-current="page"]::after { background: var(--whin); transform: scaleX(1); }
+
+.burger { display: none; width: 44px; height: 44px; position: relative; z-index: 210; }
+.burger i, .burger i::before, .burger i::after {
+  content: ""; position: absolute; left: 11px; right: 11px; height: 1.5px;
+  background: var(--paper); transition: transform .4s var(--ease), opacity .2s, top .4s var(--ease);
+}
+.burger i { top: 50%; }
+.burger i::before { top: -7px; } .burger i::after { top: 7px; }
+.burger[aria-expanded="true"] i { background: transparent; }
+.burger[aria-expanded="true"] i::before { top: 0; transform: rotate(45deg); background: var(--paper); }
+.burger[aria-expanded="true"] i::after  { top: 0; transform: rotate(-45deg); background: var(--paper); }
+
+@media (max-width: 880px) {
+  .nav-links, .nav > .btn { display: none; }
+  .burger { display: block; }
+}
+
+.sheet {
+  position: fixed; inset: 0; z-index: 150; background: var(--ink);
+  display: flex; flex-direction: column; justify-content: center; gap: 1rem;
+  padding: var(--gutter);
+  transform: translateY(-100%); transition: transform .55s var(--ease);
+}
+.sheet.is-open { transform: none; }
+.sheet nav { display: flex; flex-direction: column; gap: 1.1rem; }
+.sheet nav a { font-family: var(--font-display); font-size: clamp(1.9rem,8vw,2.5rem); color: var(--paper); }
+.sheet .btn { align-self: flex-start; margin-top: 1.6rem; }
+
+/* ============================================================
+   Hero — three clips, cross-faded (Alpenglow-style movement)
+   ============================================================ */
+.hero {
+  position: relative; min-height: 100svh;
+  display: flex; align-items: flex-end;
+  padding: 8rem 0 clamp(3rem, 8vh, 5.5rem);
+  background: var(--ink);
+  color: var(--paper);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.hero-media { position: absolute; inset: 0; z-index: -2; background: var(--ink); }
+
+/* Fallback shown when no clip has loaded: a haar-over-hills wash so the
+   hero still reads as designed rather than as a black box. */
+.hero-media::before {
+  content: ""; position: absolute; inset: 0;
+  background:
+    radial-gradient(120% 80% at 20% 110%, rgba(91,124,141,.55), transparent 60%),
+    radial-gradient(90% 70% at 80% 0%, rgba(228,183,64,.18), transparent 55%),
+    linear-gradient(180deg, #3A4C56 0%, #223037 55%, var(--ink) 100%);
+}
+
+.hero-clip {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; object-fit: cover;
+  /* The clips are shot portrait, so a wide hero shows only about a third
+     of each frame. The skyline sits at a different height in every clip,
+     so the crop is tuned per clip below rather than shared. */
+  object-position: 50% 66%;
+  opacity: 0;
+  transition: opacity 1.5s var(--ease-out);
+  will-change: opacity, transform;
+}
+/* Per-clip skyline positions — each number is where that clip's horizon
+   actually falls in its own frame. */
+.hero-clip:nth-child(1) { object-position: 50% 58%; }  /* ridge under cloud */
+.hero-clip:nth-child(2) { object-position: 50% 84%; }  /* snow — sits low, crop well down */
+.hero-clip:nth-child(3) { object-position: 50% 70%; }  /* golden hour ridge */
+.hero-clip:nth-child(4) { object-position: 50% 50%; }  /* Seb & the dogs — landscape, no crop */
+.hero-clip:nth-child(5) { object-position: 50% 50%; }  /* on the hill — landscape, no crop */
+
+/* A phone viewport is close to the clips' own portrait shape, so barely
+   any crop happens and the framing can sit near centre. */
+@media (max-width: 640px) {
+  .hero-clip,
+  .hero-clip:nth-child(1), .hero-clip:nth-child(2), .hero-clip:nth-child(3),
+  .hero-clip:nth-child(4), .hero-clip:nth-child(5) { object-position: 50% 55%; }
+}
+.hero-clip.is-active { opacity: 1; }
+/* slow drift on the live clip only */
+.js .hero-clip.is-active { animation: drift 9s linear both; }
+@keyframes drift { from { transform: scale(1.005); } to { transform: scale(1.05); } }
+@media (prefers-reduced-motion: reduce) {
+  .js .hero-clip.is-active { animation: none; }
+  .hero-clip { transition: none; }
+}
+
+/* Two-part scrim. The vertical pass keeps the whole frame legible; the
+   horizontal pass darkens only the side the text sits on, so the footage
+   stays bright where nothing is written over it. */
+.hero::after {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(20,28,33,.78) 0%, rgba(20,28,33,.46) 42%, rgba(20,28,33,.92) 100%),
+    linear-gradient(90deg, rgba(20,28,33,.58) 0%, rgba(20,28,33,.16) 58%, rgba(20,28,33,0) 100%);
+}
+@media (max-width: 640px) {
+  /* text runs full width on a phone, so the vertical pass does the work */
+  .hero::after {
+    background:
+      linear-gradient(180deg, rgba(20,28,33,.80) 0%, rgba(20,28,33,.58) 45%, rgba(20,28,33,.93) 100%);
+  }
+}
+
+.hero-inner { position: relative; width: 100%; }
+.hero h1 { max-width: 15ch; margin-top: 1.1rem; text-wrap: balance; }
+.hero h1 em { font-style: normal; color: var(--whin); }
+
+/* word-by-word settle on load */
+.js .hero h1 .w { display: inline-block; opacity: 0; transform: translateY(.42em); }
+.js .hero h1.is-in .w { opacity: 1; transform: none; transition: opacity .8s var(--ease-out), transform .8s var(--ease-out); }
+
+.hero-lede { margin-top: 1.5rem; max-width: 46ch; color: var(--muted-dark); }
+.hero-cta { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 2.1rem; }
+
+/* clip ticks — also the manual control */
+.hero-ticks {
+  position: absolute; right: var(--gutter); bottom: clamp(3rem, 8vh, 5.5rem);
+  display: flex; gap: .5rem; z-index: 3;
+}
+.hero-ticks button {
+  width: 46px; height: 44px; display: grid; place-items: center;
+}
+.hero-ticks span { display: block; width: 34px; height: 2px; background: rgba(242,242,238,.34); position: relative; overflow: hidden; }
+.hero-ticks span::after {
+  content: ""; position: absolute; inset: 0; background: var(--whin);
+  transform: scaleX(0); transform-origin: left;
+}
+.hero-ticks button[aria-current="true"] span::after { animation: tick var(--clip-dur, 7s) linear forwards; }
+@keyframes tick { to { transform: scaleX(1); } }
+@media (prefers-reduced-motion: reduce) {
+  .hero-ticks button[aria-current="true"] span::after { animation: none; transform: scaleX(1); }
+}
+@media (max-width: 700px) { .hero-ticks { bottom: auto; top: 5.2rem; right: var(--gutter); } }
+
+.hero-credit {
+  position: absolute; left: var(--gutter); bottom: 1rem;
+  font-family: var(--font-mono); font-size: .55rem; letter-spacing: .1em;
+  color: rgba(242,242,238,.42); z-index: 3;
+}
+
+/* ============================================================
+   Assurances strip
+   ============================================================ */
+.assure { background: var(--basalt); color: var(--paper); padding: clamp(2.2rem,5vw,3.2rem) 0; }
+.assure ul { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.4rem, 4vw, 3rem); }
+.assure li { display: flex; gap: .95rem; align-items: flex-start; }
+.assure svg { width: 26px; height: 26px; flex: none; stroke: var(--whin); fill: none; stroke-width: 1.4; margin-top: .1rem; }
+.assure h3 { font-size: 1.02rem; margin-bottom: .3rem; }
+.assure p { font-size: .88rem; color: var(--muted-dark); max-width: 34ch; }
+@media (max-width: 780px) { .assure ul { grid-template-columns: 1fr; gap: 1.5rem; } }
+
+/* ============================================================
+   Vista band — a full-bleed breath of scenery that breaks the
+   long dark run between the hero and The Section.
+   ============================================================ */
+.vista {
+  position: relative;
+  height: clamp(230px, 36vh, 460px);
+  overflow: hidden;
+  background: var(--basalt-2);
+}
+.vista img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  /* Sit the horizon inside the band: sky above it for colour, ridges
+     below it for height. Purely sky reads as a gap, not a view. */
+  object-position: 50% 62%;
+}
+.vista figcaption {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding: 2.2rem var(--gutter) 1rem;
+  display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+  font-family: var(--font-mono);
+  font-size: .58rem; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--paper);
+  background: linear-gradient(180deg, transparent, rgba(20,28,33,.72));
+}
+.vista figcaption span:last-child { color: var(--whin); }
+@media (max-width: 640px) {
+  .vista { height: clamp(200px, 30vh, 300px); }
+  .vista figcaption span:last-child { display: none; }
+}
+
+/* ============================================================
+   THE SECTION — signature element.
+   A true cross-section from Castle Rock out to Scald Law:
+   real heights, real distances. It is the whole proposition —
+   a 579m hill fourteen kilometres from the Royal Mile.
+   ============================================================ */
+.section-band {
+  background: var(--basalt); color: var(--paper);
+  padding: clamp(3.5rem, 8vw, 6rem) 0 0;
+  overflow: hidden;
+}
+.section-band .head { max-width: 46ch; margin-bottom: 2.6rem; }
+.section-band h2 { color: var(--paper); margin-top: .7rem; }
+.section-band .lede { margin-top: 1rem; }
+
+.profile { position: relative; width: 100%; }
+.profile svg { width: 100%; height: auto; display: block; }
+.profile .ground { fill: rgba(242,242,238,.07); stroke: var(--reservoir); stroke-width: 2; }
+.js .profile .ground { stroke-dasharray: 2600; stroke-dashoffset: 2600; }
+.js .profile.is-in .ground { animation: draw 2.6s var(--ease-out) forwards; }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .js .profile .ground { stroke-dasharray: none; stroke-dashoffset: 0; }
+}
+.profile .grid-line { stroke: rgba(242,242,238,.12); stroke-width: 1; }
+.profile .peak-dot { fill: var(--whin); }
+.profile .peak-stem { stroke: rgba(228,183,64,.5); stroke-width: 1; }
+.profile text { font-family: var(--font-mono); fill: var(--paper); }
+.profile .p-name { font-size: 13px; font-weight: 500; letter-spacing: .04em; }
+.profile .p-alt  { font-size: 11px; fill: var(--whin); letter-spacing: .06em; }
+.profile .axis   { font-size: 10px; fill: rgba(242,242,238,.5); letter-spacing: .12em; text-transform: uppercase; }
+.profile-note {
+  display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+  padding: 1rem 0 clamp(2.5rem,6vw,4rem);
+  border-top: 1px solid rgba(242,242,238,.14); margin-top: -1px;
+}
+
+/* The drawing is held at a fixed width at every screen size and scrolls
+   inside its own container. You travel out of the city to find the high
+   ground rather than being shown all of it at once — which is the point
+   the section is making. */
+.profile {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+.profile svg { width: 1600px; min-width: 1600px; max-width: none; }
+
+.profile-hint {
+  display: flex; align-items: center; gap: .5rem;
+  padding-top: .9rem;
+  font-family: var(--font-mono); font-size: .58rem;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--muted-dark);
+}
+.profile-hint svg { width: 14px; height: 14px; stroke: var(--whin); fill: none; stroke-width: 1.6; flex: none; }
+
+/* ============================================================
+   Walks
+   ============================================================ */
+.section { padding: clamp(3.5rem, 8vw, 6.5rem) 0; }
+.section--airy { padding: clamp(5rem, 12vw, 9rem) 0; }
+.section--tight { padding: clamp(2.5rem, 5vw, 4rem) 0; }
+.section--pale { background: var(--stone-2); }
+
+.head-row {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  gap: 1.6rem; flex-wrap: wrap; margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+.head-row h2 { max-width: 18ch; }
+
+.walks { display: grid; grid-template-columns: repeat(auto-fit, minmax(285px, 1fr)); gap: 1.4rem; }
+
+.walk {
+  display: flex; flex-direction: column;
+  background: var(--paper);
+  border: 1px solid var(--stone-3);
+  transition: border-color .4s var(--ease), transform .4s var(--ease);
+}
+.walk:hover { border-color: var(--basalt); }
+.walk-fig {
+  aspect-ratio: 5/3; position: relative; overflow: hidden;
+  background: linear-gradient(160deg, var(--basalt-2), var(--ink));
+}
+/* The walk photographs are near-square, so a 5:3 card shows about 58% of
+   each frame. Sit that band on the hill rather than the foreground. */
+.walk-fig img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 62%; }
+.walk-fig img[src*="arthurs-seat"] { object-position: 50% 84%; }
+.walk-fig img[src*="hermitage"]    { object-position: 50% 80%; }
+.walk-fig img[src*="pentlands"]    { object-position: 50% 60%; }
+.walk-fig .ph { position: absolute; inset: 0; display: grid; place-items: center; }
+.walk-fig .ph svg { width: 100%; height: 100%; opacity: .5; }
+.walk-alt {
+  position: absolute; right: .7rem; top: .7rem;
+  font-family: var(--font-mono); font-size: .6rem; font-weight: 500; letter-spacing: .1em;
+  background: rgba(20,28,33,.78); color: var(--whin);
+  padding: .35rem .55rem; backdrop-filter: blur(4px);
+}
+.walk-body { padding: 1.4rem 1.4rem 1.6rem; display: flex; flex-direction: column; gap: .85rem; flex: 1; }
+.walk h3 { text-wrap: balance; }
+.walk p { font-size: .93rem; color: var(--muted); }
+.walk dl {
+  display: flex; flex-wrap: wrap; gap: .45rem 1.3rem;
+  padding-top: .95rem; border-top: 1px solid var(--stone-3);
+  font-family: var(--font-mono); font-size: .68rem;
+}
+.walk dl div { display: flex; flex-direction: column; gap: .15rem; }
+.walk dt { color: var(--muted); font-size: .58rem; letter-spacing: .12em; text-transform: uppercase; }
+.walk .go {
+  margin-top: auto; padding-top: .4rem;
+  font-family: var(--font-mono); font-size: .68rem; font-weight: 500;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--bracken-ink);
+  display: inline-flex; align-items: center; gap: .5rem;
+  transition: gap .4s var(--ease-out), color .3s var(--ease);
+}
+.walk:hover .go { gap: .85rem; color: var(--ink); }
+
+/* ============================================================
+   Guide
+   ============================================================ */
+.guide { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 6vw, 4.5rem); align-items: center; }
+.guide-copy p + p { margin-top: 1rem; }
+.guide-copy p { color: var(--muted); }
+/* Two photographs offset and overlapping — the boy on the hill behind,
+   the same person on the same hills now in front. The gap between the
+   two pictures is the twenty years. */
+.guide-figs { position: relative; padding-bottom: 3.5rem; padding-right: 2rem; }
+.guide-figs figure {
+  overflow: hidden;
+  background: linear-gradient(150deg, var(--basalt-2), var(--ink));
+  box-shadow: 0 18px 44px -20px rgba(20,28,33,.5);
+}
+.guide-figs img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* Both photographs are portrait, so the boxes match their sources rather
+   than cropping them square. */
+.guide-figs .then {
+  width: 62%;
+  aspect-ratio: 3/4;
+}
+.guide-figs .now {
+  position: absolute;
+  right: 0; bottom: 0;
+  width: 56%;
+  aspect-ratio: 3/4;
+  border: 6px solid var(--stone);
+  box-shadow: 0 22px 50px -18px rgba(20,28,33,.55);
+}
+.guide-figs .then img { object-position: 50% 42%; }
+.guide-figs .now  img { object-position: 50% 38%; }
+
+/* Same pair of photographs beside the About headline. On the dark head
+   the front photo's edge takes the dark ground instead of the stone. */
+.head-split {
+  display: grid;
+  grid-template-columns: 1.15fr .85fr;
+  gap: clamp(2rem, 6vw, 4.5rem);
+  align-items: center;
+}
+.head-split .guide-figs { padding-bottom: 2.5rem; }
+.on-dark .guide-figs .now { border-color: var(--ink); }
+@media (max-width: 860px) {
+  .head-split { grid-template-columns: 1fr; }
+  .head-split .guide-figs { margin-top: 1.5rem; max-width: 24rem; }
+}
+.guide-figs figcaption {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding: 1.6rem .7rem .5rem;
+  font-family: var(--font-mono); font-size: .52rem;
+  letter-spacing: .14em; text-transform: uppercase; color: var(--paper);
+  background: linear-gradient(180deg, transparent, rgba(20,28,33,.75));
+}
+@media (max-width: 520px) {
+  .guide-figs { padding-bottom: 2.5rem; padding-right: 1rem; }
+  .guide-figs .then { width: 78%; }
+  .guide-figs .now  { width: 52%; border-width: 4px; }
+  .guide-figs figcaption { font-size: .48rem; }
+}
+.tally { display: flex; gap: 2rem; flex-wrap: wrap; margin-top: 1.8rem; padding-top: 1.4rem; border-top: 1px solid var(--stone-3); }
+.tally b { display: block; font-family: var(--font-display); font-size: 1.9rem; color: var(--bracken-ink); line-height: 1; }
+.tally span { font-family: var(--font-mono); font-size: .6rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); display: block; margin-top: .4rem; }
+@media (max-width: 820px) { .guide { grid-template-columns: 1fr; } }
+
+/* ============================================================
+   Quote (Stevenson)
+   ============================================================ */
+.quote { background: var(--basalt); color: var(--paper); padding: clamp(3.5rem,9vw,6.5rem) 0; }
+.quote blockquote { font-family: var(--font-display); font-size: clamp(1.45rem,3.2vw,2.4rem); line-height: 1.22; max-width: 22ch; }
+.quote cite { display: block; margin-top: 1.4rem; font-style: normal; font-family: var(--font-mono); font-size: .66rem; letter-spacing: .14em; text-transform: uppercase; color: var(--whin); }
+
+/* ============================================================
+   Gallery
+   ============================================================ */
+.grid-shots { display: grid; grid-template-columns: repeat(4, 1fr); gap: .7rem; }
+.grid-shots figure { aspect-ratio: 1; background: linear-gradient(155deg, var(--basalt-2), var(--ink)); overflow: hidden; position: relative; }
+.grid-shots figure:nth-child(4n+1) { aspect-ratio: 1; }
+.grid-shots img { width: 100%; height: 100%; object-fit: cover; }
+@media (max-width: 780px) { .grid-shots { grid-template-columns: repeat(2, 1fr); } }
+
+/* ============================================================
+   Reel — a slow, self-moving ribbon of photographs. Duplicated
+   once so the loop is seamless; pauses on hover or keyboard
+   focus, and becomes a plain scrollable strip if the visitor
+   has asked for reduced motion.
+   ============================================================ */
+.reel { position: relative; overflow: hidden; }
+.reel::before, .reel::after {
+  content: ""; position: absolute; top: 0; bottom: 0; width: clamp(2rem, 7vw, 7rem);
+  z-index: 2; pointer-events: none;
+}
+.reel::before { left: 0;  background: linear-gradient(90deg, var(--stone-2), transparent); }
+.reel::after  { right: 0; background: linear-gradient(270deg, var(--stone-2), transparent); }
+
+.reel-track {
+  display: flex; gap: 1rem; width: max-content;
+  animation: reel 64s linear infinite;
+}
+.reel:hover .reel-track,
+.reel:focus-within .reel-track { animation-play-state: paused; }
+@keyframes reel { from { transform: translate3d(0,0,0); } to { transform: translate3d(-50%,0,0); } }
+
+.reel figure {
+  flex: none;
+  width: clamp(210px, 24vw, 320px);
+  margin: 0;
+}
+.reel img {
+  /* height:auto is required — without it the HTML height attribute wins
+     as a presentational hint and aspect-ratio is ignored. */
+  width: 100%; height: auto; aspect-ratio: 4/5;
+  object-fit: cover; object-position: 50% 40%;
+  display: block; background: var(--basalt-2);
+}
+.reel figcaption {
+  margin-top: .6rem;
+  font-family: var(--font-mono); font-size: .56rem;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reel { overflow-x: auto; }
+  .reel-track { animation: none; }
+  .reel::before, .reel::after { display: none; }
+}
+
+/* ============================================================
+   Testimonials
+   ============================================================ */
+.says { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
+.says blockquote {
+  background: var(--paper);
+  border: 1px solid var(--stone-3);
+  padding: 1.7rem 1.6rem 1.5rem;
+  display: flex; flex-direction: column; gap: 1rem; height: 100%;
+  position: relative;
+}
+.says blockquote::before {
+  content: "“";
+  font-family: var(--font-display); font-size: 3.2rem; line-height: .8;
+  color: var(--whin-ink); opacity: .5;
+}
+.says p {
+  font-family: var(--font-display); font-size: 1.02rem; line-height: 1.42;
+  margin: 0; flex: 1;
+}
+.says footer {
+  font-family: var(--font-mono); font-size: .6rem;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--muted);
+  border-top: 1px solid var(--stone-3); padding-top: .9rem;
+}
+@media (max-width: 860px) { .says { grid-template-columns: 1fr; } }
+
+/* ============================================================
+   CTA band
+   ============================================================ */
+.cta-band { background: var(--bracken); color: var(--paper); padding: clamp(3rem,7vw,5rem) 0; text-align: center; }
+.cta-band h2 { color: var(--paper); max-width: 20ch; margin: .7rem auto 0; }
+.cta-band p { color: rgba(242,242,238,.86); max-width: 46ch; margin: 1rem auto 0; }
+.cta-band .btn { margin-top: 1.9rem; }
+.cta-band .btn-primary { background: var(--paper); color: var(--ink); }
+.cta-band .btn-primary:hover { background: #fff; }
+
+/* ============================================================
+   Form
+   ============================================================ */
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem,6vw,4.5rem); }
+.field { display: flex; flex-direction: column; gap: .45rem; margin-bottom: 1.2rem; }
+.field label { font-family: var(--font-mono); font-size: .6rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.field input, .field select, .field textarea {
+  background: var(--paper); border: 1px solid var(--stone-3);
+  padding: .8rem .85rem; font-size: 1rem; min-height: 44px; border-radius: 2px;
+  transition: border-color .3s var(--ease);
+}
+.field input:focus, .field select:focus, .field textarea:focus { border-color: var(--basalt); outline: none; }
+.field textarea { resize: vertical; min-height: 7rem; }
+.form-note { font-size: .82rem; color: var(--muted); margin-top: .7rem; }
+.form-status { font-family: var(--font-mono); font-size: .72rem; margin-top: .9rem; min-height: 1.3em; color: var(--bracken-ink); }
+.form-status[data-state="error"] { color: #8C2F2F; }
+.contact-list dt { font-family: var(--font-mono); font-size: .6rem; letter-spacing: .12em; text-transform: uppercase; color: var(--bracken-ink); }
+.contact-list dd { margin: .3rem 0 1.3rem; font-size: 1.02rem; }
+@media (max-width: 820px) { .form-grid { grid-template-columns: 1fr; } }
+
+/* ============================================================
+   Footer
+   ============================================================ */
+.site-footer { background: var(--ink); color: var(--muted-dark); padding: clamp(3rem,6vw,4.5rem) 0 1.8rem; }
+.foot-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 2.2rem; padding-bottom: 2.6rem; border-bottom: 1px solid rgba(242,242,238,.12); }
+.foot-grid h4 { font-family: var(--font-mono); font-size: .6rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--paper); margin-bottom: 1rem; }
+.foot-grid ul { display: grid; gap: .65rem; font-size: .92rem; }
+.foot-grid a:hover { color: var(--paper); }
+.foot-grid > div:first-child p { font-size: .88rem; max-width: 32ch; margin-top: .9rem; }
+.foot-base { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .8rem; padding-top: 1.4rem; font-family: var(--font-mono); font-size: .6rem; letter-spacing: .06em; color: rgba(195,200,198,.7); }
+@media (max-width: 780px) { .foot-grid { grid-template-columns: 1fr 1fr; } .foot-grid > div:first-child { grid-column: span 2; } }
+
+/* ============================================================
+   Interior page head
+   ============================================================ */
+.page-head { background: var(--ink); color: var(--paper); padding: clamp(8rem,15vw,11rem) 0 clamp(3rem,6vw,4.5rem); position: relative; overflow: hidden; }
+.page-head::before {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(100% 80% at 15% 110%, rgba(91,124,141,.4), transparent 62%);
+}
+.page-head .wrap { position: relative; }
+.page-head h1 { max-width: 17ch; margin-top: .7rem; }
+.page-head .lede { margin-top: 1.1rem; }
+.crumb { font-family: var(--font-mono); font-size: .6rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted-dark); margin-bottom: 2rem; }
+.crumb a:hover { color: var(--whin); }
+
+.stat-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.2rem; margin-top: 2.4rem; padding-top: 1.8rem; border-top: 1px solid rgba(242,242,238,.15); }
+.stat-row b { display: block; font-family: var(--font-display); font-size: 1.5rem; color: var(--whin); line-height: 1; }
+.stat-row span { display: block; margin-top: .45rem; font-family: var(--font-mono); font-size: .58rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted-dark); }
+@media (max-width: 700px) { .stat-row { grid-template-columns: repeat(2,1fr); gap: 1.4rem; } }
+
+.split { display: grid; grid-template-columns: 1.35fr 1fr; gap: clamp(2rem,6vw,4rem); align-items: start; }
+@media (max-width: 860px) { .split { grid-template-columns: 1fr; } }
+
+.prose h2 { margin-bottom: .9rem; }
+.prose h2 + p, .prose p + p { margin-top: .95rem; }
+.prose p { color: var(--muted); max-width: 62ch; }
+.prose > * + h2 { margin-top: 2.6rem; }
+
+.stage { display: grid; grid-template-columns: 5rem 1fr; gap: 1.3rem; padding: 1.5rem 0; border-bottom: 1px solid var(--stone-3); }
+.stage .n { font-family: var(--font-mono); font-size: .64rem; letter-spacing: .1em; color: var(--bracken-ink); padding-top: .2rem; }
+.stage h3 { margin-bottom: .35rem; }
+.stage p { color: var(--muted); font-size: .95rem; }
+@media (max-width: 620px) { .stage { grid-template-columns: 1fr; gap: .4rem; } }
+
+.book-card { background: var(--paper); border: 1px solid var(--stone-3); padding: 1.6rem; position: sticky; top: 5.5rem; }
+.book-card .price { font-family: var(--font-display); font-size: 2rem; margin: .5rem 0 1rem; }
+.book-card .price span { font-family: var(--font-mono); font-size: .72rem; color: var(--muted); }
+.book-card ul { display: grid; gap: .6rem; margin: 1.2rem 0; font-size: .9rem; }
+.book-card li { display: flex; gap: .6rem; }
+.book-card li::before { content: "—"; color: var(--bracken-ink); flex: none; }
+.book-card .btn { width: 100%; }
+
+/* ---------- reveals (scoped to .js so no-JS shows everything) ---------- */
+.js .rise { opacity: 0; transform: translateY(18px); transition: opacity .8s var(--ease-out), transform .8s var(--ease-out); }
+.js .rise.is-in { opacity: 1; transform: none; }
+.js .stagger > * { opacity: 0; transform: translateY(16px); transition: opacity .7s var(--ease-out), transform .7s var(--ease-out); }
+.js .stagger.is-in > * { opacity: 1; transform: none; }
+.js .stagger.is-in > *:nth-child(1) { transition-delay: .04s; }
+.js .stagger.is-in > *:nth-child(2) { transition-delay: .12s; }
+.js .stagger.is-in > *:nth-child(3) { transition-delay: .20s; }
+.js .stagger.is-in > *:nth-child(4) { transition-delay: .28s; }
+.js .stagger.is-in > *:nth-child(5) { transition-delay: .36s; }
+.js .stagger.is-in > *:nth-child(6) { transition-delay: .44s; }
+
+/* ============================================================
+   Mobile-specific decisions
+   ============================================================ */
+@media (max-width: 640px) {
+  .hero { min-height: 92svh; padding-bottom: 2.5rem; }
+  .hero-cta { display: grid; grid-template-columns: 1fr; gap: .6rem; }
+  .hero-cta .btn { width: 100%; }
+
+  /* walks run to the page edge — a field guide, not floating cards */
+  .walks { gap: 0; margin-inline: calc(var(--gutter) * -1); }
+  .walk { border-inline: 0; border-top: 0; background: transparent; }
+  .walk:first-child { border-top: 1px solid var(--stone-3); }
+  .walk-body { padding-inline: var(--gutter); }
+  .walk:hover { border-color: var(--stone-3); }
+
+  .guide-figs figure:nth-child(2) { margin-top: 0; }
+  .tally { gap: 1.4rem; }
+  .book-card { position: static; }
+}

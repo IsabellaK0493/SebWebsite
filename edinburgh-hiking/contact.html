@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<script>document.documentElement.className+=" js";</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Book a walk — Edinburgh Hiking</title>
+<meta name="description" content="Get in touch to book a private guided walk on the Pentland Hills or Edinburgh’s seven hills.">
+<link rel="canonical" href="https://sebastiancnanderson.com/contact.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Edinburgh Hiking">
+<meta property="og:title" content="Book a walk — Edinburgh Hiking">
+<meta property="og:description" content="Get in touch to book a private guided walk on the Pentland Hills or Edinburgh’s seven hills.">
+<meta property="og:url" content="https://sebastiancnanderson.com/contact.html">
+<meta property="og:image" content="https://sebastiancnanderson.com/assets/img/vista.jpg">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#141C21">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23141C21'/%3E%3Cpath d='M2 24 L11 11 L15 17 L20 9 L30 24 Z' fill='%23E4B740'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300..800&family=Martian+Mono:wght@300..700&family=Young+Serif&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300..800&family=Martian+Mono:wght@300..700&family=Young+Serif&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300..800&family=Martian+Mono:wght@300..700&family=Young+Serif&display=swap"></noscript>
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="mark" href="index.html" aria-label="Edinburgh Hiking — home">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M2 25 L11 10 L15.5 17.5 L20 8 L30 25 Z" fill="none" stroke="#E4B740" stroke-width="1.6" stroke-linejoin="round"/><path d="M6 25 L11 17 L14 21" fill="none" stroke="#C3C8C6" stroke-width="1.2" stroke-linejoin="round"/></svg>
+      <b>Edinburgh Hiking<span>Pentlands &amp; the seven hills</span></b>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="walks.html">Walks</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html" aria-current="page">Contact</a></li>
+      </ul>
+      <a class="btn btn-primary" href="contact.html">Book a walk</a>
+      <button class="burger" aria-expanded="false" aria-label="Open menu" aria-controls="sheet"><i></i></button>
+    </nav>
+  </div>
+</header>
+
+<div class="sheet" id="sheet" aria-hidden="true">
+  <nav aria-label="Mobile">
+    <a href="index.html">Home</a>
+    <a href="walks.html">Walks</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <a class="btn btn-primary" href="contact.html">Book a walk</a>
+</div>
+
+<main id="main">
+
+  <section class="page-head on-dark">
+    <div class="wrap">
+      <span class="eyebrow">Book a walk</span>
+      <h1>Tell me what you'd like to do</h1>
+      <p class="lede">Whether you have a route in mind or just want a good day out on the hills, send me a few details and I'll come back to you — usually within a day.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap form-grid">
+      <div class="rise">
+        <form id="enquiry" action="https://formspree.io/f/REPLACE_ME" method="POST" novalidate>
+          <div class="field">
+            <label for="f-name">Name</label>
+            <input type="text" id="f-name" name="name" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="f-email">Email</label>
+            <input type="email" id="f-email" name="email" autocomplete="email" required>
+          </div>
+          <div class="field">
+            <label for="f-walk">Which walk</label>
+            <select id="f-walk" name="walk">
+              <option value="Not sure yet">Not sure yet — suggest something</option>
+              <option value="The Pentland Hills">The Pentland Hills</option>
+              <option value="Hermitage of Braid &amp; Blackford Hill">Hermitage of Braid &amp; Blackford Hill</option>
+              <option value="Arthur's Seat &amp; Salisbury Crags">Arthur's Seat &amp; Salisbury Crags</option>
+              <option value="Custom route">Custom route</option>
+              <option value="The seven hills in a day">The seven hills in a day</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="f-people">How many walking</label>
+            <select id="f-people" name="people">
+              <option>1</option><option>2</option><option>3&ndash;4</option><option>5&ndash;6</option><option>7+</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="f-msg">Dates, experience, anything I should know</label>
+            <textarea id="f-msg" name="message" rows="5"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Send enquiry</button>
+          <p class="form-status" role="status" aria-live="polite"></p>
+          <p class="form-note">I reply from seb@sebastiancnanderson.com. Your details are used to answer your enquiry and nothing else.</p>
+        </form>
+      </div>
+
+      <div class="rise">
+        <h2>Edinburgh Hiking</h2>
+        <dl class="contact-list" style="margin-top:1.6rem;">
+          <dt>Email</dt>
+          <dd><a href="mailto:seb@sebastiancnanderson.com">seb@sebastiancnanderson.com</a></dd>
+          <dt>Where I walk</dt>
+          <dd>The Pentland Hills Regional Park and all seven hills of Edinburgh.</dd>
+          <dt>When</dt>
+          <dd>Year-round, subject to safe conditions. Winter days are shorter, so we start earlier.</dd>
+        </dl>
+
+        <div class="faq" style="margin-top:2.4rem;">
+          <div data-acc="closed" style="border-top:1px solid var(--stone-3);">
+            <button type="button" aria-expanded="false" style="width:100%;display:flex;justify-content:space-between;gap:1rem;align-items:center;padding:1.1rem 0;text-align:left;font-family:var(--font-display);font-size:1.02rem;">
+              Do I need any hill experience?<span aria-hidden="true" style="color:var(--whin-ink);">+</span>
+            </button>
+            <div data-panel style="max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.22,1,.36,1);">
+              <p style="padding-bottom:1.1rem;color:var(--muted);">No. The Hermitage and Blackford walk is genuinely easy, and I match pace and route to whoever is coming. Tell me how you feel about hills and I'll plan accordingly.</p>
+            </div>
+          </div>
+          <div data-acc="closed" style="border-top:1px solid var(--stone-3);border-bottom:1px solid var(--stone-3);">
+            <button type="button" aria-expanded="false" style="width:100%;display:flex;justify-content:space-between;gap:1rem;align-items:center;padding:1.1rem 0;text-align:left;font-family:var(--font-display);font-size:1.02rem;">
+              What if the weather is bad?<span aria-hidden="true" style="color:var(--whin-ink);">+</span>
+            </button>
+            <div data-panel style="max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.22,1,.36,1);">
+              <p style="padding-bottom:1.1rem;color:var(--muted);">We agree a lower-level alternative the night before rather than deciding in a car park. Scottish weather rarely cancels a walk outright, but it does change which hill we go up.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="mark" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M2 25 L11 10 L15.5 17.5 L20 8 L30 25 Z" fill="none" stroke="#E4B740" stroke-width="1.6" stroke-linejoin="round"/><path d="M6 25 L11 17 L14 21" fill="none" stroke="#C3C8C6" stroke-width="1.2" stroke-linejoin="round"/></svg><b>Edinburgh Hiking<span>Pentlands &amp; the seven hills</span></b></a>
+        <p>Private guided hill walking on the Pentland Hills and Edinburgh's seven hills. Year-round, weather permitting.</p>
+      </div>
+      <div>
+        <h4>Walks</h4>
+        <ul>
+          <li><a href="walks.html">All walks</a></li>
+          <li><a href="walk-pentlands.html">The Pentland Hills</a></li>
+          <li><a href="walk-hermitage.html">Hermitage &amp; Blackford</a></li>
+          <li><a href="walk-arthurs-seat.html">Arthur's Seat</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="about.html">About Sebastian</a></li>
+          <li><a href="contact.html">Book a walk</a></li>
+          <li><a href="mailto:seb@sebastiancnanderson.com">seb@sebastiancnanderson.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-base"><span>&copy; 2026 Edinburgh Hiking</span><span>Edinburgh, Scotland</span></div>
+  </div>
+</footer>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
