@@ -4,8 +4,8 @@
     {
       "name": "sebwebsite",
       "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "8123", "--bind", "127.0.0.1"],
-      "port": 8123
+      "runtimeArgs": ["serve.py", "8145"],
+      "port": 8145
     }
   ]
 }
