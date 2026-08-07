@@ -1,7 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(ls -la ~/.claude/skills/ 2>/dev/null || echo \"NO_SKILLS_DIR\")"
-    ]
-  }
-}
