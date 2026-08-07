@@ -345,10 +345,11 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
   color: var(--paper);
   background: linear-gradient(180deg, transparent, rgba(20,28,33,.72));
 }
-.vista figcaption span:last-child { color: var(--whin); }
+/* Second caption span only — a lone caption stays paper-white and visible. */
+.vista figcaption span + span { color: var(--whin); }
 @media (max-width: 640px) {
   .vista { height: clamp(200px, 30vh, 300px); }
-  .vista figcaption span:last-child { display: none; }
+  .vista figcaption span + span { display: none; }
 }
 
 /* ============================================================
