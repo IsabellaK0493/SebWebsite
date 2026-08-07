@@ -17,8 +17,10 @@
   --stone-3:     #CFD1C8;
   --paper:       #F2F2EE;
 
-  --whin:        #E4B740;   /* gorse — on dark only, 6.24:1 */
-  --whin-ink:    #7A5A0E;   /* gorse — on light, 5.17:1 */
+  --whin:        #4FBF8B;   /* accent text & icons on dark, 5.13:1 on ink */
+  --whin-solid:  #258255;   /* solid fills — carries paper text, 4.77:1 */
+  --whin-hover:  #1F6E48;   /* solid fill hover — paper text, 6.21:1 */
+  --whin-ink:    #258255;   /* on light, 4.25:1 */
   --bracken:     #A85A2A;
   --bracken-ink: #8A4620;   /* 5.73:1 on stone */
   --reservoir:   #5B7C8D;   /* graphic use only (3.62:1) */
@@ -74,7 +76,7 @@ body {
 
 .skip-link {
   position: absolute; left: 1rem; top: -3.5rem; z-index: 300;
-  background: var(--whin); color: var(--ink);
+  background: var(--whin-solid); color: var(--paper);
   padding: .7rem 1.1rem; font-family: var(--font-mono); font-size: .72rem;
   transition: top .2s var(--ease);
 }
@@ -117,8 +119,8 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
   position: relative; overflow: hidden;
   transition: background .35s var(--ease), color .35s var(--ease), border-color .35s var(--ease);
 }
-.btn-primary { background: var(--whin); color: var(--ink); }
-.btn-primary:hover { background: #F1C95C; }
+.btn-primary { background: var(--whin-solid); color: var(--paper); }
+.btn-primary:hover { background: var(--whin-hover); }
 .btn-line { border: 1px solid currentColor; }
 .btn-line::after {
   content: ""; position: absolute; inset: auto 0 0 0; height: 1px;
