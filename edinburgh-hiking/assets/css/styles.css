@@ -422,51 +422,51 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 }
 .head-row h2 { max-width: 18ch; }
 
-.walks { display: grid; grid-template-columns: repeat(auto-fit, minmax(285px, 1fr)); gap: 1.4rem; }
+.tours { display: grid; grid-template-columns: repeat(auto-fit, minmax(285px, 1fr)); gap: 1.4rem; }
 
-.walk {
+.tour {
   display: flex; flex-direction: column;
   background: var(--paper);
   border: 1px solid var(--stone-3);
   transition: border-color .4s var(--ease), transform .4s var(--ease);
 }
-.walk:hover { border-color: var(--basalt); }
-.walk-fig {
+.tour:hover { border-color: var(--basalt); }
+.tour-fig {
   aspect-ratio: 5/3; position: relative; overflow: hidden;
   background: linear-gradient(160deg, var(--basalt-2), var(--ink));
 }
 /* The walk photographs are near-square, so a 5:3 card shows about 58% of
    each frame. Sit that band on the hill rather than the foreground. */
-.walk-fig img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 62%; }
-.walk-fig img[src*="arthurs-seat"] { object-position: 50% 84%; }
-.walk-fig img[src*="hermitage"]    { object-position: 50% 80%; }
-.walk-fig img[src*="pentlands"]    { object-position: 50% 60%; }
-.walk-fig .ph { position: absolute; inset: 0; display: grid; place-items: center; }
-.walk-fig .ph svg { width: 100%; height: 100%; opacity: .5; }
-.walk-alt {
+.tour-fig img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 62%; }
+.tour-fig img[src*="arthurs-seat"] { object-position: 50% 84%; }
+.tour-fig img[src*="hermitage"]    { object-position: 50% 80%; }
+.tour-fig img[src*="pentlands"]    { object-position: 50% 60%; }
+.tour-fig .ph { position: absolute; inset: 0; display: grid; place-items: center; }
+.tour-fig .ph svg { width: 100%; height: 100%; opacity: .5; }
+.tour-alt {
   position: absolute; right: .7rem; top: .7rem;
   font-family: var(--font-mono); font-size: .6rem; font-weight: 500; letter-spacing: .1em;
   background: rgba(20,28,33,.78); color: var(--whin);
   padding: .35rem .55rem; backdrop-filter: blur(4px);
 }
-.walk-body { padding: 1.4rem 1.4rem 1.6rem; display: flex; flex-direction: column; gap: .85rem; flex: 1; }
-.walk h3 { text-wrap: balance; }
-.walk p { font-size: .93rem; color: var(--muted); }
-.walk dl {
+.tour-body { padding: 1.4rem 1.4rem 1.6rem; display: flex; flex-direction: column; gap: .85rem; flex: 1; }
+.tour h3 { text-wrap: balance; }
+.tour p { font-size: .93rem; color: var(--muted); }
+.tour dl {
   display: flex; flex-wrap: wrap; gap: .45rem 1.3rem;
   padding-top: .95rem; border-top: 1px solid var(--stone-3);
   font-family: var(--font-mono); font-size: .68rem;
 }
-.walk dl div { display: flex; flex-direction: column; gap: .15rem; }
-.walk dt { color: var(--muted); font-size: .58rem; letter-spacing: .12em; text-transform: uppercase; }
-.walk .go {
+.tour dl div { display: flex; flex-direction: column; gap: .15rem; }
+.tour dt { color: var(--muted); font-size: .58rem; letter-spacing: .12em; text-transform: uppercase; }
+.tour .go {
   margin-top: auto; padding-top: .4rem;
   font-family: var(--font-mono); font-size: .68rem; font-weight: 500;
   letter-spacing: .1em; text-transform: uppercase; color: var(--bracken-ink);
   display: inline-flex; align-items: center; gap: .5rem;
   transition: gap .4s var(--ease-out), color .3s var(--ease);
 }
-.walk:hover .go { gap: .85rem; color: var(--ink); }
+.tour:hover .go { gap: .85rem; color: var(--ink); }
 
 /* ============================================================
    Guide
@@ -727,11 +727,11 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
   .hero-cta .btn { width: 100%; }
 
   /* walks run to the page edge — a field guide, not floating cards */
-  .walks { gap: 0; margin-inline: calc(var(--gutter) * -1); }
-  .walk { border-inline: 0; border-top: 0; background: transparent; }
-  .walk:first-child { border-top: 1px solid var(--stone-3); }
-  .walk-body { padding-inline: var(--gutter); }
-  .walk:hover { border-color: var(--stone-3); }
+  .tours { gap: 0; margin-inline: calc(var(--gutter) * -1); }
+  .tour { border-inline: 0; border-top: 0; background: transparent; }
+  .tour:first-child { border-top: 1px solid var(--stone-3); }
+  .tour-body { padding-inline: var(--gutter); }
+  .tour:hover { border-color: var(--stone-3); }
 
   .guide-figs figure:nth-child(2) { margin-top: 0; }
   .tally { gap: 1.4rem; }

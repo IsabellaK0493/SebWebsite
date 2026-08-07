@@ -208,7 +208,7 @@
       var d = {
         name: form.querySelector("#f-name").value.trim(),
         email: form.querySelector("#f-email").value.trim(),
-        walk: form.querySelector("#f-walk").value,
+        tour: form.querySelector("#f-tour").value,
         people: form.querySelector("#f-people").value,
         message: form.querySelector("#f-msg").value.trim()
       };
@@ -219,9 +219,9 @@
       }
 
       var fallback = function () {
-        var s = encodeURIComponent("Walk enquiry: " + (d.walk || "General"));
+        var s = encodeURIComponent("Tour enquiry: " + (d.tour || "General"));
         var b = encodeURIComponent(
-          "Name: " + d.name + "\nEmail: " + d.email + "\nWalk: " + d.walk +
+          "Name: " + d.name + "\nEmail: " + d.email + "\nTour: " + d.tour +
           "\nPeople: " + d.people + "\n\n" + d.message
         );
         window.location.href = "mailto:seb@sebastiancnanderson.com?subject=" + s + "&body=" + b;
