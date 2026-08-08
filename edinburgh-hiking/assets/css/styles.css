@@ -459,6 +459,8 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
   font-family: var(--font-mono); font-size: .68rem;
 }
 .tour dl div { display: flex; flex-direction: column; gap: .15rem; }
+/* Same divider the detail list draws, on cards that carry no detail list. */
+.tour-rule { border: 0; border-top: 1px solid var(--stone-3); margin: .1rem 0 0; }
 .tour dt { color: var(--muted); font-size: .58rem; letter-spacing: .12em; text-transform: uppercase; }
 .tour .go {
   margin-top: auto; padding-top: .4rem;
