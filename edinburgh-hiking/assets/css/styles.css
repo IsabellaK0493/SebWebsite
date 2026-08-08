@@ -422,14 +422,14 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
   gap: 1.6rem; flex-wrap: wrap; margin-bottom: clamp(2rem, 4vw, 3rem);
 }
 .head-row h2 { max-width: 18ch; }
-/* Standing copy in the eyebrow voice: same mono caps, given room to run
-   over several lines rather than sitting on one. */
+/* Reads in the same voice as the copy on the tiles below it. */
 .tours-intro {
-  display: block; max-width: 60ch;
-  margin-top: 1.1rem; line-height: 2.1;
+  max-width: 62ch; margin-top: 1.1rem;
+  font-size: .93rem; color: var(--muted);
 }
 
 .tours { display: grid; grid-template-columns: repeat(auto-fit, minmax(285px, 1fr)); gap: 1.4rem; }
+.tours-more { display: flex; justify-content: center; margin-top: clamp(1.8rem, 4vw, 2.6rem); }
 
 .tour {
   display: flex; flex-direction: column;
