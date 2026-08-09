@@ -518,9 +518,9 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 }
 /* The guide photograph on its own: centred in its column and lightened so
    it sits back from the copy, with the caption below rather than over it. */
-.guide-solo { margin: 0 auto; max-width: 25rem; text-align: center; }
+.guide-solo { margin: 0 auto; max-width: 19rem; text-align: center; }
 .guide-solo img {
-  width: 100%;
+  width: 100%; height: auto;          /* the source is portrait 3:4 */
   box-shadow: 0 18px 44px -20px rgba(20,28,33,.4);
   filter: brightness(1.09) saturate(.94);
 }
