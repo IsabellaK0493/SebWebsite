@@ -601,6 +601,9 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
   object-fit: cover; object-position: 50% 40%;
   display: block; background: var(--basalt-2);
 }
+/* Landscape source: the 4:5 frame keeps only about half its width, so hold
+   the crop to the right where Sebastian and the dog are on the path. */
+.reel img[src*="seb-9"] { object-position: 92% 50%; }
 .reel figcaption {
   margin-top: .6rem;
   font-family: var(--font-mono); font-size: .56rem;
