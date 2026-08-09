@@ -95,13 +95,25 @@
     /* The clips are short, so slowing playback is what actually calms the
        hero — it stretches each one and lets the cut come later, without
        shipping any more video. */
-    var RATE = 0.65;
+    var RATE = 0.5;
+
+    /* A clip can ask for its own pace with data-rate, and for the moment it
+       should open on with data-start — some clips only get good a second or
+       two in, and the hero has no time to waste on the run-up. */
+    var rateOf = function (v) {
+      var r = parseFloat(v.getAttribute("data-rate"));
+      return r > 0 ? r : RATE;
+    };
+    var startOf = function (v) {
+      var s = parseFloat(v.getAttribute("data-start"));
+      return s > 0 ? s : 0;
+    };
 
     /* Cut shortly before the clip ends so a loop-jump is never seen. */
     var dwell = function (v) {
       var d = v.duration;
       if (!d || !isFinite(d)) return 5200;
-      return Math.min(6200, Math.max(2600, (d / RATE) * 1000 - 600));
+      return Math.min(8000, Math.max(2600, ((d - startOf(v)) / rateOf(v)) * 1000 - 600));
     };
 
     /* Only clip 1 ships with the page; warm the next one just in time
@@ -121,8 +133,8 @@
         var on = n === i;
         v.classList.toggle("is-active", on);
         if (on) {
-          try { v.currentTime = 0; } catch (e) {}
-          if (!reduce) { v.playbackRate = RATE; var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+          try { v.currentTime = startOf(v); } catch (e) {}
+          if (!reduce) { v.playbackRate = rateOf(v); var p = v.play(); if (p && p.catch) p.catch(function () {}); }
         } else {
           v.pause();
         }
@@ -161,7 +173,7 @@
               clips.forEach(function (v) { v.pause(); });
             } else if (!reduce) {
               var cur = clips[idx];
-              if (cur) { cur.playbackRate = RATE; var p = cur.play(); if (p && p.catch) p.catch(function () {}); }
+              if (cur) { cur.playbackRate = rateOf(cur); var p = cur.play(); if (p && p.catch) p.catch(function () {}); }
               window.clearTimeout(timer);
               timer = window.setTimeout(function () { show((idx + 1) % clips.length, true); }, dwell(clips[idx] || clips[0]));
             }
@@ -175,7 +187,7 @@
           clips.forEach(function (v) { v.pause(); });
         } else if (!reduce && !paused) {
           var cur = clips[idx];
-          if (cur) { cur.playbackRate = RATE; var p = cur.play(); if (p && p.catch) p.catch(function () {}); }
+          if (cur) { cur.playbackRate = rateOf(cur); var p = cur.play(); if (p && p.catch) p.catch(function () {}); }
           timer = window.setTimeout(function () { show((idx + 1) % clips.length, true); }, dwell(clips[idx] || clips[0]));
         }
       });

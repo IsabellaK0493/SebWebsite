@@ -221,6 +221,15 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 .sheet.is-open { transform: none; }
 .sheet nav { display: flex; flex-direction: column; gap: 1.1rem; }
 .sheet nav a { font-family: var(--font-display); font-size: clamp(1.9rem,8vw,2.5rem); color: var(--paper); }
+/* The tours, listed under Tours — the drop-down's opposite number on a
+   phone, where there is no hover to open one. */
+.sheet nav a.sub {
+  font-family: var(--font-mono); font-size: .72rem;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: rgba(242,242,238,.72); padding-left: 1rem;
+  margin-top: -.45rem;
+}
+.sheet nav a.sub + a:not(.sub) { margin-top: .5rem; }
 .sheet .btn { align-self: flex-start; margin-top: 1.6rem; }
 
 /* ============================================================
@@ -255,6 +264,9 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
      of each frame. The skyline sits at a different height in every clip,
      so the crop is tuned per clip below rather than shared. */
   object-position: 50% 66%;
+  /* The footage is phone-shot and sits under a scrim, so a little lift keeps
+     the hills off the floor of the histogram. */
+  filter: brightness(1.12) contrast(1.02) saturate(1.05);
   opacity: 0;
   transition: opacity 1.5s var(--ease-out);
   will-change: opacity, transform;
@@ -266,13 +278,17 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 .hero-clip:nth-child(3) { object-position: 50% 70%; }  /* golden hour ridge */
 .hero-clip:nth-child(4) { object-position: 50% 50%; }  /* Seb & the dogs — landscape, no crop */
 .hero-clip:nth-child(5) { object-position: 50% 50%; }  /* on the hill — landscape, no crop */
+.hero-clip:nth-child(6) { object-position: 50% 62%; }  /* sunset — hold the colour band on the horizon */
+.hero-clip:nth-child(7) { object-position: 50% 78%; }  /* hills above the reservoir */
+.hero-clip:nth-child(8) { object-position: 50% 56%; }  /* cloud over the open hillside */
 
 /* A phone viewport is close to the clips' own portrait shape, so barely
    any crop happens and the framing can sit near centre. */
 @media (max-width: 640px) {
   .hero-clip,
   .hero-clip:nth-child(1), .hero-clip:nth-child(2), .hero-clip:nth-child(3),
-  .hero-clip:nth-child(4), .hero-clip:nth-child(5) { object-position: 50% 55%; }
+  .hero-clip:nth-child(4), .hero-clip:nth-child(5), .hero-clip:nth-child(6),
+  .hero-clip:nth-child(7), .hero-clip:nth-child(8) { object-position: 50% 55%; }
 }
 .hero-clip.is-active { opacity: 1; }
 /* slow drift on the live clip only */
@@ -289,16 +305,20 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 .hero::after {
   content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
   background:
-    linear-gradient(180deg, rgba(20,28,33,.78) 0%, rgba(20,28,33,.46) 42%, rgba(20,28,33,.92) 100%),
-    linear-gradient(90deg, rgba(20,28,33,.58) 0%, rgba(20,28,33,.16) 58%, rgba(20,28,33,0) 100%);
+    linear-gradient(180deg, rgba(20,28,33,.64) 0%, rgba(20,28,33,.30) 42%, rgba(20,28,33,.86) 100%),
+    linear-gradient(90deg, rgba(20,28,33,.50) 0%, rgba(20,28,33,.13) 58%, rgba(20,28,33,0) 100%);
 }
 @media (max-width: 640px) {
   /* text runs full width on a phone, so the vertical pass does the work */
   .hero::after {
     background:
-      linear-gradient(180deg, rgba(20,28,33,.80) 0%, rgba(20,28,33,.58) 45%, rgba(20,28,33,.93) 100%);
+      linear-gradient(180deg, rgba(20,28,33,.68) 0%, rgba(20,28,33,.46) 45%, rgba(20,28,33,.90) 100%);
   }
 }
+/* A soft shadow carries the words over the bright frames — cheaper on the
+   picture than darkening the whole scrim to suit the brightest clip. */
+.hero-inner { text-shadow: 0 1px 20px rgba(20,28,33,.6), 0 1px 3px rgba(20,28,33,.4); }
+.hero-inner .btn { text-shadow: none; }
 
 .hero-inner { position: relative; width: 100%; }
 .hero h1 { max-width: 15ch; margin-top: 1.1rem; text-wrap: balance; }
