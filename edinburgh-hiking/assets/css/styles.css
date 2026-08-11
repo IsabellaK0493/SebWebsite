@@ -703,6 +703,12 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 .cta-band .btn { margin-top: 1.9rem; }
 .cta-band .btn-primary { background: var(--paper); color: var(--ink); }
 .cta-band .btn-primary:hover { background: #fff; }
+/* A shorter form of the band for use mid-page, where it is a prompt between
+   two sections rather than the closing note. */
+.cta-band--tight { padding: clamp(2.2rem, 4.5vw, 3.2rem) 0; }
+.cta-band--tight h2 { font-size: clamp(1.35rem, 2.6vw, 1.95rem); max-width: 26ch; margin-top: 0; }
+.cta-band--tight p { margin-top: .8rem; }
+.cta-band--tight .btn { margin-top: 1.4rem; }
 
 /* ============================================================
    Form
