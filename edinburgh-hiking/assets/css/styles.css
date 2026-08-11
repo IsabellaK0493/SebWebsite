@@ -707,7 +707,9 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
    two sections rather than the closing note. */
 .cta-band--tight { padding: clamp(2.2rem, 4.5vw, 3.2rem) 0; }
 .cta-band--tight h2 { font-size: clamp(1.35rem, 2.6vw, 1.95rem); max-width: 26ch; margin-top: 0; }
-.cta-band--tight p { margin-top: .8rem; }
+/* Runs as a single line wherever there is room for it; the 46ch cap the
+   full band uses would break it in two. */
+.cta-band--tight p { margin-top: .8rem; max-width: none; text-wrap: balance; }
 .cta-band--tight .btn { margin-top: 1.4rem; }
 
 /* ============================================================
