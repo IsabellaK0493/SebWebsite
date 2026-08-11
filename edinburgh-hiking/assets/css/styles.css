@@ -277,23 +277,25 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 .hero-clip:nth-child(2) { object-position: 50% 84%; }  /* snow — sits low, crop well down */
 .hero-clip:nth-child(3) { object-position: 50% 70%; }  /* golden hour ridge */
 .hero-clip:nth-child(4) { object-position: 50% 50%; }  /* Seb & the dogs — landscape, no crop */
-.hero-clip:nth-child(5) { object-position: 50% 50%; }  /* on the hill — landscape, no crop */
-.hero-clip:nth-child(6) { object-position: 50% 62%; }  /* sunset — hold the colour band on the horizon */
-.hero-clip:nth-child(7) { object-position: 50% 78%; }  /* hills above the reservoir */
-.hero-clip:nth-child(8) { object-position: 50% 56%; }  /* cloud over the open hillside */
+.hero-clip:nth-child(5) { object-position: 50% 62%; }  /* sunset — hold the colour band on the horizon */
+.hero-clip:nth-child(6) { object-position: 50% 74%; }  /* lambs — carry the crop down onto them */
 
 /* A phone viewport is close to the clips' own portrait shape, so barely
    any crop happens and the framing can sit near centre. */
 @media (max-width: 640px) {
   .hero-clip,
   .hero-clip:nth-child(1), .hero-clip:nth-child(2), .hero-clip:nth-child(3),
-  .hero-clip:nth-child(4), .hero-clip:nth-child(5), .hero-clip:nth-child(6),
-  .hero-clip:nth-child(7), .hero-clip:nth-child(8) { object-position: 50% 55%; }
+  .hero-clip:nth-child(4), .hero-clip:nth-child(5) { object-position: 50% 55%; }
+  .hero-clip:nth-child(6) { object-position: 50% 62%; }  /* keep the lambs in shot */
 }
 .hero-clip.is-active { opacity: 1; }
 /* slow drift on the live clip only */
 .js .hero-clip.is-active { animation: drift 9s linear both; }
 @keyframes drift { from { transform: scale(1.005); } to { transform: scale(1.05); } }
+/* The lambs are small in frame, so this one drifts barely at all — the
+   less it pushes in, the more hillside stays around them. */
+.js .hero-clip:nth-child(6).is-active { animation-name: drift-wide; }
+@keyframes drift-wide { from { transform: scale(1); } to { transform: scale(1.015); } }
 @media (prefers-reduced-motion: reduce) {
   .js .hero-clip.is-active { animation: none; }
   .hero-clip { transition: none; }
