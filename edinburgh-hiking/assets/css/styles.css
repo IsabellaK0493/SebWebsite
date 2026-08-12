@@ -785,6 +785,30 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 .book-card li::before { content: "—"; color: var(--bracken-ink); flex: none; }
 .book-card .btn { width: 100%; }
 
+/* Two stacked cards — what you get, then what it costs. The pair sticks as
+   one unit, so the inner cards give up their own sticky positioning. */
+.book-side { position: sticky; top: 5.5rem; display: grid; gap: 1.1rem; }
+.book-side .book-card { position: static; top: auto; }
+.book-title { font-size: 1.45rem; margin: .55rem 0 0; }
+.book-card .book-title:first-child { margin-top: 0; }
+
+.book-card .ticks, .book-card .options, .book-card .options-notes { display: grid; margin: 1.1rem 0 0; }
+.book-card .ticks { gap: .75rem; font-size: .9rem; }
+.book-card .ticks li::before {
+  content: "✓"; color: var(--whin-ink); font-weight: 700;
+  line-height: 1.5; flex: none;
+}
+.book-card .options { gap: .55rem; font-size: .93rem; }
+.book-card .options li::before { content: "›"; color: var(--whin-ink); font-weight: 700; flex: none; }
+.book-card .options b { font-weight: 700; }
+.book-card .options-notes { gap: .4rem; margin-top: .9rem; padding-left: 1.1rem; font-size: .82rem; font-style: italic; color: var(--muted); }
+.book-card .options-notes li::before { content: "→"; color: var(--whin-ink); flex: none; }
+.book-note {
+  margin-top: 1.1rem; padding-top: .9rem; border-top: 1px solid var(--stone-3);
+  font-size: .82rem; font-style: italic; color: var(--muted);
+}
+.book-note b { color: var(--whin-ink); font-style: italic; }
+
 /* ---------- reveals (scoped to .js so no-JS shows everything) ---------- */
 .js .rise { opacity: 0; transform: translateY(18px); transition: opacity .8s var(--ease-out), transform .8s var(--ease-out); }
 .js .rise.is-in { opacity: 1; transform: none; }
