@@ -793,6 +793,44 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
   background: radial-gradient(100% 80% at 15% 110%, rgba(91,124,141,.4), transparent 62%);
 }
 .page-head .wrap { position: relative; }
+
+/* Photo variant: a landscape behind the head that slowly pans from its left
+   edge to its right and back. The image is kept wider than the head so there
+   is always ground to travel across; 100cqw is the head's own width, so the
+   pan stops exactly at the photo's right-hand edge at any screen size. */
+.page-head--photo { isolation: isolate; }
+.page-head-media {
+  position: absolute; inset: 0; z-index: -2; overflow: hidden;
+  container-type: inline-size;
+}
+.page-head-media img {
+  position: absolute; top: 0; left: 0;
+  height: 100%; width: auto; min-width: 135%; max-width: none;
+  object-fit: cover; object-position: 50% 62%;   /* hold the ridge line in shot */
+  animation: pan-across 60s ease-in-out infinite alternate;
+  will-change: transform;
+}
+@keyframes pan-across {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(calc(-100% + 100cqw), 0, 0); }
+}
+/* Same two-part scrim as the front-page hero, so the words read the same way. */
+.page-head--photo::before {
+  z-index: -1;
+  background:
+    linear-gradient(180deg, rgba(20,28,33,.66) 0%, rgba(20,28,33,.34) 42%, rgba(20,28,33,.88) 100%),
+    linear-gradient(90deg, rgba(20,28,33,.55) 0%, rgba(20,28,33,.16) 60%, rgba(20,28,33,0) 100%);
+}
+.page-head--photo .wrap { text-shadow: 0 1px 20px rgba(20,28,33,.6), 0 1px 3px rgba(20,28,33,.4); }
+@media (max-width: 640px) {
+  .page-head--photo::before {
+    background: linear-gradient(180deg, rgba(20,28,33,.70) 0%, rgba(20,28,33,.50) 45%, rgba(20,28,33,.90) 100%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .page-head-media img { animation: none; left: 50%; transform: translateX(-50%); }
+}
+
 .page-head h1 { max-width: 17ch; margin-top: .7rem; }
 .page-head .lede { margin-top: 1.1rem; }
 .crumb { font-family: var(--font-caps); font-size: .6rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted-dark); margin-bottom: 2rem; }
