@@ -194,6 +194,43 @@
     }
   }
 
+  /* ---------------- carousel ---------------- */
+  document.querySelectorAll("[data-carousel]").forEach(function (root) {
+    var track = root.querySelector("[data-carousel-track]");
+    var prev = root.querySelector("[data-carousel-prev]");
+    var next = root.querySelector("[data-carousel-next]");
+    var count = root.querySelector("[data-carousel-current]");
+    if (!track || !track.children.length) return;
+    var slides = track.children;
+    var pad = function (n) { return ("0" + n).slice(-2); };
+
+    var gap = function () { return parseFloat(getComputedStyle(track).columnGap) || 0; };
+    var step = function () { return slides[0].getBoundingClientRect().width + gap(); };
+
+    var update = function () {
+      var s = step();
+      var atStart = track.scrollLeft <= 2;
+      var atEnd = track.scrollLeft >= track.scrollWidth - track.clientWidth - 2;
+      /* n slides fill n widths but only n-1 gaps, hence the extra gap */
+      var visible = Math.max(1, Math.floor((track.clientWidth + gap() + 2) / s));
+      var first = atEnd ? slides.length - visible + 1 : Math.round(track.scrollLeft / s) + 1;
+      var last = Math.min(slides.length, first + visible - 1);
+      if (prev) prev.disabled = atStart;
+      if (next) next.disabled = atEnd;
+      if (count) count.textContent = visible > 1 ? pad(first) + "–" + pad(last) : pad(first);
+    };
+
+    var move = function (dir) {
+      track.scrollBy({ left: dir * step(), behavior: reduce ? "auto" : "smooth" });
+    };
+    if (prev) prev.addEventListener("click", function () { move(-1); });
+    if (next) next.addEventListener("click", function () { move(1); });
+
+    track.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    update();
+  });
+
   /* ---------------- FAQ ---------------- */
   document.querySelectorAll("[data-acc]").forEach(function (item) {
     var q = item.querySelector("button");
