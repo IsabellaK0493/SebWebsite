@@ -75,6 +75,11 @@ def main():
         ".sio-page .site-header { z-index: 5; }\n"
         ".sio-page .sheet { z-index: 6; }\n"
         ".sio-page .skip-link { z-index: 7; }\n"
+        "/* The skip link hides by sitting just above the page. Inside a builder\n"
+        "   the block starts partway down, so 'above' is still on screen. Park it\n"
+        "   off to the side instead, and keep it reachable by keyboard. */\n"
+        ".sio-page .skip-link { top: 1rem; left: -9999px; }\n"
+        ".sio-page .skip-link:focus { left: 1rem; }\n"
     )
 
     for page, title in PAGES.items():

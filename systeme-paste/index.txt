@@ -932,6 +932,11 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 .sio-page .site-header { z-index: 5; }
 .sio-page .sheet { z-index: 6; }
 .sio-page .skip-link { z-index: 7; }
+/* The skip link hides by sitting just above the page. Inside a builder
+   the block starts partway down, so 'above' is still on screen. Park it
+   off to the side instead, and keep it reachable by keyboard. */
+.sio-page .skip-link { top: 1rem; left: -9999px; }
+.sio-page .skip-link:focus { left: 1rem; }
 </style>
 
 <div class="sio-page">
