@@ -12,18 +12,20 @@ Before they work, the images must be online:
 
 Then for each page in Systeme.io:
   1. Create a BLANK page (no Systeme header or footer).
-  2. Add a 'Custom HTML' / 'Code' element, full width.
-  3. Open the matching file below, select all, copy, paste it in.
-  4. Save and preview.
+  2. Add a 'Custom HTML' / 'Code' element, full width, padding 0.
+  3. Double-click the matching file below. It opens in TextEdit.
+  4. Press Cmd+A to select all, then Cmd+C to copy.
+  5. Click into the Systeme.io HTML box and press Cmd+V.
+  6. Save and preview.
 
-Files:
-  Home                         index.html                     78 KB
-  Tours                        tours.html                     67 KB
-  The Pentland Hills           tour-pentlands.html            69 KB
-  Hermitage & Blackford Hill   tour-hermitage.html            66 KB
-  Arthur's Seat                tour-arthurs-seat.html         65 KB
-  About                        about.html                     63 KB
-  Contact                      contact.html                   64 KB
+Files (plain text, so they open ready to copy):
+  Home                         index.txt                      78 KB
+  Tours                        tours.txt                      67 KB
+  The Pentland Hills           tour-pentlands.txt             69 KB
+  Hermitage & Blackford Hill   tour-hermitage.txt             66 KB
+  Arthur's Seat                tour-arthurs-seat.txt          65 KB
+  About                        about.txt                      63 KB
+  Contact                      contact.txt                    64 KB
 
 Notes:
   - Page titles and search-engine descriptions are set in Systeme.io's

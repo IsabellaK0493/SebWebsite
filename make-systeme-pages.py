@@ -74,7 +74,9 @@ def main():
             "%s\n\n<script>\n%s\n</script>\n"
         ) % (title, FONTS, css, body, js)
 
-        name = page.replace(".html", "") + ".html"
+        # .txt, not .html: double-clicking an .html file opens it in a browser,
+        # which renders the page instead of showing the code there is to copy.
+        name = page.replace(".html", "") + ".txt"
         with open(os.path.join(OUT, name), "w", encoding="utf-8") as f:
             f.write(block)
         written.append((title, name, len(block) / 1024))
@@ -89,10 +91,12 @@ def main():
              "     " + BASE + "index.html", "",
              "Then for each page in Systeme.io:",
              "  1. Create a BLANK page (no Systeme header or footer).",
-             "  2. Add a 'Custom HTML' / 'Code' element, full width.",
-             "  3. Open the matching file below, select all, copy, paste it in.",
-             "  4. Save and preview.", "",
-             "Files:"]
+             "  2. Add a 'Custom HTML' / 'Code' element, full width, padding 0.",
+             "  3. Double-click the matching file below. It opens in TextEdit.",
+             "  4. Press Cmd+A to select all, then Cmd+C to copy.",
+             "  5. Click into the Systeme.io HTML box and press Cmd+V.",
+             "  6. Save and preview.", "",
+             "Files (plain text, so they open ready to copy):"]
     for title, name, kb in written:
         guide.append("  %-28s %-26s %6.0f KB" % (title, name, kb))
     guide += ["", "Notes:",
