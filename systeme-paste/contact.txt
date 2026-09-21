@@ -926,8 +926,15 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
   .book-card { position: static; }
 }
 
+
+/* keep this block's fixed elements inside the block */
+.sio-page { position: relative; transform: translateZ(0); isolation: isolate; }
+.sio-page .site-header { z-index: 5; }
+.sio-page .sheet { z-index: 6; }
+.sio-page .skip-link { z-index: 7; }
 </style>
 
+<div class="sio-page">
 <a class="skip-link" href="#main">Skip to content</a>
 
 <header class="site-header">
@@ -1079,6 +1086,7 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
   </div>
 </footer>
 <script src="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/assets/js/app.js"></script>
+</div>
 
 <script>
 (function () {

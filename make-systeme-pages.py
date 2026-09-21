@@ -63,16 +63,32 @@ def main():
     js = read("assets", "js", "app.js")
     written = []
 
+    # Inside a page builder, the site's fixed header and mobile menu escape the
+    # HTML box and cover the editor's own toolbar, making Save and Exit
+    # unclickable. A transform on the wrapper makes it the containing block for
+    # fixed children, so they stay inside the pasted block instead of the
+    # window. The header then scrolls with the page rather than following it
+    # down, which is the one behaviour given up for a usable editor.
+    CONTAIN = (
+        "\n/* keep this block's fixed elements inside the block */\n"
+        ".sio-page { position: relative; transform: translateZ(0); isolation: isolate; }\n"
+        ".sio-page .site-header { z-index: 5; }\n"
+        ".sio-page .sheet { z-index: 6; }\n"
+        ".sio-page .skip-link { z-index: 7; }\n"
+    )
+
     for page, title in PAGES.items():
-        body = absolutise(body_of(read(page)))
+        body = ('<div class="sio-page">\n'
+                + absolutise(body_of(read(page)))
+                + '\n</div>')
         block = (
             "<!-- Sebastian CN Anderson Hiking — %s\n"
             "     Paste this whole block into one Systeme.io custom HTML element.\n"
             "     Built by make-systeme-pages.py — edit the site, not this file. -->\n"
             "<script>document.documentElement.className += \" js\";</script>\n"
-            "<style>\n@import url('%s');\n\n%s\n</style>\n\n"
+            "<style>\n@import url('%s');\n\n%s\n%s</style>\n\n"
             "%s\n\n<script>\n%s\n</script>\n"
-        ) % (title, FONTS, css, body, js)
+        ) % (title, FONTS, css, CONTAIN, body, js)
 
         # .txt, not .html: double-clicking an .html file opens it in a browser,
         # which renders the page instead of showing the code there is to copy.
