@@ -40,13 +40,38 @@ def read(*parts):
         return f.read()
 
 
-def absolutise(markup):
-    """Point assets and page links at the hosted copies."""
+def systeme_urls():
+    """Read systeme-urls.txt: page name -> the page's address in Systeme.io.
+
+    Pages left blank keep pointing at the GitHub Pages copy, so the file can
+    be filled in a page at a time.
+    """
+    path = os.path.join(ROOT, "systeme-urls.txt")
+    urls = {}
+    if not os.path.exists(path):
+        return urls
+    with open(path, encoding="utf-8") as f:
+        for line in f:
+            line = line.split("#", 1)[0].strip()
+            if "=" not in line:
+                continue
+            name, _, url = line.partition("=")
+            name, url = name.strip(), url.strip()
+            if name and url:
+                urls[name + ".html"] = url
+    return urls
+
+
+def absolutise(markup, urls):
+    """Point assets at GitHub Pages, and page links at Systeme where known."""
     # assets/... in src, href, srcset and inline styles
     markup = re.sub(r'(?<=["\'(])assets/', BASE + "assets/", markup)
-    # links between pages: href="tours.html" -> hosted page
+
+    # links between pages: a Systeme address if given, else the hosted copy
     def page_link(m):
         target = m.group(1)
+        if target in urls:
+            return 'href="%s"' % urls[target]
         return 'href="%s%s"' % (BASE, target) if target in PAGES else m.group(0)
     markup = re.sub(r'href="([a-z0-9-]+\.html)"', page_link, markup)
     return markup
@@ -59,6 +84,7 @@ def body_of(markup):
 
 def main():
     os.makedirs(OUT, exist_ok=True)
+    urls = systeme_urls()
     css = read("assets", "css", "styles.css")
     js = read("assets", "js", "app.js")
     written = []
@@ -84,7 +110,7 @@ def main():
 
     for page, title in PAGES.items():
         body = ('<div class="sio-page">\n'
-                + absolutise(body_of(read(page)))
+                + absolutise(body_of(read(page)), urls)
                 + '\n</div>')
         block = (
             "<!-- Sebastian CN Anderson Hiking — %s\n"

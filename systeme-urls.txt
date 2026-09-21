@@ -1,0 +1,16 @@
+# Your Systeme.io page addresses.
+#
+# As you create each page in Systeme.io, paste its address after the "=".
+# Then ask Claude to rebuild, and every menu link, button and footer link in
+# the paste blocks will point at your Systeme pages instead of GitHub.
+#
+# Leave a line blank and that page keeps pointing at the GitHub Pages copy,
+# so half-finished is fine -- fill them in as you go.
+
+index            =
+tours            =
+tour-pentlands   =
+tour-hermitage   =
+tour-arthurs-seat =
+about            =
+contact          =
