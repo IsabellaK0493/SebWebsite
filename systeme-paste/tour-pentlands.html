@@ -1,0 +1,1415 @@
+<!-- Sebastian CN Anderson Hiking — The Pentland Hills
+     Paste this whole block into one Systeme.io custom HTML element.
+     Built by make-systeme-pages.py — edit the site, not this file. -->
+<script>document.documentElement.className += " js";</script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300..800&family=Montserrat:wght@300..700&family=Young+Serif&display=swap');
+
+/* ============================================================
+   EDINBURGH HIKING — Sebastian
+   Guided walks on Edinburgh's seven hills and the Pentlands
+   ------------------------------------------------------------
+   Palette is taken from the hills themselves: wet basalt, haar,
+   gorse (whin), winter bracken, reservoir steel. Whin yellow is
+   the signature and is spent only on the Section and on markers
+   that carry real measurement.
+   ============================================================ */
+
+:root {
+  --basalt:      #2B3A42;
+  --basalt-2:    #35464F;
+  --ink:         #141C21;
+  --stone:       #E7E8E3;
+  --stone-2:     #DCDDD6;
+  --stone-3:     #CFD1C8;
+  --paper:       #F2F2EE;
+
+  --whin:        #4FBF8B;   /* accent text & icons on dark, 5.13:1 on ink */
+  --whin-solid:  #258255;   /* solid fills — carries paper text, 4.77:1 */
+  --whin-hover:  #1F6E48;   /* solid fill hover — paper text, 6.21:1 */
+  --whin-ink:    #258255;   /* on light, 4.25:1 */
+  --bracken:     #A85A2A;
+  --bracken-ink: #8A4620;   /* 5.73:1 on stone */
+  --reservoir:   #5B7C8D;   /* graphic use only (3.62:1) */
+
+  --muted:       #5E6A70;   /* on light, 4.52:1 */
+  --muted-dark:  #C3C8C6;   /* on dark, 6.94:1 */
+
+  --focus: var(--bracken-ink);
+
+  --font-display: "Young Serif", "Iowan Old Style", Georgia, serif;
+  --font-body: "Hanken Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-caps: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+
+  --gutter: clamp(1.25rem, 4vw, 3.5rem);
+  --max: 76rem;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ---------- reset ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body, h1, h2, h3, h4, p, figure, blockquote, dl, dd { margin: 0; }
+ul { list-style: none; margin: 0; padding: 0; }
+img, video { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+input, textarea, select { font: inherit; color: inherit; }
+
+body {
+  background: var(--stone);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .001ms !important; animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+  }
+}
+
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; border-radius: 2px; }
+.on-dark { --focus: var(--whin); }
+
+.wrap { max-width: var(--max); margin-inline: auto; padding-inline: var(--gutter); }
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.skip-link {
+  position: absolute; left: 1rem; top: -3.5rem; z-index: 300;
+  background: var(--whin-solid); color: var(--paper);
+  padding: .7rem 1.1rem; font-family: var(--font-caps); font-size: .72rem;
+  transition: top .2s var(--ease);
+}
+.skip-link:focus { top: 1rem; }
+
+/* ---------- type ---------- */
+h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; letter-spacing: -0.005em; }
+h1 { font-size: clamp(2.4rem, 6.2vw, 5rem); line-height: 1.02; }
+h2 { font-size: clamp(1.85rem, 3.6vw, 3rem); line-height: 1.08; }
+h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
+
+.eyebrow {
+  font-family: var(--font-caps);
+  font-size: .62rem; font-weight: 500;
+  letter-spacing: .2em; text-transform: uppercase;
+  color: var(--whin-ink);
+  display: inline-flex; align-items: center;
+}
+.on-dark .eyebrow { color: var(--whin); }
+
+.lede { font-size: clamp(1.02rem, 1.15vw, 1.15rem); color: var(--muted); max-width: 52ch; }
+.on-dark .lede { color: var(--muted-dark); }
+
+.datum {
+  font-family: var(--font-caps);
+  font-size: .66rem; font-weight: 500;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--muted);
+}
+.on-dark .datum { color: var(--muted-dark); }
+
+/* ---------- buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .6rem;
+  font-family: var(--font-caps); font-size: .72rem; font-weight: 500;
+  letter-spacing: .1em; text-transform: uppercase;
+  padding: 1.05rem 1.7rem; border-radius: 2px;
+  min-height: 44px;
+  position: relative; overflow: hidden;
+  transition: background .35s var(--ease), color .35s var(--ease), border-color .35s var(--ease);
+}
+.btn-primary { background: var(--whin-solid); color: var(--paper); }
+.btn-primary:hover { background: var(--whin-hover); }
+.btn-line { border: 1px solid currentColor; }
+.btn-line::after {
+  content: ""; position: absolute; inset: auto 0 0 0; height: 1px;
+  background: currentColor; transform: scaleX(0); transform-origin: left;
+  transition: transform .5s var(--ease-out);
+}
+.btn-line:hover::after { transform: scaleX(1); }
+
+/* ============================================================
+   Header
+   ============================================================ */
+.site-header {
+  position: fixed; inset: 0 0 auto 0; z-index: 100;
+  padding: 1.1rem 0;
+  transition: background .45s var(--ease), padding .45s var(--ease), box-shadow .45s var(--ease);
+}
+.site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.site-header.is-stuck {
+  background: rgba(20,28,33,.93); backdrop-filter: blur(12px);
+  padding: .6rem 0; box-shadow: 0 10px 34px rgba(0,0,0,.22);
+}
+
+.mark { display: flex; align-items: center; gap: .7rem; color: var(--paper); }
+.mark svg { width: 30px; height: 30px; flex: none; }
+.mark-logo { width: 26px; height: 30px; flex: none; object-fit: contain; }
+.mark b { font-family: var(--font-display); font-size: 1.12rem; font-weight: 400; line-height: 1; }
+.mark span {
+  display: block; font-family: var(--font-caps);
+  font-size: .54rem; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--muted-dark); margin-top: .28rem;
+}
+
+.nav { display: flex; align-items: center; gap: 2rem; }
+.nav-links { display: flex; gap: 1.7rem; }
+.nav-links a {
+  font-family: var(--font-caps); font-size: .68rem; font-weight: 500;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--paper); position: relative; padding: .35rem 0;
+}
+.nav-links a::after {
+  content: ""; position: absolute; inset: auto 0 0 0; height: 1px; background: currentColor;
+  transform: scaleX(0); transform-origin: left; transition: transform .45s var(--ease-out);
+}
+.nav-links a:hover::after { transform: scaleX(1); }
+.nav-links a[aria-current="page"] { color: var(--whin); }
+.nav-links a[aria-current="page"]::after { background: var(--whin); transform: scaleX(1); }
+
+/* Tours drop-down. Opens on hover and on keyboard focus; the panel starts
+   flush against the link so the pointer never crosses a dead gap. */
+.has-menu { position: relative; }
+.submenu {
+  position: absolute; top: 100%; left: 50%;
+  min-width: 15.5rem; padding: .5rem 0; margin-top: .55rem;
+  display: block; flex-direction: column; gap: 0;
+  background: rgba(20,28,33,.97); backdrop-filter: blur(12px);
+  border: 1px solid rgba(242,242,238,.13);
+  box-shadow: 0 18px 40px -14px rgba(0,0,0,.5);
+  opacity: 0; visibility: hidden;
+  transform: translate(-50%, -.4rem);
+  transition: opacity .25s var(--ease), transform .25s var(--ease), visibility .25s;
+  z-index: 120;
+}
+/* Bridges the gap between link and panel so hover survives the journey. */
+.submenu::before { content: ""; position: absolute; inset: -.6rem 0 auto 0; height: .6rem; }
+.has-menu:hover .submenu,
+.has-menu:focus-within .submenu {
+  opacity: 1; visibility: visible; transform: translate(-50%, 0);
+}
+.submenu a {
+  display: block; padding: .62rem 1.15rem;
+  font-size: .62rem; letter-spacing: .09em;
+  color: rgba(242,242,238,.82); white-space: nowrap;
+}
+.submenu a::after { content: none; }
+.submenu a:hover, .submenu a:focus-visible { color: var(--whin); background: rgba(242,242,238,.06); }
+
+.burger { display: none; width: 44px; height: 44px; position: relative; z-index: 210; }
+.burger i, .burger i::before, .burger i::after {
+  content: ""; position: absolute; left: 11px; right: 11px; height: 1.5px;
+  background: var(--paper); transition: transform .4s var(--ease), opacity .2s, top .4s var(--ease);
+}
+.burger i { top: 50%; }
+.burger i::before { top: -7px; } .burger i::after { top: 7px; }
+.burger[aria-expanded="true"] i { background: transparent; }
+.burger[aria-expanded="true"] i::before { top: 0; transform: rotate(45deg); background: var(--paper); }
+.burger[aria-expanded="true"] i::after  { top: 0; transform: rotate(-45deg); background: var(--paper); }
+
+@media (max-width: 880px) {
+  .nav-links, .nav > .btn { display: none; }
+  .burger { display: block; }
+}
+
+.sheet {
+  position: fixed; inset: 0; z-index: 150; background: var(--ink);
+  display: flex; flex-direction: column; justify-content: center; gap: 1rem;
+  padding: var(--gutter);
+  transform: translateY(-100%); transition: transform .55s var(--ease);
+}
+.sheet.is-open { transform: none; }
+.sheet nav { display: flex; flex-direction: column; gap: 1.1rem; }
+.sheet nav a { font-family: var(--font-display); font-size: clamp(1.9rem,8vw,2.5rem); color: var(--paper); }
+/* The tours, listed under Tours — the drop-down's opposite number on a
+   phone, where there is no hover to open one. */
+.sheet nav a.sub {
+  font-family: var(--font-caps); font-size: .72rem;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: rgba(242,242,238,.72); padding-left: 1rem;
+  margin-top: -.45rem;
+}
+.sheet nav a.sub + a:not(.sub) { margin-top: .5rem; }
+.sheet .btn { align-self: flex-start; margin-top: 1.6rem; }
+
+/* ============================================================
+   Hero — three clips, cross-faded (Alpenglow-style movement)
+   ============================================================ */
+.hero {
+  position: relative; min-height: 100svh;
+  display: flex; align-items: flex-end;
+  padding: 8rem 0 clamp(3rem, 8vh, 5.5rem);
+  background: var(--ink);
+  color: var(--paper);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.hero-media { position: absolute; inset: 0; z-index: -2; background: var(--ink); }
+
+/* Fallback shown when no clip has loaded: a haar-over-hills wash so the
+   hero still reads as designed rather than as a black box. */
+.hero-media::before {
+  content: ""; position: absolute; inset: 0;
+  background:
+    radial-gradient(120% 80% at 20% 110%, rgba(91,124,141,.55), transparent 60%),
+    radial-gradient(90% 70% at 80% 0%, rgba(228,183,64,.18), transparent 55%),
+    linear-gradient(180deg, #3A4C56 0%, #223037 55%, var(--ink) 100%);
+}
+
+.hero-clip {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; object-fit: cover;
+  /* The clips are shot portrait, so a wide hero shows only about a third
+     of each frame. The skyline sits at a different height in every clip,
+     so the crop is tuned per clip below rather than shared. */
+  object-position: 50% 66%;
+  /* The footage is phone-shot and sits under a scrim, so a little lift keeps
+     the hills off the floor of the histogram. */
+  filter: brightness(1.12) contrast(1.02) saturate(1.05);
+  opacity: 0;
+  transition: opacity 1.5s var(--ease-out);
+  will-change: opacity, transform;
+}
+/* Per-clip skyline positions — each number is where that clip's horizon
+   actually falls in its own frame. */
+.hero-clip:nth-child(1) { object-position: 50% 58%; }  /* ridge under cloud */
+.hero-clip:nth-child(2) { object-position: 50% 84%; }  /* snow — sits low, crop well down */
+.hero-clip:nth-child(3) { object-position: 50% 70%; }  /* golden hour ridge */
+.hero-clip:nth-child(4) { object-position: 50% 50%; }  /* Seb & the dogs — landscape, no crop */
+.hero-clip:nth-child(5) { object-position: 50% 62%; }  /* sunset — hold the colour band on the horizon */
+.hero-clip:nth-child(6) { object-position: 50% 74%; }  /* lambs — carry the crop down onto them */
+
+/* A phone viewport is close to the clips' own portrait shape, so barely
+   any crop happens and the framing can sit near centre. */
+@media (max-width: 640px) {
+  .hero-clip,
+  .hero-clip:nth-child(1), .hero-clip:nth-child(2), .hero-clip:nth-child(3),
+  .hero-clip:nth-child(4), .hero-clip:nth-child(5) { object-position: 50% 55%; }
+  .hero-clip:nth-child(6) { object-position: 50% 62%; }  /* keep the lambs in shot */
+}
+.hero-clip.is-active { opacity: 1; }
+/* slow drift on the live clip only */
+.js .hero-clip.is-active { animation: drift 9s linear both; }
+@keyframes drift { from { transform: scale(1.005); } to { transform: scale(1.05); } }
+/* The lambs are small in frame, so this one drifts barely at all — the
+   less it pushes in, the more hillside stays around them. */
+.js .hero-clip:nth-child(6).is-active { animation-name: drift-wide; }
+@keyframes drift-wide { from { transform: scale(1); } to { transform: scale(1.015); } }
+@media (prefers-reduced-motion: reduce) {
+  .js .hero-clip.is-active { animation: none; }
+  .hero-clip { transition: none; }
+}
+
+/* Two-part scrim. The vertical pass keeps the whole frame legible; the
+   horizontal pass darkens only the side the text sits on, so the footage
+   stays bright where nothing is written over it. */
+.hero::after {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(20,28,33,.64) 0%, rgba(20,28,33,.30) 42%, rgba(20,28,33,.86) 100%),
+    linear-gradient(90deg, rgba(20,28,33,.50) 0%, rgba(20,28,33,.13) 58%, rgba(20,28,33,0) 100%);
+}
+@media (max-width: 640px) {
+  /* text runs full width on a phone, so the vertical pass does the work */
+  .hero::after {
+    background:
+      linear-gradient(180deg, rgba(20,28,33,.68) 0%, rgba(20,28,33,.46) 45%, rgba(20,28,33,.90) 100%);
+  }
+}
+/* A soft shadow carries the words over the bright frames — cheaper on the
+   picture than darkening the whole scrim to suit the brightest clip. */
+.hero-inner { text-shadow: 0 1px 20px rgba(20,28,33,.6), 0 1px 3px rgba(20,28,33,.4); }
+.hero-inner .btn { text-shadow: none; }
+
+.hero-inner { position: relative; width: 100%; }
+.hero h1 { max-width: 15ch; margin-top: 1.1rem; text-wrap: balance; }
+.hero h1 em { font-style: normal; color: var(--whin); }
+
+/* word-by-word settle on load */
+.js .hero h1 .w { display: inline-block; opacity: 0; transform: translateY(.42em); }
+.js .hero h1.is-in .w { opacity: 1; transform: none; transition: opacity .8s var(--ease-out), transform .8s var(--ease-out); }
+
+.hero-lede { margin-top: 1.5rem; max-width: 46ch; color: var(--muted-dark); }
+.hero-cta { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 2.1rem; }
+
+/* clip ticks — also the manual control */
+.hero-ticks {
+  position: absolute; right: var(--gutter); bottom: clamp(3rem, 8vh, 5.5rem);
+  display: flex; gap: .5rem; z-index: 3;
+}
+.hero-ticks button {
+  width: 46px; height: 44px; display: grid; place-items: center;
+}
+.hero-ticks span { display: block; width: 34px; height: 2px; background: rgba(242,242,238,.34); position: relative; overflow: hidden; }
+.hero-ticks span::after {
+  content: ""; position: absolute; inset: 0; background: var(--whin);
+  transform: scaleX(0); transform-origin: left;
+}
+.hero-ticks button[aria-current="true"] span::after { animation: tick var(--clip-dur, 7s) linear forwards; }
+@keyframes tick { to { transform: scaleX(1); } }
+@media (prefers-reduced-motion: reduce) {
+  .hero-ticks button[aria-current="true"] span::after { animation: none; transform: scaleX(1); }
+}
+@media (max-width: 700px) { .hero-ticks { bottom: auto; top: 5.2rem; right: var(--gutter); } }
+
+.hero-credit {
+  position: absolute; left: var(--gutter); bottom: 1rem;
+  font-family: var(--font-caps); font-size: .55rem; letter-spacing: .1em;
+  color: rgba(242,242,238,.42); z-index: 3;
+}
+
+/* ============================================================
+   Assurances strip
+   ============================================================ */
+.assure { background: var(--basalt); color: var(--paper); padding: clamp(2.2rem,5vw,3.2rem) 0; }
+.assure ul { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.4rem, 4vw, 3rem); }
+.assure li { display: flex; gap: .95rem; align-items: flex-start; }
+.assure svg { width: 26px; height: 26px; flex: none; stroke: var(--whin); fill: none; stroke-width: 1.4; margin-top: .1rem; }
+.assure h3 { font-size: 1.02rem; margin-bottom: .3rem; }
+.assure p { font-size: .88rem; color: var(--muted-dark); max-width: 34ch; }
+@media (max-width: 780px) { .assure ul { grid-template-columns: 1fr; gap: 1.5rem; } }
+
+/* ============================================================
+   Vista band — a full-bleed breath of scenery that breaks the
+   long dark run between the hero and The Section.
+   ============================================================ */
+.vista {
+  position: relative;
+  height: clamp(230px, 36vh, 460px);
+  overflow: hidden;
+  background: var(--basalt-2);
+}
+.vista img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  /* Sit the horizon inside the band: sky above it for colour, ridges
+     below it for height. Purely sky reads as a gap, not a view. */
+  object-position: 50% 62%;
+}
+.vista figcaption {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding: 2.2rem var(--gutter) 1rem;
+  display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+  font-family: var(--font-caps);
+  font-size: .58rem; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--paper);
+  background: linear-gradient(180deg, transparent, rgba(20,28,33,.72));
+}
+/* Second caption span only — a lone caption stays paper-white and visible. */
+.vista figcaption span + span { color: var(--whin); }
+@media (max-width: 640px) {
+  .vista { height: clamp(200px, 30vh, 300px); }
+  .vista figcaption span + span { display: none; }
+}
+
+/* ============================================================
+   THE SECTION — signature element.
+   A true cross-section from Castle Rock out to Scald Law:
+   real heights, real distances. It is the whole proposition —
+   a 579m hill fourteen kilometres from the Royal Mile.
+   ============================================================ */
+.section-band {
+  background: var(--basalt); color: var(--paper);
+  padding: clamp(3.5rem, 8vw, 6rem) 0 0;
+  overflow: hidden;
+}
+.section-band .head { max-width: 46ch; margin-bottom: 2.6rem; }
+.section-band h2 { color: var(--paper); margin-top: .7rem; }
+.section-band .lede { margin-top: 1rem; }
+
+.profile { position: relative; width: 100%; }
+.profile svg { width: 100%; height: auto; display: block; }
+.profile .ground { fill: rgba(242,242,238,.07); stroke: var(--reservoir); stroke-width: 2; }
+.js .profile .ground { stroke-dasharray: 2600; stroke-dashoffset: 2600; }
+.js .profile.is-in .ground { animation: draw 2.6s var(--ease-out) forwards; }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .js .profile .ground { stroke-dasharray: none; stroke-dashoffset: 0; }
+}
+.profile .grid-line { stroke: rgba(242,242,238,.12); stroke-width: 1; }
+.profile .peak-dot { fill: var(--whin); }
+.profile .peak-stem { stroke: rgba(228,183,64,.5); stroke-width: 1; }
+.profile text { font-family: var(--font-caps); fill: var(--paper); }
+.profile .p-name { font-size: 13px; font-weight: 500; letter-spacing: .04em; }
+.profile .p-alt  { font-size: 11px; fill: var(--whin); letter-spacing: .06em; }
+.profile .axis   { font-size: 10px; fill: rgba(242,242,238,.5); letter-spacing: .12em; text-transform: uppercase; }
+.profile-note {
+  display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+  padding: 1rem 0 clamp(2.5rem,6vw,4rem);
+  border-top: 1px solid rgba(242,242,238,.14); margin-top: -1px;
+}
+
+/* The drawing is held at a fixed width at every screen size and scrolls
+   inside its own container. You travel out of the city to find the high
+   ground rather than being shown all of it at once — which is the point
+   the section is making. */
+.profile {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+.profile svg { width: 1600px; min-width: 1600px; max-width: none; }
+
+.profile-hint {
+  display: flex; align-items: center; gap: .5rem;
+  padding-top: .9rem;
+  font-family: var(--font-caps); font-size: .58rem;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--muted-dark);
+}
+.profile-hint svg { width: 14px; height: 14px; stroke: var(--whin); fill: none; stroke-width: 1.6; flex: none; }
+
+/* ============================================================
+   Walks
+   ============================================================ */
+.section { padding: clamp(3.5rem, 8vw, 6.5rem) 0; }
+.section--airy { padding: clamp(5rem, 12vw, 9rem) 0; }
+.section--tight { padding: clamp(2.5rem, 5vw, 4rem) 0; }
+.section--pale { background: var(--stone-2); }
+/* One step lighter than the page. Keeps neighbouring light sections apart
+   now that no dark band divides them. */
+.section--paper { background: var(--paper); }
+
+.head-row {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  gap: 1.6rem; flex-wrap: wrap; margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+.head-row h2 { max-width: 18ch; }
+/* Reads in the same voice as the copy on the tiles below it. */
+.tours-intro {
+  max-width: 62ch; margin-top: 1.1rem;
+  font-size: .93rem; color: var(--muted);
+}
+
+.tours { display: grid; grid-template-columns: repeat(auto-fit, minmax(285px, 1fr)); gap: 1.4rem; }
+.tours-more { display: flex; justify-content: center; margin-top: clamp(1.8rem, 4vw, 2.6rem); }
+
+.tour {
+  display: flex; flex-direction: column;
+  background: var(--paper);
+  border: 1px solid var(--stone-3);
+  transition: border-color .4s var(--ease), transform .4s var(--ease);
+}
+.tour:hover { border-color: var(--basalt); }
+.tour-fig {
+  aspect-ratio: 5/3; position: relative; overflow: hidden;
+  background: linear-gradient(160deg, var(--basalt-2), var(--ink));
+}
+/* The walk photographs are near-square, so a 5:3 card shows about 58% of
+   each frame. Sit that band on the hill rather than the foreground. */
+.tour-fig img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 62%; }
+.tour-fig img[src*="arthurs-seat"] { object-position: 50% 84%; }
+.tour-fig img[src*="hermitage"]    { object-position: 50% 80%; }
+.tour-fig img[src*="pentlands"]    { object-position: 50% 60%; }
+.tour-fig .ph { position: absolute; inset: 0; display: grid; place-items: center; }
+.tour-fig .ph svg { width: 100%; height: 100%; opacity: .5; }
+.tour-body { padding: 1.4rem 1.4rem 1.6rem; display: flex; flex-direction: column; gap: .85rem; flex: 1; }
+.tour h3 { text-wrap: balance; }
+.tour p { font-size: .93rem; color: var(--muted); }
+/* The rule takes the card's spare height rather than the link below it, so
+   the dividers line up across a row however long each description runs. */
+.tour-rule { border: 0; border-top: 1px solid var(--stone-3); margin: auto 0 0; }
+.tour .go {
+  padding-top: .4rem;
+  font-family: var(--font-caps); font-size: .68rem; font-weight: 500;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--bracken-ink);
+  display: inline-flex; align-items: center; gap: .5rem;
+  transition: gap .4s var(--ease-out), color .3s var(--ease);
+}
+.tour:hover .go { gap: .85rem; color: var(--ink); }
+
+/* ============================================================
+   Guide
+   ============================================================ */
+.guide { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 6vw, 4.5rem); align-items: center; }
+.guide-copy p + p { margin-top: 1rem; }
+.guide-copy p { color: var(--muted); }
+/* Two photographs offset and overlapping — the boy on the hill behind,
+   the same person on the same hills now in front. The gap between the
+   two pictures is the twenty years. */
+.guide-figs { position: relative; padding-bottom: 3.5rem; padding-right: 2rem; }
+.guide-figs figure {
+  overflow: hidden;
+  background: linear-gradient(150deg, var(--basalt-2), var(--ink));
+  box-shadow: 0 18px 44px -20px rgba(20,28,33,.5);
+}
+.guide-figs img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* Both photographs are portrait, so the boxes match their sources rather
+   than cropping them square. */
+.guide-figs .then {
+  width: 62%;
+  aspect-ratio: 3/4;
+}
+.guide-figs .now {
+  position: absolute;
+  right: 0; bottom: 0;
+  width: 56%;
+  aspect-ratio: 3/4;
+  border: 6px solid var(--stone);
+  box-shadow: 0 22px 50px -18px rgba(20,28,33,.55);
+}
+.guide-figs .then img { object-position: 50% 42%; }
+.guide-figs .now  img { object-position: 50% 38%; }
+
+/* Same pair of photographs beside the About headline. On the dark head
+   the front photo's edge takes the dark ground instead of the stone. */
+.head-split {
+  display: grid;
+  grid-template-columns: 1.15fr .85fr;
+  gap: clamp(2rem, 6vw, 4.5rem);
+  align-items: center;
+}
+.head-split .guide-figs { padding-bottom: 2.5rem; }
+.on-dark .guide-figs .now { border-color: var(--ink); }
+@media (max-width: 860px) {
+  .head-split { grid-template-columns: 1fr; }
+  .head-split .guide-figs { margin-top: 1.5rem; max-width: 24rem; }
+}
+/* The guide photograph on its own: centred in its column and lightened so
+   it sits back from the copy, with the caption below rather than over it. */
+.guide-solo { margin: 0 auto; max-width: 19rem; text-align: center; }
+.guide-solo img {
+  width: 100%; height: auto;          /* the source is portrait 3:4 */
+  box-shadow: 0 18px 44px -20px rgba(20,28,33,.4);
+  filter: brightness(1.09) saturate(.94);
+}
+.guide-solo figcaption { margin-top: 1.1rem; font-family: var(--font-caps); text-transform: uppercase; }
+.guide-solo figcaption b {
+  display: block; font-size: .8rem; font-weight: 500;
+  letter-spacing: .12em; color: var(--ink);
+}
+/* The year carries the tally's display numeral. */
+.guide-solo figcaption .cap-year {
+  font-family: var(--font-display); font-size: 1.9rem;
+  font-weight: 700; line-height: 1; letter-spacing: 0;
+  color: var(--bracken-ink); margin-bottom: .5rem;
+}
+.guide-solo figcaption span {
+  display: block; margin-top: .45rem;
+  font-size: .6rem; letter-spacing: .12em; color: var(--muted);
+}
+
+.guide-figs figcaption {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding: 1.6rem .7rem .5rem;
+  font-family: var(--font-caps); font-size: .52rem;
+  letter-spacing: .14em; text-transform: uppercase; color: var(--paper);
+  background: linear-gradient(180deg, transparent, rgba(20,28,33,.75));
+}
+@media (max-width: 520px) {
+  .guide-figs { padding-bottom: 2.5rem; padding-right: 1rem; }
+  .guide-figs .then { width: 78%; }
+  .guide-figs .now  { width: 52%; border-width: 4px; }
+  .guide-figs figcaption { font-size: .48rem; }
+}
+.tally { display: flex; gap: 2rem; flex-wrap: wrap; margin-top: 1.8rem; padding-top: 1.4rem; border-top: 1px solid var(--stone-3); }
+.tally b { display: block; font-family: var(--font-display); font-size: 1.9rem; color: var(--bracken-ink); line-height: 1; }
+.tally span { font-family: var(--font-caps); font-size: .6rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); display: block; margin-top: .4rem; }
+@media (max-width: 820px) { .guide { grid-template-columns: 1fr; } }
+
+/* ============================================================
+   Gallery
+   ============================================================ */
+.grid-shots { display: grid; grid-template-columns: repeat(4, 1fr); gap: .7rem; }
+.grid-shots figure { aspect-ratio: 1; background: linear-gradient(155deg, var(--basalt-2), var(--ink)); overflow: hidden; position: relative; }
+.grid-shots figure:nth-child(4n+1) { aspect-ratio: 1; }
+.grid-shots img { width: 100%; height: 100%; object-fit: cover; }
+@media (max-width: 780px) { .grid-shots { grid-template-columns: repeat(2, 1fr); } }
+
+/* ============================================================
+   Carousel — a hand-driven strip of portrait photographs. Native
+   scroll with snap points, so it swipes on touch and scrolls with
+   the arrow keys once focused; the buttons move one photo at a time.
+   ============================================================ */
+.carousel-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem; margin-bottom: 1.2rem;
+}
+.carousel-count {
+  font-family: var(--font-caps); font-size: .7rem; font-weight: 500;
+  letter-spacing: .14em; color: var(--muted);
+}
+.carousel-count span { color: var(--ink); }
+.carousel-nav { display: flex; gap: .5rem; }
+.carousel-btn {
+  width: 44px; height: 44px; display: grid; place-items: center;
+  border: 1px solid var(--stone-3); border-radius: 2px; color: var(--ink);
+  transition: background .3s var(--ease), border-color .3s var(--ease), color .3s var(--ease), opacity .3s;
+}
+.carousel-btn svg { width: 18px; height: 18px; }
+.carousel-btn:hover:not(:disabled) { background: var(--whin-solid); border-color: var(--whin-solid); color: var(--paper); }
+.carousel-btn:disabled { opacity: .35; cursor: default; }
+
+.carousel-track {
+  display: flex; gap: .8rem; margin: 0; padding: 0; list-style: none;
+  overflow-x: auto; overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory; scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+.carousel-track::-webkit-scrollbar { display: none; }
+.carousel-slide { flex: 0 0 calc((100% - 1.6rem) / 3); scroll-snap-align: start; }
+.carousel-slide img {
+  width: 100%; height: auto; aspect-ratio: 3/4;
+  object-fit: cover; display: block; background: var(--basalt-2);
+}
+@media (max-width: 1000px) { .carousel-slide { flex-basis: calc((100% - .8rem) / 2); } }
+@media (max-width: 780px)  { .carousel-slide { flex-basis: 78%; } }
+@media (prefers-reduced-motion: reduce) { .carousel-track { scroll-behavior: auto; } }
+
+/* ============================================================
+   Reel — a slow, self-moving ribbon of photographs. Duplicated
+   once so the loop is seamless; pauses on hover or keyboard
+   focus, and becomes a plain scrollable strip if the visitor
+   has asked for reduced motion.
+   ============================================================ */
+.reel { position: relative; overflow: hidden; }
+.reel::before, .reel::after {
+  content: ""; position: absolute; top: 0; bottom: 0; width: clamp(2rem, 7vw, 7rem);
+  z-index: 2; pointer-events: none;
+}
+.reel::before { left: 0;  background: linear-gradient(90deg, var(--stone-2), transparent); }
+.reel::after  { right: 0; background: linear-gradient(270deg, var(--stone-2), transparent); }
+
+.reel-track {
+  display: flex; gap: 1rem; width: max-content;
+  animation: reel 64s linear infinite;
+}
+.reel:hover .reel-track,
+.reel:focus-within .reel-track { animation-play-state: paused; }
+@keyframes reel { from { transform: translate3d(0,0,0); } to { transform: translate3d(-50%,0,0); } }
+
+.reel figure {
+  flex: none;
+  width: clamp(210px, 24vw, 320px);
+  margin: 0;
+}
+.reel img {
+  /* height:auto is required — without it the HTML height attribute wins
+     as a presentational hint and aspect-ratio is ignored. */
+  width: 100%; height: auto; aspect-ratio: 4/5;
+  object-fit: cover; object-position: 50% 40%;
+  display: block; background: var(--basalt-2);
+}
+/* Landscape source: the 4:5 frame keeps only about half its width, so hold
+   the crop to the right where Sebastian and the dog are on the path. */
+.reel img[src*="seb-9"] { object-position: 92% 50%; }
+.reel figcaption {
+  margin-top: .6rem;
+  font-family: var(--font-caps); font-size: .56rem;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reel { overflow-x: auto; }
+  .reel-track { animation: none; }
+  .reel::before, .reel::after { display: none; }
+}
+
+/* ============================================================
+   Testimonials
+   ============================================================ */
+.says { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
+.says blockquote {
+  background: var(--paper);
+  border: 1px solid var(--stone-3);
+  padding: 1.7rem 1.6rem 1.5rem;
+  display: flex; flex-direction: column; gap: 1rem; height: 100%;
+  position: relative;
+}
+.says blockquote::before {
+  content: "“";
+  font-family: var(--font-display); font-size: 3.2rem; line-height: .8;
+  color: var(--whin-ink); opacity: .5;
+}
+.says p {
+  font-family: var(--font-display); font-size: 1.02rem; line-height: 1.42;
+  margin: 0; flex: 1;
+}
+.says footer {
+  font-family: var(--font-caps); font-size: .6rem;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--muted);
+  border-top: 1px solid var(--stone-3); padding-top: .9rem;
+}
+@media (max-width: 860px) { .says { grid-template-columns: 1fr; } }
+
+/* ============================================================
+   CTA band
+   ============================================================ */
+.cta-band { background: var(--bracken); color: var(--paper); padding: clamp(3rem,7vw,5rem) 0; text-align: center; }
+.cta-band h2 { color: var(--paper); max-width: 20ch; margin: .7rem auto 0; }
+.cta-band p { color: rgba(242,242,238,.86); max-width: 46ch; margin: 1rem auto 0; }
+.cta-band .btn { margin-top: 1.9rem; }
+.cta-band .btn-primary { background: var(--paper); color: var(--ink); }
+.cta-band .btn-primary:hover { background: #fff; }
+/* A shorter form of the band for use mid-page, where it is a prompt between
+   two sections rather than the closing note. */
+.cta-band--tight { padding: clamp(2.2rem, 4.5vw, 3.2rem) 0; }
+.cta-band--tight h2 { font-size: clamp(1.35rem, 2.6vw, 1.95rem); max-width: 26ch; margin-top: 0; }
+/* Runs as a single line wherever there is room for it; the 46ch cap the
+   full band uses would break it in two. */
+.cta-band--tight p { margin-top: .8rem; max-width: none; text-wrap: balance; }
+.cta-band--tight .btn { margin-top: 1.4rem; }
+
+/* ============================================================
+   Form
+   ============================================================ */
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem,6vw,4.5rem); }
+.field { display: flex; flex-direction: column; gap: .45rem; margin-bottom: 1.2rem; }
+.field label { font-family: var(--font-caps); font-size: .6rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.field input, .field select, .field textarea {
+  background: var(--paper); border: 1px solid var(--stone-3);
+  padding: .8rem .85rem; font-size: 1rem; min-height: 44px; border-radius: 2px;
+  transition: border-color .3s var(--ease);
+}
+.field input:focus, .field select:focus, .field textarea:focus { border-color: var(--basalt); outline: none; }
+.field textarea { resize: vertical; min-height: 7rem; }
+.form-note { font-size: .82rem; color: var(--muted); margin-top: .7rem; }
+.form-status { font-family: var(--font-caps); font-size: .72rem; margin-top: .9rem; min-height: 1.3em; color: var(--bracken-ink); }
+.form-status[data-state="error"] { color: #8C2F2F; }
+.contact-list dt { font-family: var(--font-caps); font-size: .6rem; letter-spacing: .12em; text-transform: uppercase; color: var(--bracken-ink); }
+.contact-list dd { margin: .3rem 0 1.3rem; font-size: 1.02rem; }
+@media (max-width: 820px) { .form-grid { grid-template-columns: 1fr; } }
+
+/* ============================================================
+   Footer
+   ============================================================ */
+.site-footer { background: var(--ink); color: var(--muted-dark); padding: clamp(3rem,6vw,4.5rem) 0 1.8rem; }
+.foot-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 2.2rem; padding-bottom: 2.6rem; border-bottom: 1px solid rgba(242,242,238,.12); }
+.foot-grid h4 { font-family: var(--font-caps); font-size: .6rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--paper); margin-bottom: 1rem; }
+.foot-grid ul { display: grid; gap: .65rem; font-size: .92rem; }
+.foot-grid a:hover { color: var(--paper); }
+.foot-grid > div:first-child p { font-size: .88rem; max-width: 32ch; margin-top: .9rem; }
+.foot-base { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .8rem; padding-top: 1.4rem; font-family: var(--font-caps); font-size: .6rem; letter-spacing: .06em; color: rgba(195,200,198,.7); }
+@media (max-width: 780px) { .foot-grid { grid-template-columns: 1fr 1fr; } .foot-grid > div:first-child { grid-column: span 2; } }
+
+/* ============================================================
+   Interior page head
+   ============================================================ */
+.page-head { background: var(--ink); color: var(--paper); padding: clamp(8rem,15vw,11rem) 0 clamp(3rem,6vw,4.5rem); position: relative; overflow: hidden; }
+.page-head::before {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(100% 80% at 15% 110%, rgba(91,124,141,.4), transparent 62%);
+}
+.page-head .wrap { position: relative; }
+
+/* Photo variant: a landscape behind the head that slowly pans from its left
+   edge to its right and back. The image is kept wider than the head so there
+   is always ground to travel across; 100cqw is the head's own width, so the
+   pan stops exactly at the photo's right-hand edge at any screen size. */
+.page-head--photo { isolation: isolate; }
+.page-head-media {
+  position: absolute; inset: 0; z-index: -2; overflow: hidden;
+  container-type: inline-size;
+}
+.page-head-media img {
+  position: absolute; top: 0; left: 0;
+  height: 100%; width: auto; min-width: 135%; max-width: none;
+  object-fit: cover; object-position: 50% 62%;   /* hold the ridge line in shot */
+  animation: pan-across 60s ease-in-out infinite alternate;
+  will-change: transform;
+}
+@keyframes pan-across {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(calc(-100% + 100cqw), 0, 0); }
+}
+/* Same two-part scrim as the front-page hero, so the words read the same way. */
+.page-head--photo::before {
+  z-index: -1;
+  background:
+    linear-gradient(180deg, rgba(20,28,33,.66) 0%, rgba(20,28,33,.34) 42%, rgba(20,28,33,.88) 100%),
+    linear-gradient(90deg, rgba(20,28,33,.55) 0%, rgba(20,28,33,.16) 60%, rgba(20,28,33,0) 100%);
+}
+.page-head--photo .wrap { text-shadow: 0 1px 20px rgba(20,28,33,.6), 0 1px 3px rgba(20,28,33,.4); }
+@media (max-width: 640px) {
+  .page-head--photo::before {
+    background: linear-gradient(180deg, rgba(20,28,33,.70) 0%, rgba(20,28,33,.50) 45%, rgba(20,28,33,.90) 100%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .page-head-media img { animation: none; left: 50%; transform: translateX(-50%); }
+}
+
+.page-head h1 { max-width: 17ch; margin-top: .7rem; }
+.page-head .lede { margin-top: 1.1rem; }
+.crumb { font-family: var(--font-caps); font-size: .6rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted-dark); margin-bottom: 2rem; }
+.crumb a:hover { color: var(--whin); }
+
+.stat-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.2rem; margin-top: 2.4rem; padding-top: 1.8rem; border-top: 1px solid rgba(242,242,238,.15); }
+.stat-row b { display: block; font-family: var(--font-display); font-size: 1.5rem; color: var(--whin); line-height: 1; }
+.stat-row span { display: block; margin-top: .45rem; font-family: var(--font-caps); font-size: .58rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted-dark); }
+@media (max-width: 700px) { .stat-row { grid-template-columns: repeat(2,1fr); gap: 1.4rem; } }
+
+.split { display: grid; grid-template-columns: 1.35fr 1fr; gap: clamp(2rem,6vw,4rem); align-items: start; }
+@media (max-width: 860px) { .split { grid-template-columns: 1fr; } }
+
+.prose h2 { margin-bottom: .9rem; }
+.prose h2 + p, .prose p + p { margin-top: .95rem; }
+.prose p { color: var(--muted); max-width: 62ch; }
+.prose > * + h2 { margin-top: 2.6rem; }
+
+.stage { display: grid; grid-template-columns: 5rem 1fr; gap: 1.3rem; padding: 1.5rem 0; border-bottom: 1px solid var(--stone-3); }
+.stage .n { font-family: var(--font-caps); font-size: .64rem; letter-spacing: .1em; color: var(--bracken-ink); padding-top: .2rem; }
+.stage h3 { margin-bottom: .35rem; }
+.stage p { color: var(--muted); font-size: .95rem; }
+@media (max-width: 620px) { .stage { grid-template-columns: 1fr; gap: .4rem; } }
+
+.book-card { background: var(--paper); border: 1px solid var(--stone-3); padding: 1.6rem; position: sticky; top: 5.5rem; }
+.book-card .price { font-family: var(--font-display); font-size: 2rem; margin: .5rem 0 1rem; }
+.book-card .price span { font-family: var(--font-caps); font-size: .72rem; color: var(--muted); }
+.book-card ul { display: grid; gap: .6rem; margin: 1.2rem 0; font-size: .9rem; }
+.book-card li { display: flex; gap: .6rem; }
+.book-card li::before { content: "—"; color: var(--bracken-ink); flex: none; }
+.book-card .btn { width: 100%; }
+
+/* Two stacked cards — what you get, then what it costs. The pair sticks as
+   one unit, so the inner cards give up their own sticky positioning. */
+.book-side { position: sticky; top: 5.5rem; display: grid; gap: 1.1rem; }
+.book-side .book-card { position: static; top: auto; }
+.book-title { font-size: 1.45rem; margin: .55rem 0 0; }
+.book-card .book-title:first-child { margin-top: 0; }
+
+.book-card .ticks, .book-card .options, .book-card .options-notes { display: grid; margin: 1.1rem 0 0; }
+.book-card .ticks { gap: .75rem; font-size: .9rem; }
+.book-card .ticks li::before {
+  content: "✓"; color: var(--whin-ink); font-weight: 700;
+  line-height: 1.5; flex: none;
+}
+.book-card .options { gap: .55rem; font-size: .93rem; }
+.book-card .options li::before { content: "›"; color: var(--whin-ink); font-weight: 700; flex: none; }
+.book-card .options b { font-weight: 700; }
+.book-card .options-notes { gap: .4rem; margin-top: .9rem; padding-left: 1.1rem; font-size: .82rem; font-style: italic; color: var(--muted); }
+.book-card .options-notes li::before { content: "→"; color: var(--whin-ink); flex: none; }
+.book-note {
+  margin-top: 1.1rem; padding-top: .9rem; border-top: 1px solid var(--stone-3);
+  font-size: .82rem; font-style: italic; color: var(--muted);
+}
+.book-note b { color: var(--whin-ink); font-style: italic; }
+
+/* ---------- reveals (scoped to .js so no-JS shows everything) ---------- */
+.js .rise { opacity: 0; transform: translateY(18px); transition: opacity .8s var(--ease-out), transform .8s var(--ease-out); }
+.js .rise.is-in { opacity: 1; transform: none; }
+.js .stagger > * { opacity: 0; transform: translateY(16px); transition: opacity .7s var(--ease-out), transform .7s var(--ease-out); }
+.js .stagger.is-in > * { opacity: 1; transform: none; }
+.js .stagger.is-in > *:nth-child(1) { transition-delay: .04s; }
+.js .stagger.is-in > *:nth-child(2) { transition-delay: .12s; }
+.js .stagger.is-in > *:nth-child(3) { transition-delay: .20s; }
+.js .stagger.is-in > *:nth-child(4) { transition-delay: .28s; }
+.js .stagger.is-in > *:nth-child(5) { transition-delay: .36s; }
+.js .stagger.is-in > *:nth-child(6) { transition-delay: .44s; }
+
+/* ============================================================
+   Mobile-specific decisions
+   ============================================================ */
+@media (max-width: 640px) {
+  .hero { min-height: 92svh; padding-bottom: 2.5rem; }
+  .hero-cta { display: grid; grid-template-columns: 1fr; gap: .6rem; }
+  .hero-cta .btn { width: 100%; }
+
+  /* walks run to the page edge — a field guide, not floating cards */
+  .tours { gap: 0; margin-inline: calc(var(--gutter) * -1); }
+  .tour { border-inline: 0; border-top: 0; background: transparent; }
+  .tour:first-child { border-top: 1px solid var(--stone-3); }
+  .tour-body { padding-inline: var(--gutter); }
+  .tour:hover { border-color: var(--stone-3); }
+
+  .guide-figs figure:nth-child(2) { margin-top: 0; }
+  .tally { gap: 1.4rem; }
+  .book-card { position: static; }
+}
+
+</style>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="mark" href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/index.html" aria-label="Sebastian CN Anderson Hiking — home">
+      <img class="mark-logo" src="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/assets/img/logo-mark-light.png" alt="" width="26" height="30" decoding="async">
+      <b>Sebastian CN Anderson Hiking<span>The Pentlands &amp; the seven hills</span></b>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <ul class="nav-links">
+        <li><a href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/index.html">Home</a></li>
+        <li class="has-menu">
+          <a href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/tours.html" aria-current="page">Tours</a>
+          <ul class="submenu">
+            <li><a href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/tour-pentlands.html">The Pentland Hills</a></li>
+            <li><a href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/tour-hermitage.html">Hermitage &amp; Blackford Hill</a></li>
+            <li><a href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/tour-arthurs-seat.html">Arthur's Seat</a></li>
+            <li><a href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/contact.html">Alternate routes</a></li>
+          </ul>
+        </li>
+        <li><a href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/about.html">About</a></li>
+        <li><a href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/contact.html">Contact</a></li>
+      </ul>
+      <a class="btn btn-primary" href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/contact.html">Book a tour</a>
+      <button class="burger" aria-expanded="false" aria-label="Open menu" aria-controls="sheet"><i></i></button>
+    </nav>
+  </div>
+</header>
+
+<div class="sheet" id="sheet" aria-hidden="true">
+  <nav aria-label="Mobile">
+    <a href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/index.html">Home</a>
+    <a href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/tours.html">Tours</a><a class="sub" href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/tour-pentlands.html">The Pentland Hills</a><a class="sub" href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/tour-hermitage.html">Hermitage &amp; Blackford Hill</a><a class="sub" href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/tour-arthurs-seat.html">Arthur's Seat</a><a class="sub" href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/contact.html">Alternate routes</a>
+    <a href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/about.html">About</a>
+    <a href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/contact.html">Contact</a>
+  </nav>
+  <a class="btn btn-primary" href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/contact.html">Book a tour</a>
+</div>
+
+<main id="main">
+
+  <section class="page-head page-head--photo on-dark">
+    <div class="page-head-media" aria-hidden="true">
+      <img src="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/assets/img/pentlands-view.jpg" alt="" width="2200" height="1650" fetchpriority="high" decoding="async">
+    </div>
+    <div class="wrap">
+      <p class="crumb"><a href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/tours.html">Tours</a> / The Pentland Hills</p>
+      <span class="eyebrow">Moderate · Pentland Hills Regional Park</span>
+      <h1>The Pentland Hills</h1>
+      <p class="lede">Open ridge walking over Caerketton and Allermuir, with the option of carrying on to Turnhouse, Carnethy and Scald Law, the highest of the range at 579 metres.</p>
+      <div class="stat-row">
+        <div><b>11</b><span>500m+ peaks</span></div>
+        <div><b>100km</b><span>Path networks</span></div>
+        <div><b>9</b><span>Reservoirs</span></div>
+        <div><b>Edinburgh</b></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap split">
+      <div class="prose rise">
+        <h2>Why the Pentlands</h2>
+          <p>My first adventure to the Pentlands was over 20 years ago, when I was just 2 years old. Back then, I spent my time collecting tadpoles and splashing through muddy puddles with our family chocolate Labrador, Ginty.</p>
+          <p>Since those early days, my love for the Pentlands has only deepened through decades of walks and, in recent years, trail runs and I have navigated pretty much every part of the Pentlands. So much so that the hills feel like home to me and in fact, Robert Louis Stevenson famously called the Pentlands the 'Hills of Home' for that good reason.</p>
+          <p>The Pentlands offer a wide choice of trails, from gentle walks to more challenging routes with options that go over the many tops like Carnethy Hill, Scald Law, and the Kips, as well as routes that take you through forested areas or past reservoirs.</p>
+          <p>I look forward to guiding you through these breathtaking hills and sharing my knowledge of their history.</p>
+
+        <h2>On the day</h2>
+        <div class="itin">
+            <div class="stage">
+              <span class="n">Start</span>
+              <div><h3>Pick-up or meet</h3><p>Meet at the trailhead, or I can arrange to meet you in the city and travel out together — it is about half an hour from the centre.</p></div>
+            </div>
+            <div class="stage">
+              <span class="n">1</span>
+              <div><h3>Onto the ridge</h3><p>A steady climb onto Caerketton, which does most of the day's ascent in one go. We take it at whatever pace suits.</p></div>
+            </div>
+            <div class="stage">
+              <span class="n">2</span>
+              <div><h3>Allermuir and along</h3><p>Open ridge walking with the whole city laid out to the north and the reservoirs below to the south.</p></div>
+            </div>
+            <div class="stage">
+              <span class="n">3</span>
+              <div><h3>Scald Law, if the day allows</h3><p>On a full day we carry on over Turnhouse and Carnethy to Scald Law, the highest of the Pentlands.</p></div>
+            </div>
+            <div class="stage">
+              <span class="n">End</span>
+              <div><h3>Down and back</h3><p>A gentler descent on a different line, so you see new ground on the way out.</p></div>
+            </div>
+        </div>
+      </div>
+
+      <aside class="book-side">
+        <div class="book-card">
+          <span class="eyebrow">Book this tour</span>
+          <h3 class="book-title">What's Included</h3>
+          <ul class="ticks">
+            <li>Fully guided private tour - I will guide you through the area with a route and pace built around the group on the day</li>
+            <li>Education - Learn about the history and environment of the specific area</li>
+            <li>Local knowledge of every path, including the quiet ones</li>
+            <li>Drinks - 1 litre of mineral water (*solo tours only)</li>
+            <li>Food - A variety of tasty snacks</li>
+          </ul>
+          <p class="book-note">Please note, transport is NOT included to any tour locations. You must make your own way there. However, all routes are easily accessible by bus or taxi. <b>Please reach out if you have any questions about transport.</b></p>
+        </div>
+
+        <div class="book-card">
+          <h3 class="book-title">Tour Options</h3>
+          <ul class="options">
+            <li>Group Half Day (4 hours) / <b>&pound;79 per person</b></li>
+            <li>Group Full Day (8 hours) / <b>&pound;159 per person</b></li>
+            <li>Solo Half Day (4 hours) / <b>&pound;197</b></li>
+            <li>Solo Full Day (8 hours) / <b>&pound;397</b></li>
+          </ul>
+          <ul class="options-notes">
+            <li>Groups must be a minimum of 3 people</li>
+            <li>You can bring a friend/family member for free on solo hikes</li>
+          </ul>
+          <a class="btn btn-primary" href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/contact.html">Enquire about a tour →</a>
+          <p class="form-note">Please specify your preferred dates &amp; tour option.</p>
+          <p class="form-note">Tours run year-round, subject to suitable, safe weather conditions on the day.</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section section--tight section--pale">
+    <div class="wrap">
+      <div class="carousel rise" data-carousel role="region" aria-roledescription="carousel" aria-label="Photographs from the Pentland Hills">
+        <div class="carousel-bar">
+          <p class="carousel-count" aria-live="polite"><span data-carousel-current>01</span> / 10</p>
+          <div class="carousel-nav">
+            <button type="button" class="carousel-btn" data-carousel-prev aria-label="Previous photograph"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M12.5 4 6.5 10l6 6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
+            <button type="button" class="carousel-btn" data-carousel-next aria-label="Next photograph"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7.5 4 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
+          </div>
+        </div>
+        <ul class="carousel-track" data-carousel-track tabindex="0" aria-label="Photographs — scroll or use the arrow keys">
+          <li class="carousel-slide" aria-roledescription="slide" aria-label="1 of 10"><img src="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/assets/img/pentlands-01.jpg" alt="A stone cairn on a Pentland summit under a big sky, with the ridge running on beyond a fence line." width="1350" height="1800"></li>
+          <li class="carousel-slide" aria-roledescription="slide" aria-label="2 of 10"><img src="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/assets/img/pentlands-02.jpg" alt="A rounded Pentland hill lit by sun beneath scattered cloud, with open pasture in front." width="1350" height="1800"></li>
+          <li class="carousel-slide" aria-roledescription="slide" aria-label="3 of 10"><img src="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/assets/img/pentlands-03.jpg" alt="Cattle grazing on the lower slopes in evening light, with the Pentland hills behind." width="1350" height="1800" loading="lazy"></li>
+          <li class="carousel-slide" aria-roledescription="slide" aria-label="4 of 10"><img src="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/assets/img/pentlands-04.jpg" alt="A snow-covered summit under a clear winter sky, with the moon just visible." width="1350" height="1800" loading="lazy"></li>
+          <li class="carousel-slide" aria-roledescription="slide" aria-label="5 of 10"><img src="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/assets/img/pentlands-05.jpg" alt="The sun setting behind a hilltop, with low cloud lying along the ridge." width="1350" height="1800" loading="lazy"></li>
+          <li class="carousel-slide" aria-roledescription="slide" aria-label="6 of 10"><img src="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/assets/img/pentlands-06.jpg" alt="A small stone bothy beside a gravel track in a sunlit glen." width="1350" height="1800" loading="lazy"></li>
+          <li class="carousel-slide" aria-roledescription="slide" aria-label="7 of 10"><img src="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/assets/img/pentlands-07.jpg" alt="A track through purple heather under a grey, rain-heavy sky." width="1350" height="1800" loading="lazy"></li>
+          <li class="carousel-slide" aria-roledescription="slide" aria-label="8 of 10"><img src="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/assets/img/pentlands-08.jpg" alt="A still reservoir reflecting the hillside on a clear blue day." width="1350" height="1800" loading="lazy"></li>
+          <li class="carousel-slide" aria-roledescription="slide" aria-label="9 of 10"><img src="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/assets/img/pentlands-09.jpg" alt="The sun low over a rocky summit, with the next hills of the range beyond." width="1350" height="1800" loading="lazy"></li>
+          <li class="carousel-slide" aria-roledescription="slide" aria-label="10 of 10"><img src="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/assets/img/pentlands-10.jpg" alt="A fence line running down a heathery slope towards the hills in the distance." width="1350" height="1800" loading="lazy"></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="mark" href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/index.html"><img class="mark-logo" src="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/assets/img/logo-mark-light.png" alt="" width="26" height="30" decoding="async"><b>Sebastian CN Anderson Hiking<span>The Pentlands &amp; the seven hills</span></b></a>
+        <p>Private guided hill tours on the Pentland Hills and Edinburgh's seven hills. Year-round, weather permitting.</p>
+      </div>
+      <div>
+        <h4>Tours</h4>
+        <ul>
+          <li><a href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/tours.html">All tours</a></li>
+          <li><a href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/tour-pentlands.html">The Pentland Hills</a></li>
+          <li><a href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/tour-hermitage.html">Hermitage &amp; Blackford</a></li>
+          <li><a href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/tour-arthurs-seat.html">Arthur's Seat</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/about.html">About Sebastian</a></li>
+          <li><a href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/contact.html">Book a tour</a></li>
+          <li><a href="mailto:seb@sebastiancnanderson.com">seb@sebastiancnanderson.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-base"><span>&copy; 2026 Sebastian CN Anderson Hiking</span><span>Edinburgh, Scotland</span></div>
+  </div>
+</footer>
+<script src="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/assets/js/app.js"></script>
+
+<script>
+(function () {
+  "use strict";
+
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------------- header ---------------- */
+  var header = document.querySelector(".site-header");
+  if (header) {
+    var stick = function () { header.classList.toggle("is-stuck", window.scrollY > 40); };
+    stick();
+    window.addEventListener("scroll", stick, { passive: true });
+  }
+
+  /* ---------------- mobile sheet ---------------- */
+  var burger = document.querySelector(".burger");
+  var sheet = document.querySelector(".sheet");
+  if (burger && sheet) {
+    var setSheet = function (open) {
+      burger.setAttribute("aria-expanded", String(open));
+      sheet.classList.toggle("is-open", open);
+      sheet.setAttribute("aria-hidden", String(!open));
+      document.body.style.overflow = open ? "hidden" : "";
+    };
+    burger.addEventListener("click", function () {
+      setSheet(burger.getAttribute("aria-expanded") !== "true");
+    });
+    sheet.querySelectorAll("a").forEach(function (a) {
+      a.addEventListener("click", function () { setSheet(false); });
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && sheet.classList.contains("is-open")) setSheet(false);
+    });
+  }
+
+  /* ---------------- reveals ---------------- */
+  var revealEls = document.querySelectorAll(".rise, .stagger, .profile");
+  if (revealEls.length) {
+    var showAll = function () {
+      revealEls.forEach(function (el) { el.classList.add("is-in"); });
+    };
+    if (!("IntersectionObserver" in window)) {
+      showAll();
+    } else {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+      revealEls.forEach(function (el) { io.observe(el); });
+      /* failsafe: never leave content hidden if the observer is suspended */
+      window.setTimeout(showAll, 2500);
+    }
+  }
+
+  /* ---------------- hero headline ---------------- */
+  var h1 = document.querySelector(".hero h1");
+  if (h1 && !h1.querySelector(".w")) {
+    var walk = function (node) {
+      var out = [];
+      node.childNodes.forEach(function (n) {
+        if (n.nodeType === 3) {
+          n.textContent.split(/(\s+)/).forEach(function (t) {
+            if (!t.trim()) { out.push(document.createTextNode(t)); return; }
+            var s = document.createElement("span");
+            s.className = "w"; s.textContent = t;
+            out.push(s);
+          });
+        } else if (n.nodeType === 1) {
+          var clone = n.cloneNode(false);
+          walk(n).forEach(function (c) { clone.appendChild(c); });
+          out.push(clone);
+        }
+      });
+      return out;
+    };
+    var parts = walk(h1);
+    h1.textContent = "";
+    parts.forEach(function (p) { h1.appendChild(p); });
+    var words = h1.querySelectorAll(".w");
+    words.forEach(function (w, i) { w.style.transitionDelay = (0.05 + i * 0.055) + "s"; });
+    window.requestAnimationFrame(function () { h1.classList.add("is-in"); });
+  }
+
+  /* ---------------- hero clip cycle ----------------
+     Three-to-four clips cross-faded, one playing at a time.
+     Ticks double as manual controls. Pauses when off-screen
+     or when the tab is hidden so it costs nothing in the
+     background.                                                */
+  var stage = document.querySelector(".hero-media");
+  if (stage) {
+    var clips = Array.prototype.slice.call(stage.querySelectorAll(".hero-clip"));
+    var ticks = Array.prototype.slice.call(document.querySelectorAll(".hero-ticks button"));
+    var idx = -1, timer = null, paused = false;
+
+    /* The clips are short, so slowing playback is what actually calms the
+       hero — it stretches each one and lets the cut come later, without
+       shipping any more video. */
+    var RATE = 0.5;
+
+    /* A clip can ask for its own pace with data-rate, and for the moment it
+       should open on with data-start — some clips only get good a second or
+       two in, and the hero has no time to waste on the run-up. */
+    var rateOf = function (v) {
+      var r = parseFloat(v.getAttribute("data-rate"));
+      return r > 0 ? r : RATE;
+    };
+    var startOf = function (v) {
+      var s = parseFloat(v.getAttribute("data-start"));
+      return s > 0 ? s : 0;
+    };
+
+    /* Cut shortly before the clip ends so a loop-jump is never seen. */
+    var dwell = function (v) {
+      var d = v.duration;
+      if (!d || !isFinite(d)) return 5200;
+      return Math.min(8000, Math.max(2600, ((d - startOf(v)) / rateOf(v)) * 1000 - 600));
+    };
+
+    /* Only clip 1 ships with the page; warm the next one just in time
+       so a switch never stalls on the network. */
+    var warm = function (i) {
+      var n = clips[(i + 1) % clips.length];
+      if (n && n.getAttribute("preload") !== "auto") {
+        n.setAttribute("preload", "auto");
+        try { n.load(); } catch (e) {}
+      }
+    };
+
+    var show = function (i, auto) {
+      if (i === idx) return;
+      idx = i;
+      clips.forEach(function (v, n) {
+        var on = n === i;
+        v.classList.toggle("is-active", on);
+        if (on) {
+          try { v.currentTime = startOf(v); } catch (e) {}
+          if (!reduce) { v.playbackRate = rateOf(v); var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+        } else {
+          v.pause();
+        }
+      });
+      ticks.forEach(function (t, n) {
+        t.setAttribute("aria-current", String(n === i));
+        var bar = t.querySelector("span");
+        if (bar) { bar.style.animation = "none"; void bar.offsetWidth; bar.style.animation = ""; }
+      });
+      warm(i);
+      var ms = clips[i] ? dwell(clips[i]) : 5200;
+      document.documentElement.style.setProperty("--clip-dur", (ms / 1000) + "s");
+      window.clearTimeout(timer);
+      if (!reduce && !paused && auto !== false) {
+        timer = window.setTimeout(function () { show((idx + 1) % clips.length, true); }, ms);
+      }
+    };
+
+    if (clips.length) {
+      show(0, true);
+
+      ticks.forEach(function (t, n) {
+        t.addEventListener("click", function () {
+          window.clearTimeout(timer);
+          show(n, true);
+        });
+      });
+
+      /* stop work when the hero is off-screen or the tab is hidden */
+      if ("IntersectionObserver" in window) {
+        new IntersectionObserver(function (es) {
+          es.forEach(function (e) {
+            paused = !e.isIntersecting;
+            if (paused) {
+              window.clearTimeout(timer);
+              clips.forEach(function (v) { v.pause(); });
+            } else if (!reduce) {
+              var cur = clips[idx];
+              if (cur) { cur.playbackRate = rateOf(cur); var p = cur.play(); if (p && p.catch) p.catch(function () {}); }
+              window.clearTimeout(timer);
+              timer = window.setTimeout(function () { show((idx + 1) % clips.length, true); }, dwell(clips[idx] || clips[0]));
+            }
+          });
+        }, { threshold: 0.05 }).observe(stage);
+      }
+
+      document.addEventListener("visibilitychange", function () {
+        if (document.hidden) {
+          window.clearTimeout(timer);
+          clips.forEach(function (v) { v.pause(); });
+        } else if (!reduce && !paused) {
+          var cur = clips[idx];
+          if (cur) { cur.playbackRate = rateOf(cur); var p = cur.play(); if (p && p.catch) p.catch(function () {}); }
+          timer = window.setTimeout(function () { show((idx + 1) % clips.length, true); }, dwell(clips[idx] || clips[0]));
+        }
+      });
+    }
+  }
+
+  /* ---------------- carousel ---------------- */
+  document.querySelectorAll("[data-carousel]").forEach(function (root) {
+    var track = root.querySelector("[data-carousel-track]");
+    var prev = root.querySelector("[data-carousel-prev]");
+    var next = root.querySelector("[data-carousel-next]");
+    var count = root.querySelector("[data-carousel-current]");
+    if (!track || !track.children.length) return;
+    var slides = track.children;
+    var pad = function (n) { return ("0" + n).slice(-2); };
+
+    var gap = function () { return parseFloat(getComputedStyle(track).columnGap) || 0; };
+    var step = function () { return slides[0].getBoundingClientRect().width + gap(); };
+
+    var update = function () {
+      var s = step();
+      var atStart = track.scrollLeft <= 2;
+      var atEnd = track.scrollLeft >= track.scrollWidth - track.clientWidth - 2;
+      /* n slides fill n widths but only n-1 gaps, hence the extra gap */
+      var visible = Math.max(1, Math.floor((track.clientWidth + gap() + 2) / s));
+      var first = atEnd ? slides.length - visible + 1 : Math.round(track.scrollLeft / s) + 1;
+      var last = Math.min(slides.length, first + visible - 1);
+      if (prev) prev.disabled = atStart;
+      if (next) next.disabled = atEnd;
+      if (count) count.textContent = visible > 1 ? pad(first) + "–" + pad(last) : pad(first);
+    };
+
+    var move = function (dir) {
+      track.scrollBy({ left: dir * step(), behavior: reduce ? "auto" : "smooth" });
+    };
+    if (prev) prev.addEventListener("click", function () { move(-1); });
+    if (next) next.addEventListener("click", function () { move(1); });
+
+    track.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    update();
+  });
+
+  /* ---------------- FAQ ---------------- */
+  document.querySelectorAll("[data-acc]").forEach(function (item) {
+    var q = item.querySelector("button");
+    var a = item.querySelector("[data-panel]");
+    if (!q || !a) return;
+    q.addEventListener("click", function () {
+      var open = item.getAttribute("data-acc") === "open";
+      item.setAttribute("data-acc", open ? "closed" : "open");
+      q.setAttribute("aria-expanded", String(!open));
+      a.style.maxHeight = open ? null : a.scrollHeight + "px";
+    });
+  });
+
+  /* ---------------- enquiry form ---------------- */
+  var form = document.querySelector("#enquiry");
+  if (form) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var status = form.querySelector(".form-status");
+      var submit = form.querySelector("button[type=submit]");
+      var action = form.getAttribute("action") || "";
+      var live = action && action.indexOf("REPLACE_ME") === -1;
+
+      var d = {
+        name: form.querySelector("#f-name").value.trim(),
+        email: form.querySelector("#f-email").value.trim(),
+        tour: form.querySelector("#f-tour").value,
+        people: form.querySelector("#f-people").value,
+        message: form.querySelector("#f-msg").value.trim()
+      };
+
+      if (!d.name || !d.email) {
+        if (status) { status.setAttribute("data-state", "error"); status.textContent = "Add your name and email so Sebastian can reply."; }
+        return;
+      }
+
+      var fallback = function () {
+        var s = encodeURIComponent("Tour enquiry: " + (d.tour || "General"));
+        var b = encodeURIComponent(
+          "Name: " + d.name + "\nEmail: " + d.email + "\nTour: " + d.tour +
+          "\nPeople: " + d.people + "\n\n" + d.message
+        );
+        window.location.href = "mailto:seb@sebastiancnanderson.com?subject=" + s + "&body=" + b;
+        if (status) { status.removeAttribute("data-state"); status.textContent = "Opening your email app to send this to Sebastian…"; }
+      };
+
+      if (!live) { fallback(); return; }
+
+      if (submit) submit.disabled = true;
+      if (status) { status.removeAttribute("data-state"); status.textContent = "Sending…"; }
+
+      fetch(action, {
+        method: "POST",
+        headers: { "Accept": "application/json", "Content-Type": "application/json" },
+        body: JSON.stringify(d)
+      }).then(function (r) {
+        if (!r.ok) throw new Error();
+        form.reset();
+        if (status) { status.removeAttribute("data-state"); status.textContent = "Sent. Sebastian usually replies within a day."; }
+      }).catch(fallback).then(function () {
+        if (submit) submit.disabled = false;
+      });
+    });
+  }
+}());
+
+</script>
