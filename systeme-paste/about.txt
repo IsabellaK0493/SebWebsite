@@ -944,15 +944,15 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 
 <header class="site-header">
   <div class="wrap">
-    <a class="mark" href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/index.html" aria-label="Sebastian CN Anderson Hiking — home">
+    <a class="mark" href="https://wkl.systeme.io/7523436a" aria-label="Sebastian CN Anderson Hiking — home">
       <img class="mark-logo" src="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/assets/img/logo-mark-light.png" alt="" width="26" height="30" decoding="async">
       <b>Sebastian CN Anderson Hiking<span>The Pentlands &amp; the seven hills</span></b>
     </a>
     <nav class="nav" aria-label="Primary">
       <ul class="nav-links">
-        <li><a href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/index.html">Home</a></li>
+        <li><a href="https://wkl.systeme.io/7523436a">Home</a></li>
         <li class="has-menu">
-          <a href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/tours.html">Tours</a>
+          <a href="https://wkl.systeme.io/sebhikingtours">Tours</a>
           <ul class="submenu">
             <li><a href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/tour-pentlands.html">The Pentland Hills</a></li>
             <li><a href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/tour-hermitage.html">Hermitage &amp; Blackford Hill</a></li>
@@ -971,8 +971,8 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 
 <div class="sheet" id="sheet" aria-hidden="true">
   <nav aria-label="Mobile">
-    <a href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/index.html">Home</a>
-    <a href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/tours.html">Tours</a><a class="sub" href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/tour-pentlands.html">The Pentland Hills</a><a class="sub" href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/tour-hermitage.html">Hermitage &amp; Blackford Hill</a><a class="sub" href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/tour-arthurs-seat.html">Arthur's Seat</a><a class="sub" href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/contact.html">Alternate routes</a>
+    <a href="https://wkl.systeme.io/7523436a">Home</a>
+    <a href="https://wkl.systeme.io/sebhikingtours">Tours</a><a class="sub" href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/tour-pentlands.html">The Pentland Hills</a><a class="sub" href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/tour-hermitage.html">Hermitage &amp; Blackford Hill</a><a class="sub" href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/tour-arthurs-seat.html">Arthur's Seat</a><a class="sub" href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/contact.html">Alternate routes</a>
     <a href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/about.html">About</a>
     <a href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/contact.html">Contact</a>
   </nav>
@@ -1037,13 +1037,13 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <a class="mark" href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/index.html"><img class="mark-logo" src="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/assets/img/logo-mark-light.png" alt="" width="26" height="30" decoding="async"><b>Sebastian CN Anderson Hiking<span>The Pentlands &amp; the seven hills</span></b></a>
+        <a class="mark" href="https://wkl.systeme.io/7523436a"><img class="mark-logo" src="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/assets/img/logo-mark-light.png" alt="" width="26" height="30" decoding="async"><b>Sebastian CN Anderson Hiking<span>The Pentlands &amp; the seven hills</span></b></a>
         <p>Private guided hill tours on the Pentland Hills and Edinburgh's seven hills. Year-round, weather permitting.</p>
       </div>
       <div>
         <h4>Tours</h4>
         <ul>
-          <li><a href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/tours.html">All tours</a></li>
+          <li><a href="https://wkl.systeme.io/sebhikingtours">All tours</a></li>
           <li><a href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/tour-pentlands.html">The Pentland Hills</a></li>
           <li><a href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/tour-hermitage.html">Hermitage &amp; Blackford</a></li>
           <li><a href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/tour-arthurs-seat.html">Arthur's Seat</a></li>

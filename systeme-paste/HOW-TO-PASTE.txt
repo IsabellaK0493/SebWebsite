@@ -25,7 +25,7 @@ Files (plain text, so they open ready to copy):
   Hermitage & Blackford Hill   tour-hermitage.txt             66 KB
   Arthur's Seat                tour-arthurs-seat.txt          66 KB
   About                        about.txt                      63 KB
-  Contact                      contact.txt                    65 KB
+  Contact                      contact.txt                    64 KB
 
 Notes:
   - Page titles and search-engine descriptions are set in Systeme.io's

@@ -7,8 +7,8 @@
 # Leave a line blank and that page keeps pointing at the GitHub Pages copy,
 # so half-finished is fine -- fill them in as you go.
 
-index            =
-tours            =
+index            = https://wkl.systeme.io/7523436a
+tours            = https://wkl.systeme.io/sebhikingtours
 tour-pentlands   =
 tour-hermitage   =
 tour-arthurs-seat =
