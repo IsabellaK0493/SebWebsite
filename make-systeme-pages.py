@@ -79,14 +79,33 @@ def absolutise(markup, urls):
 
 def body_of(markup):
     m = re.search(r"<body[^>]*>(.*)</body>", markup, re.S)
-    return m.group(1).strip() if m else markup
+    body = m.group(1).strip() if m else markup
+    # The script is inlined at the end of the block, so drop the <script src>
+    # the page carries, or it loads twice and every control gets two listeners.
+    return re.sub(r'\s*<script[^>]+src="[^"]*app\.js"[^>]*>\s*</script>', "", body)
+
+
+# Builders do not always serve a pasted block as UTF-8, and a page read as
+# Western text turns "->" into mojibake ("ABOUT THIS TOUR ,ui"). Keeping every
+# block pure ASCII sidesteps the question: each syntax has its own escape.
+def ascii_html(text):
+    return "".join(c if ord(c) < 128 else "&#x%X;" % ord(c) for c in text)
+
+
+def ascii_css(text):
+    # "\2014 " - the trailing space ends the escape and is consumed
+    return "".join(c if ord(c) < 128 else "\\%X " % ord(c) for c in text)
+
+
+def ascii_js(text):
+    return "".join(c if ord(c) < 128 else "\\u%04X" % ord(c) for c in text)
 
 
 def main():
     os.makedirs(OUT, exist_ok=True)
     urls = systeme_urls()
-    css = read("assets", "css", "styles.css")
-    js = read("assets", "js", "app.js")
+    css = ascii_css(read("assets", "css", "styles.css"))
+    js = ascii_js(read("assets", "js", "app.js"))
     written = []
 
     # Inside a page builder, the site's fixed header and mobile menu escape the
@@ -110,12 +129,12 @@ def main():
 
     for page, title in PAGES.items():
         body = ('<div class="sio-page">\n'
-                + absolutise(body_of(read(page)), urls)
+                + ascii_html(absolutise(body_of(read(page)), urls))
                 + '\n</div>')
         block = (
-            "<!-- Sebastian CN Anderson Hiking — %s\n"
+            "<!-- Sebastian CN Anderson Hiking - %s\n"
             "     Paste this whole block into one Systeme.io custom HTML element.\n"
-            "     Built by make-systeme-pages.py — edit the site, not this file. -->\n"
+            "     Built by make-systeme-pages.py - edit the site, not this file. -->\n"
             "<script>document.documentElement.className += \" js\";</script>\n"
             "<style>\n@import url('%s');\n\n%s\n%s</style>\n\n"
             "%s\n\n<script>\n%s\n</script>\n"

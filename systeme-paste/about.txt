@@ -1,12 +1,12 @@
-<!-- Sebastian CN Anderson Hiking — About
+<!-- Sebastian CN Anderson Hiking - About
      Paste this whole block into one Systeme.io custom HTML element.
-     Built by make-systeme-pages.py — edit the site, not this file. -->
+     Built by make-systeme-pages.py - edit the site, not this file. -->
 <script>document.documentElement.className += " js";</script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300..800&family=Montserrat:wght@300..700&family=Young+Serif&display=swap');
 
 /* ============================================================
-   EDINBURGH HIKING — Sebastian
+   EDINBURGH HIKING \2014  Sebastian
    Guided walks on Edinburgh's seven hills and the Pentlands
    ------------------------------------------------------------
    Palette is taken from the hills themselves: wet basalt, haar,
@@ -25,8 +25,8 @@
   --paper:       #F2F2EE;
 
   --whin:        #4FBF8B;   /* accent text & icons on dark, 5.13:1 on ink */
-  --whin-solid:  #258255;   /* solid fills — carries paper text, 4.77:1 */
-  --whin-hover:  #1F6E48;   /* solid fill hover — paper text, 6.21:1 */
+  --whin-solid:  #258255;   /* solid fills \2014  carries paper text, 4.77:1 */
+  --whin-hover:  #1F6E48;   /* solid fill hover \2014  paper text, 6.21:1 */
   --whin-ink:    #258255;   /* on light, 4.25:1 */
   --bracken:     #A85A2A;
   --bracken-ink: #8A4620;   /* 5.73:1 on stone */
@@ -228,7 +228,7 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 .sheet.is-open { transform: none; }
 .sheet nav { display: flex; flex-direction: column; gap: 1.1rem; }
 .sheet nav a { font-family: var(--font-display); font-size: clamp(1.9rem,8vw,2.5rem); color: var(--paper); }
-/* The tours, listed under Tours — the drop-down's opposite number on a
+/* The tours, listed under Tours \2014  the drop-down's opposite number on a
    phone, where there is no hover to open one. */
 .sheet nav a.sub {
   font-family: var(--font-caps); font-size: .72rem;
@@ -240,7 +240,7 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 .sheet .btn { align-self: flex-start; margin-top: 1.6rem; }
 
 /* ============================================================
-   Hero — three clips, cross-faded (Alpenglow-style movement)
+   Hero \2014  three clips, cross-faded (Alpenglow-style movement)
    ============================================================ */
 .hero {
   position: relative; min-height: 100svh;
@@ -278,14 +278,14 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
   transition: opacity 1.5s var(--ease-out);
   will-change: opacity, transform;
 }
-/* Per-clip skyline positions — each number is where that clip's horizon
+/* Per-clip skyline positions \2014  each number is where that clip's horizon
    actually falls in its own frame. */
 .hero-clip:nth-child(1) { object-position: 50% 58%; }  /* ridge under cloud */
-.hero-clip:nth-child(2) { object-position: 50% 84%; }  /* snow — sits low, crop well down */
+.hero-clip:nth-child(2) { object-position: 50% 84%; }  /* snow \2014  sits low, crop well down */
 .hero-clip:nth-child(3) { object-position: 50% 70%; }  /* golden hour ridge */
-.hero-clip:nth-child(4) { object-position: 50% 50%; }  /* Seb & the dogs — landscape, no crop */
-.hero-clip:nth-child(5) { object-position: 50% 62%; }  /* sunset — hold the colour band on the horizon */
-.hero-clip:nth-child(6) { object-position: 50% 74%; }  /* lambs — carry the crop down onto them */
+.hero-clip:nth-child(4) { object-position: 50% 50%; }  /* Seb & the dogs \2014  landscape, no crop */
+.hero-clip:nth-child(5) { object-position: 50% 62%; }  /* sunset \2014  hold the colour band on the horizon */
+.hero-clip:nth-child(6) { object-position: 50% 74%; }  /* lambs \2014  carry the crop down onto them */
 
 /* A phone viewport is close to the clips' own portrait shape, so barely
    any crop happens and the framing can sit near centre. */
@@ -299,7 +299,7 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 /* slow drift on the live clip only */
 .js .hero-clip.is-active { animation: drift 9s linear both; }
 @keyframes drift { from { transform: scale(1.005); } to { transform: scale(1.05); } }
-/* The lambs are small in frame, so this one drifts barely at all — the
+/* The lambs are small in frame, so this one drifts barely at all \2014  the
    less it pushes in, the more hillside stays around them. */
 .js .hero-clip:nth-child(6).is-active { animation-name: drift-wide; }
 @keyframes drift-wide { from { transform: scale(1); } to { transform: scale(1.015); } }
@@ -324,7 +324,7 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
       linear-gradient(180deg, rgba(20,28,33,.68) 0%, rgba(20,28,33,.46) 45%, rgba(20,28,33,.90) 100%);
   }
 }
-/* A soft shadow carries the words over the bright frames — cheaper on the
+/* A soft shadow carries the words over the bright frames \2014  cheaper on the
    picture than darkening the whole scrim to suit the brightest clip. */
 .hero-inner { text-shadow: 0 1px 20px rgba(20,28,33,.6), 0 1px 3px rgba(20,28,33,.4); }
 .hero-inner .btn { text-shadow: none; }
@@ -340,7 +340,7 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 .hero-lede { margin-top: 1.5rem; max-width: 46ch; color: var(--muted-dark); }
 .hero-cta { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 2.1rem; }
 
-/* clip ticks — also the manual control */
+/* clip ticks \2014  also the manual control */
 .hero-ticks {
   position: absolute; right: var(--gutter); bottom: clamp(3rem, 8vh, 5.5rem);
   display: flex; gap: .5rem; z-index: 3;
@@ -378,7 +378,7 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 @media (max-width: 780px) { .assure ul { grid-template-columns: 1fr; gap: 1.5rem; } }
 
 /* ============================================================
-   Vista band — a full-bleed breath of scenery that breaks the
+   Vista band \2014  a full-bleed breath of scenery that breaks the
    long dark run between the hero and The Section.
    ============================================================ */
 .vista {
@@ -403,7 +403,7 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
   color: var(--paper);
   background: linear-gradient(180deg, transparent, rgba(20,28,33,.72));
 }
-/* Second caption span only — a lone caption stays paper-white and visible. */
+/* Second caption span only \2014  a lone caption stays paper-white and visible. */
 .vista figcaption span + span { color: var(--whin); }
 @media (max-width: 640px) {
   .vista { height: clamp(200px, 30vh, 300px); }
@@ -411,9 +411,9 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 }
 
 /* ============================================================
-   THE SECTION — signature element.
+   THE SECTION \2014  signature element.
    A true cross-section from Castle Rock out to Scald Law:
-   real heights, real distances. It is the whole proposition —
+   real heights, real distances. It is the whole proposition \2014 
    a 579m hill fourteen kilometres from the Royal Mile.
    ============================================================ */
 .section-band {
@@ -449,7 +449,7 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 
 /* The drawing is held at a fixed width at every screen size and scrolls
    inside its own container. You travel out of the city to find the high
-   ground rather than being shown all of it at once — which is the point
+   ground rather than being shown all of it at once \2014  which is the point
    the section is making. */
 .profile {
   overflow-x: auto;
@@ -532,7 +532,7 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 .guide { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 6vw, 4.5rem); align-items: center; }
 .guide-copy p + p { margin-top: 1rem; }
 .guide-copy p { color: var(--muted); }
-/* Two photographs offset and overlapping — the boy on the hill behind,
+/* Two photographs offset and overlapping \2014  the boy on the hill behind,
    the same person on the same hills now in front. The gap between the
    two pictures is the twenty years. */
 .guide-figs { position: relative; padding-bottom: 3.5rem; padding-right: 2rem; }
@@ -626,7 +626,7 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 @media (max-width: 780px) { .grid-shots { grid-template-columns: repeat(2, 1fr); } }
 
 /* ============================================================
-   Carousel — a hand-driven strip of portrait photographs. Native
+   Carousel \2014  a hand-driven strip of portrait photographs. Native
    scroll with snap points, so it swipes on touch and scrolls with
    the arrow keys once focused; the buttons move one photo at a time.
    ============================================================ */
@@ -666,7 +666,7 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 @media (prefers-reduced-motion: reduce) { .carousel-track { scroll-behavior: auto; } }
 
 /* ============================================================
-   Reel — a slow, self-moving ribbon of photographs. Duplicated
+   Reel \2014  a slow, self-moving ribbon of photographs. Duplicated
    once so the loop is seamless; pauses on hover or keyboard
    focus, and becomes a plain scrollable strip if the visitor
    has asked for reduced motion.
@@ -693,7 +693,7 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
   margin: 0;
 }
 .reel img {
-  /* height:auto is required — without it the HTML height attribute wins
+  /* height:auto is required \2014  without it the HTML height attribute wins
      as a presentational hint and aspect-ratio is ignored. */
   width: 100%; height: auto; aspect-ratio: 4/5;
   object-fit: cover; object-position: 50% 40%;
@@ -726,7 +726,7 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
   position: relative;
 }
 .says blockquote::before {
-  content: "“";
+  content: "\201C ";
   font-family: var(--font-display); font-size: 3.2rem; line-height: .8;
   color: var(--whin-ink); opacity: .5;
 }
@@ -867,10 +867,10 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 .book-card .price span { font-family: var(--font-caps); font-size: .72rem; color: var(--muted); }
 .book-card ul { display: grid; gap: .6rem; margin: 1.2rem 0; font-size: .9rem; }
 .book-card li { display: flex; gap: .6rem; }
-.book-card li::before { content: "—"; color: var(--bracken-ink); flex: none; }
+.book-card li::before { content: "\2014 "; color: var(--bracken-ink); flex: none; }
 .book-card .btn { width: 100%; }
 
-/* Two stacked cards — what you get, then what it costs. The pair sticks as
+/* Two stacked cards \2014  what you get, then what it costs. The pair sticks as
    one unit, so the inner cards give up their own sticky positioning. */
 .book-side { position: sticky; top: 5.5rem; display: grid; gap: 1.1rem; }
 .book-side .book-card { position: static; top: auto; }
@@ -880,14 +880,14 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 .book-card .ticks, .book-card .options, .book-card .options-notes { display: grid; margin: 1.1rem 0 0; }
 .book-card .ticks { gap: .75rem; font-size: .9rem; }
 .book-card .ticks li::before {
-  content: "✓"; color: var(--whin-ink); font-weight: 700;
+  content: "\2713 "; color: var(--whin-ink); font-weight: 700;
   line-height: 1.5; flex: none;
 }
 .book-card .options { gap: .55rem; font-size: .93rem; }
-.book-card .options li::before { content: "›"; color: var(--whin-ink); font-weight: 700; flex: none; }
+.book-card .options li::before { content: "\203A "; color: var(--whin-ink); font-weight: 700; flex: none; }
 .book-card .options b { font-weight: 700; }
 .book-card .options-notes { gap: .4rem; margin-top: .9rem; padding-left: 1.1rem; font-size: .82rem; font-style: italic; color: var(--muted); }
-.book-card .options-notes li::before { content: "→"; color: var(--whin-ink); flex: none; }
+.book-card .options-notes li::before { content: "\2192 "; color: var(--whin-ink); flex: none; }
 .book-note {
   margin-top: 1.1rem; padding-top: .9rem; border-top: 1px solid var(--stone-3);
   font-size: .82rem; font-style: italic; color: var(--muted);
@@ -914,7 +914,7 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
   .hero-cta { display: grid; grid-template-columns: 1fr; gap: .6rem; }
   .hero-cta .btn { width: 100%; }
 
-  /* walks run to the page edge — a field guide, not floating cards */
+  /* walks run to the page edge \2014  a field guide, not floating cards */
   .tours { gap: 0; margin-inline: calc(var(--gutter) * -1); }
   .tour { border-inline: 0; border-top: 0; background: transparent; }
   .tour:first-child { border-top: 1px solid var(--stone-3); }
@@ -944,7 +944,7 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 
 <header class="site-header">
   <div class="wrap">
-    <a class="mark" href="https://wkl.systeme.io/7523436a" aria-label="Sebastian CN Anderson Hiking — home">
+    <a class="mark" href="https://wkl.systeme.io/7523436a" aria-label="Sebastian CN Anderson Hiking &#x2014; home">
       <img class="mark-logo" src="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/assets/img/logo-mark-light.png" alt="" width="26" height="30" decoding="async">
       <b>Sebastian CN Anderson Hiking<span>The Pentlands &amp; the seven hills</span></b>
     </a>
@@ -1005,15 +1005,15 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
     <div class="wrap split">
       <div class="prose rise">
         <h2>How this started</h2>
-        <p>I've been walking Edinburgh's hills from a very young age, and I still get out on them regularly — usually a mixture of trail runs and long walks with my two chocolate Labradors, Daisy and Poppy.</p>
+        <p>I've been walking Edinburgh's hills from a very young age, and I still get out on them regularly &#x2014; usually a mixture of trail runs and long walks with my two chocolate Labradors, Daisy and Poppy.</p>
         <p>People kept asking me to take them up Arthur's Seat, or out to the Pentlands, or to show them somewhere green that wasn't full of other visitors. Enough of them asked that I started doing it properly.</p>
 
         <h2>What I do outside Edinburgh</h2>
         <p>I walk, run and explore the outdoors in the Highlands and abroad. I've completed a number of trail races, walks with a running club, the Arrochar Alps, the Glenshee 9, and a UTMB in Switzerland.</p>
-        <p>None of that is the point of these tours — but it does mean I'm comfortable on rough ground in bad weather, and I know when a day isn't worth pushing.</p>
+        <p>None of that is the point of these tours &#x2014; but it does mean I'm comfortable on rough ground in bad weather, and I know when a day isn't worth pushing.</p>
 
         <h2>How the tours work</h2>
-        <p>Every tour is private. That means either one-to-one, or a small group you organise yourself — there will be no strangers, and you can walk at your own pace. I plan the route around who is coming and what the weather is doing, and I always have a lower-level alternative in mind before we set off.</p>
+        <p>Every tour is private. That means either one-to-one, or a small group you organise yourself &#x2014; there will be no strangers, and you can walk at your own pace. I plan the route around who is coming and what the weather is doing, and I always have a lower-level alternative in mind before we set off.</p>
       </div>
 
       <aside class="book-card">
@@ -1021,7 +1021,7 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
         <ul style="margin-top:1rem;">
           <li>Born and raised in Edinburgh</li>
           <li>20+ years on the Pentlands and the seven hills</li>
-          <li>Private tours only — no mixed groups</li>
+          <li>Private tours only &#x2014; no mixed groups</li>
           <li>All abilities, from flat and short to a full hill day</li>
           <li>Two chocolate Labradors, occasionally along for the tour</li>
         </ul>
@@ -1061,7 +1061,6 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
     <div class="foot-base"><span>&copy; 2026 Sebastian CN Anderson Hiking</span><span>Edinburgh, Scotland</span></div>
   </div>
 </footer>
-<script src="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/assets/js/app.js"></script>
 </div>
 
 <script>
@@ -1160,12 +1159,12 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
     var idx = -1, timer = null, paused = false;
 
     /* The clips are short, so slowing playback is what actually calms the
-       hero — it stretches each one and lets the cut come later, without
+       hero \u2014 it stretches each one and lets the cut come later, without
        shipping any more video. */
     var RATE = 0.5;
 
     /* A clip can ask for its own pace with data-rate, and for the moment it
-       should open on with data-start — some clips only get good a second or
+       should open on with data-start \u2014 some clips only get good a second or
        two in, and the hero has no time to waste on the run-up. */
     var rateOf = function (v) {
       var r = parseFloat(v.getAttribute("data-rate"));
@@ -1284,7 +1283,7 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
       var last = Math.min(slides.length, first + visible - 1);
       if (prev) prev.disabled = atStart;
       if (next) next.disabled = atEnd;
-      if (count) count.textContent = visible > 1 ? pad(first) + "–" + pad(last) : pad(first);
+      if (count) count.textContent = visible > 1 ? pad(first) + "\u2013" + pad(last) : pad(first);
     };
 
     var move = function (dir) {
@@ -1341,13 +1340,13 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
           "\nPeople: " + d.people + "\n\n" + d.message
         );
         window.location.href = "mailto:seb@sebastiancnanderson.com?subject=" + s + "&body=" + b;
-        if (status) { status.removeAttribute("data-state"); status.textContent = "Opening your email app to send this to Sebastian…"; }
+        if (status) { status.removeAttribute("data-state"); status.textContent = "Opening your email app to send this to Sebastian\u2026"; }
       };
 
       if (!live) { fallback(); return; }
 
       if (submit) submit.disabled = true;
-      if (status) { status.removeAttribute("data-state"); status.textContent = "Sending…"; }
+      if (status) { status.removeAttribute("data-state"); status.textContent = "Sending\u2026"; }
 
       fetch(action, {
         method: "POST",
