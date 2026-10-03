@@ -20,11 +20,11 @@ Then for each page in Systeme.io:
 
 Files (plain text, so they open ready to copy):
   Home                         index.txt                      79 KB
-  Tours                        tours.txt                      67 KB
-  The Pentland Hills           tour-pentlands.txt             69 KB
+  Tours                        tours.txt                      68 KB
+  The Pentland Hills           tour-pentlands.txt             70 KB
   Hermitage & Blackford Hill   tour-hermitage.txt             66 KB
   Arthur's Seat                tour-arthurs-seat.txt          66 KB
-  About                        about.txt                      63 KB
+  About                        about.txt                      64 KB
   Contact                      contact.txt                    65 KB
 
 Notes:

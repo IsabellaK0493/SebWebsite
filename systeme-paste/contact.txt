@@ -57,7 +57,7 @@ a { color: inherit; text-decoration: none; }
 button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
 input, textarea, select { font: inherit; color: inherit; }
 
-body {
+.sio-page {
   background: var(--stone);
   color: var(--ink);
   font-family: var(--font-body);
@@ -937,6 +937,14 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
    off to the side instead, and keep it reachable by keyboard. */
 .sio-page .skip-link { top: 1rem; left: -9999px; }
 .sio-page .skip-link:focus { left: 1rem; }
+/* A builder's own row styling is inherited by whatever is pasted into
+   it. Two of its habits wreck this layout: centred text, and a
+   `.row * { box-sizing: content-box }` rule that outranks the site's
+   own reset and so throws every width out. Restate both here, where
+   the extra class makes them specific enough to win. */
+.sio-page, .sio-page *, .sio-page *::before, .sio-page *::after { box-sizing: border-box; }
+.sio-page { text-align: left; font-family: var(--font-body); font-size: 16px; line-height: 1.6; color: var(--ink); }
+.sio-page img, .sio-page video { max-width: 100%; display: block; }
 </style>
 
 <div class="sio-page">

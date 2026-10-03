@@ -97,6 +97,16 @@ def ascii_css(text):
     return "".join(c if ord(c) < 128 else "\\%X " % ord(c) for c in text)
 
 
+def contain_css(css):
+    """Keep the site's page-level styling inside the pasted block.
+
+    The stylesheet styles `body`, which inside a builder means the builder's
+    own page: its background, colour and font all change. Re-aim that rule at
+    the block itself.
+    """
+    return re.sub(r"(?m)^body \{", ".sio-page {", css, count=1)
+
+
 def ascii_js(text):
     return "".join(c if ord(c) < 128 else "\\u%04X" % ord(c) for c in text)
 
@@ -104,7 +114,7 @@ def ascii_js(text):
 def main():
     os.makedirs(OUT, exist_ok=True)
     urls = systeme_urls()
-    css = ascii_css(read("assets", "css", "styles.css"))
+    css = ascii_css(contain_css(read("assets", "css", "styles.css")))
     js = ascii_js(read("assets", "js", "app.js"))
     written = []
 
@@ -125,6 +135,16 @@ def main():
         "   off to the side instead, and keep it reachable by keyboard. */\n"
         ".sio-page .skip-link { top: 1rem; left: -9999px; }\n"
         ".sio-page .skip-link:focus { left: 1rem; }\n"
+        "/* A builder's own row styling is inherited by whatever is pasted into\n"
+        "   it. Two of its habits wreck this layout: centred text, and a\n"
+        "   `.row * { box-sizing: content-box }` rule that outranks the site's\n"
+        "   own reset and so throws every width out. Restate both here, where\n"
+        "   the extra class makes them specific enough to win. */\n"
+        ".sio-page, .sio-page *, .sio-page *::before, .sio-page *::after"
+        " { box-sizing: border-box; }\n"
+        ".sio-page { text-align: left; font-family: var(--font-body);"
+        " font-size: 16px; line-height: 1.6; color: var(--ink); }\n"
+        ".sio-page img, .sio-page video { max-width: 100%; display: block; }\n"
     )
 
     for page, title in PAGES.items():
