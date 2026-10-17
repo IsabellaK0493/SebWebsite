@@ -273,20 +273,18 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 }
 /* Per-clip skyline positions — each number is where that clip's horizon
    actually falls in its own frame. */
-.hero-clip:nth-child(1) { object-position: 50% 58%; }  /* ridge under cloud */
-.hero-clip:nth-child(2) { object-position: 50% 84%; }  /* snow — sits low, crop well down */
-.hero-clip:nth-child(3) { object-position: 50% 70%; }  /* golden hour ridge */
-.hero-clip:nth-child(4) { object-position: 50% 50%; }  /* Seb & the dogs — landscape, no crop */
-.hero-clip:nth-child(5) { object-position: 50% 62%; }  /* sunset — hold the colour band on the horizon */
-.hero-clip:nth-child(6) { object-position: 50% 74%; }  /* lambs — carry the crop down onto them */
+.hero-clip:nth-child(1) { object-position: 50% 50%; }  /* Seb & the dogs — landscape, no crop */
+.hero-clip:nth-child(2) { object-position: 50% 70%; }  /* golden hour ridge */
+.hero-clip:nth-child(3) { object-position: 50% 74%; }  /* lambs — carry the crop down onto them */
+.hero-clip:nth-child(4) { object-position: 50% 84%; }  /* snow — sits low, crop well down */
 
 /* A phone viewport is close to the clips' own portrait shape, so barely
    any crop happens and the framing can sit near centre. */
 @media (max-width: 640px) {
   .hero-clip,
-  .hero-clip:nth-child(1), .hero-clip:nth-child(2), .hero-clip:nth-child(3),
-  .hero-clip:nth-child(4), .hero-clip:nth-child(5) { object-position: 50% 55%; }
-  .hero-clip:nth-child(6) { object-position: 50% 62%; }  /* keep the lambs in shot */
+  .hero-clip:nth-child(1), .hero-clip:nth-child(2),
+  .hero-clip:nth-child(4) { object-position: 50% 55%; }
+  .hero-clip:nth-child(3) { object-position: 50% 62%; }  /* keep the lambs in shot */
 }
 .hero-clip.is-active { opacity: 1; }
 /* slow drift on the live clip only */
@@ -294,7 +292,7 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 @keyframes drift { from { transform: scale(1.005); } to { transform: scale(1.05); } }
 /* The lambs are small in frame, so this one drifts barely at all — the
    less it pushes in, the more hillside stays around them. */
-.js .hero-clip:nth-child(6).is-active { animation-name: drift-wide; }
+.js .hero-clip:nth-child(3).is-active { animation-name: drift-wide; }
 @keyframes drift-wide { from { transform: scale(1); } to { transform: scale(1.015); } }
 @media (prefers-reduced-motion: reduce) {
   .js .hero-clip.is-active { animation: none; }
@@ -724,6 +722,14 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
   font-family: var(--font-display); font-size: 1.02rem; line-height: 1.42;
   margin: 0; flex: 1;
 }
+/* Photographs inside a testimonial: a pair under the quote, cropped to a
+   common shape so a portrait and a landscape shot still sit level. */
+.says-shots { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; }
+.says-shots img {
+  width: 100%; height: auto; aspect-ratio: 4/5;
+  object-fit: cover; display: block; background: var(--stone-2);
+}
+
 .says footer {
   font-family: var(--font-caps); font-size: .6rem;
   letter-spacing: .12em; text-transform: uppercase; color: var(--muted);
