@@ -33,6 +33,7 @@
   --font-display: "Young Serif", "Iowan Old Style", Georgia, serif;
   --font-body: "Hanken Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-caps: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+  --font-hand: "Caveat", "Bradley Hand", "Segoe Script", cursive;
 
   --gutter: clamp(1.25rem, 4vw, 3.5rem);
   --max: 76rem;
@@ -90,7 +91,7 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 
 .eyebrow {
   font-family: var(--font-caps);
-  font-size: .62rem; font-weight: 500;
+  font-size: clamp(.72rem, 1.1vw, 1.05rem); font-weight: 500;
   letter-spacing: .2em; text-transform: uppercase;
   color: var(--whin-ink);
   display: inline-flex; align-items: center;
@@ -580,9 +581,10 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 }
 /* The year carries the tally's display numeral. */
 .guide-solo figcaption .cap-year {
-  font-family: var(--font-display); font-size: 1.9rem;
-  font-weight: 700; line-height: 1; letter-spacing: 0;
-  color: var(--bracken-ink); margin-bottom: .5rem;
+  font-family: var(--font-hand); font-size: 2.2rem;
+  font-weight: 600; line-height: 1; letter-spacing: .01em;
+  text-transform: none;           /* the figcaption uppercases; script wants its own case */
+  color: var(--bracken-ink); margin-bottom: .35rem;
 }
 .guide-solo figcaption span {
   display: block; margin-top: .45rem;
