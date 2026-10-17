@@ -735,13 +735,21 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 .says-shots img {
   width: 100%; height: auto; aspect-ratio: 4/5;
   object-fit: cover; display: block; background: var(--stone-2);
+  object-position: 50% 50%;
 }
+/* The summit photograph is landscape, so the upright frame keeps only the
+   middle of it. Favour the left of the shot to hold Maxine's face in, while
+   leaving Sebastian inside the right edge. Lower % moves the view left. */
+.says-shots img:first-child { object-position: 20% 50%; }
 
 .says footer {
   font-family: var(--font-caps); font-size: .6rem;
   letter-spacing: .12em; text-transform: uppercase; color: var(--muted);
   border-top: 1px solid var(--stone-3); padding-top: .9rem;
 }
+/* Name on its own line, the tour beneath it. */
+.says footer b { display: block; font-weight: 600; color: var(--ink); }
+.says footer span { display: block; margin-top: .28rem; }
 @media (max-width: 860px) { .says { grid-template-columns: 1fr; } }
 
 /* ============================================================
@@ -870,7 +878,7 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 .book-card .price span { font-family: var(--font-caps); font-size: .72rem; color: var(--muted); }
 .book-card ul { display: grid; gap: .6rem; margin: 1.2rem 0; font-size: .9rem; }
 .book-card li { display: flex; gap: .6rem; }
-.book-card li::before { content: "\2014 "; color: var(--bracken-ink); flex: none; }
+.book-card li::before { content: "\B7 "; color: var(--bracken-ink); flex: none; }
 .book-card .btn { width: 100%; }
 
 /* Two stacked cards \2014  what you get, then what it costs. The pair sticks as
@@ -954,7 +962,7 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 
 <header class="site-header">
   <div class="wrap">
-    <a class="mark" href="https://wkl.systeme.io/7523436a" aria-label="Sebastian CN Anderson Hiking &#x2014; home">
+    <a class="mark" href="https://wkl.systeme.io/7523436a" aria-label="Sebastian CN Anderson Hiking, home">
       <img class="mark-logo" src="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/assets/img/logo-mark-light.png" alt="" width="26" height="30" decoding="async">
       <b>Sebastian CN Anderson Hiking<span>The Pentlands &amp; the seven hills</span></b>
     </a>
@@ -996,7 +1004,7 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
       <p class="crumb"><a href="https://wkl.systeme.io/sebhikingtours">Tours</a> / Hermitage of Braid &amp; Blackford Hill</p>
       <span class="eyebrow">Easy &#xB7; Local nature reserve</span>
       <h1>Hermitage of Braid &amp; Blackford Hill</h1>
-      <p class="lede">A burn, a wooded glen and a short climb onto Blackford Hill &#x2014; a local nature reserve almost entirely inside the city, and the best close view of the castle there is.</p>
+      <p class="lede">A burn, a wooded glen and a short climb onto Blackford Hill, a local nature reserve almost entirely inside the city, and the best close view of the castle there is.</p>
       <div class="stat-row">
         <div><b>164 m</b><span>High point</span></div>
         <div><b>~4 km</b><span>From the centre</span></div>
@@ -1029,7 +1037,7 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
             </div>
             <div class="stage">
               <span class="n">2</span>
-              <div><h3>Up Blackford</h3><p>A short, steady climb out of the trees onto the open hill &#x2014; the only real ascent of the day.</p></div>
+              <div><h3>Up Blackford</h3><p>A short, steady climb out of the trees onto the open hill, the only real ascent of the day.</p></div>
             </div>
             <div class="stage">
               <span class="n">3</span>

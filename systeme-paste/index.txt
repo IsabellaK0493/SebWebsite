@@ -735,13 +735,21 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 .says-shots img {
   width: 100%; height: auto; aspect-ratio: 4/5;
   object-fit: cover; display: block; background: var(--stone-2);
+  object-position: 50% 50%;
 }
+/* The summit photograph is landscape, so the upright frame keeps only the
+   middle of it. Favour the left of the shot to hold Maxine's face in, while
+   leaving Sebastian inside the right edge. Lower % moves the view left. */
+.says-shots img:first-child { object-position: 20% 50%; }
 
 .says footer {
   font-family: var(--font-caps); font-size: .6rem;
   letter-spacing: .12em; text-transform: uppercase; color: var(--muted);
   border-top: 1px solid var(--stone-3); padding-top: .9rem;
 }
+/* Name on its own line, the tour beneath it. */
+.says footer b { display: block; font-weight: 600; color: var(--ink); }
+.says footer span { display: block; margin-top: .28rem; }
 @media (max-width: 860px) { .says { grid-template-columns: 1fr; } }
 
 /* ============================================================
@@ -870,7 +878,7 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 .book-card .price span { font-family: var(--font-caps); font-size: .72rem; color: var(--muted); }
 .book-card ul { display: grid; gap: .6rem; margin: 1.2rem 0; font-size: .9rem; }
 .book-card li { display: flex; gap: .6rem; }
-.book-card li::before { content: "\2014 "; color: var(--bracken-ink); flex: none; }
+.book-card li::before { content: "\B7 "; color: var(--bracken-ink); flex: none; }
 .book-card .btn { width: 100%; }
 
 /* Two stacked cards \2014  what you get, then what it costs. The pair sticks as
@@ -954,7 +962,7 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 
 <header class="site-header">
   <div class="wrap">
-    <a class="mark" href="https://wkl.systeme.io/7523436a" aria-label="Sebastian CN Anderson Hiking &#x2014; home">
+    <a class="mark" href="https://wkl.systeme.io/7523436a" aria-label="Sebastian CN Anderson Hiking, home">
       <img class="mark-logo" src="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/assets/img/logo-mark-light.png" alt="" width="26" height="30" decoding="async">
       <span class="vh">Sebastian CN Anderson Hiking</span>
       <b aria-hidden="true">Sebastian CN Anderson Hiking<span>The Pentlands &amp; the seven hills</span></b>
@@ -1020,10 +1028,10 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
     </div>
 
     <div class="hero-ticks" role="group" aria-label="Choose hero clip">
-      <button type="button" aria-current="true"  aria-label="Clip 1 &#x2014; Sebastian and the dogs on the skyline"><span></span></button>
-      <button type="button" aria-current="false" aria-label="Clip 2 &#x2014; golden hour on the ridge"><span></span></button>
-      <button type="button" aria-current="false" aria-label="Clip 3 &#x2014; lambs on the open hillside"><span></span></button>
-      <button type="button" aria-current="false" aria-label="Clip 4 &#x2014; the Pentlands under snow"><span></span></button>
+      <button type="button" aria-current="true"  aria-label="Clip 1: Sebastian and the dogs on the skyline"><span></span></button>
+      <button type="button" aria-current="false" aria-label="Clip 2: golden hour on the ridge"><span></span></button>
+      <button type="button" aria-current="false" aria-label="Clip 3: lambs on the open hillside"><span></span></button>
+      <button type="button" aria-current="false" aria-label="Clip 4: the Pentlands under snow"><span></span></button>
     </div>
     <p class="hero-credit">Filmed: Videos by Sebastian C N Anderson of the Pentlands &amp; Edinburgh Hills. Copyright 2026.</p>
   </section>
@@ -1057,7 +1065,7 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
     </div>
   </section>
 
-  <!-- ============ VISTA BAND &#x2014; breaks the dark run ============ -->
+  <!-- ============ VISTA BAND: breaks the dark run ============ -->
   <figure class="vista">
     <img src="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/assets/img/vista.jpg" alt="Layered Pentland ridges under a wide, cloud-filled sky." width="1280" height="720" loading="lazy" decoding="async">
     <figcaption>
@@ -1096,7 +1104,7 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
           </div>
           <div class="tour-body">
             <h3>Hermitage of Braid &amp; Blackford Hill</h3>
-            <p>A wooded burn, a local nature reserve and a short pull onto Blackford Hill &#x2014; the gentlest of the three, and the best view of the castle in the city.</p>
+            <p>A wooded burn, a local nature reserve and a short pull onto Blackford Hill, the gentlest of the three, and the best view of the castle in the city.</p>
             <hr class="tour-rule">
             <a class="go" href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/tour-hermitage.html">About this tour &#x2192;</a>
           </div>
@@ -1118,7 +1126,7 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
     </div>
   </section>
 
-  <!-- ============ CUSTOM ROUTES &#x2014; short prompt straight after the tours ============ -->
+  <!-- ============ CUSTOM ROUTES: short prompt straight after the tours ============ -->
   <section class="cta-band cta-band--tight">
     <div class="wrap rise">
       <h2>Looking to do a different tour in Edinburgh?</h2>
@@ -1148,7 +1156,7 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
     </div>
   </section>
 
-  <!-- ============ REEL &#x2014; self-moving photo ribbon ============ -->
+  <!-- ============ REEL: self-moving photo ribbon ============ -->
   <section class="section section--tight section--pale">
     <div class="wrap">
       <div class="head-row rise" style="margin-bottom:1.6rem;">
@@ -1255,11 +1263,11 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
       <div class="says stagger">
         <blockquote>
           <p>Sebastian picked a route that suited the four of us rather than the other way round, and changed it on the day when the cloud came in. We saw more of the Pentlands in an afternoon than we had in years of living here.</p>
-          <footer>Claudia &#x2014; placeholder wording, her own quote to come</footer>
+          <footer><b>Claudia</b><span>Placeholder wording, her own quote to come</span></footer>
         </blockquote>
         <blockquote>
           <p>I was worried about holding everyone up. He set the pace around me from the first ten minutes and never once made it feel like a problem. I have booked again for the autumn.</p>
-          <footer>Angus &#x2014; placeholder wording, his own quote to come</footer>
+          <footer><b>Angus</b><span>Placeholder wording, his own quote to come</span></footer>
         </blockquote>
         <blockquote class="says--shots">
           <p>I had a wonderful time with Seb on a Pentlands Tour. Despite being born and bred in Edinburgh, Seb planned a fantastic day of exploring new routes I had never been before. He is very knowledgeable on the route and I learnt a lot! Great organisation and great company. I will definitely be coming back to explore some more of the Scottish Hills and recommend Seb and his expertise.</p>
@@ -1267,7 +1275,7 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
             <img src="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/assets/img/testimonial-maxine-1.jpg" alt="Maxine and Sebastian on a summit, hills stretching away behind them." loading="lazy" width="1100" height="825">
             <img src="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/assets/img/testimonial-maxine-2.jpg" alt="Maxine walking a Pentland hill path with two chocolate Labradors." loading="lazy" width="825" height="1100">
           </div>
-          <footer>Maxine &#x2014; Pentlands Full Day Tour</footer>
+          <footer><b>Maxine</b><span>Pentlands Full Day Tour</span></footer>
         </blockquote>
       </div>
     </div>

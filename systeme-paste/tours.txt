@@ -735,13 +735,21 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 .says-shots img {
   width: 100%; height: auto; aspect-ratio: 4/5;
   object-fit: cover; display: block; background: var(--stone-2);
+  object-position: 50% 50%;
 }
+/* The summit photograph is landscape, so the upright frame keeps only the
+   middle of it. Favour the left of the shot to hold Maxine's face in, while
+   leaving Sebastian inside the right edge. Lower % moves the view left. */
+.says-shots img:first-child { object-position: 20% 50%; }
 
 .says footer {
   font-family: var(--font-caps); font-size: .6rem;
   letter-spacing: .12em; text-transform: uppercase; color: var(--muted);
   border-top: 1px solid var(--stone-3); padding-top: .9rem;
 }
+/* Name on its own line, the tour beneath it. */
+.says footer b { display: block; font-weight: 600; color: var(--ink); }
+.says footer span { display: block; margin-top: .28rem; }
 @media (max-width: 860px) { .says { grid-template-columns: 1fr; } }
 
 /* ============================================================
@@ -870,7 +878,7 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 .book-card .price span { font-family: var(--font-caps); font-size: .72rem; color: var(--muted); }
 .book-card ul { display: grid; gap: .6rem; margin: 1.2rem 0; font-size: .9rem; }
 .book-card li { display: flex; gap: .6rem; }
-.book-card li::before { content: "\2014 "; color: var(--bracken-ink); flex: none; }
+.book-card li::before { content: "\B7 "; color: var(--bracken-ink); flex: none; }
 .book-card .btn { width: 100%; }
 
 /* Two stacked cards \2014  what you get, then what it costs. The pair sticks as
@@ -954,7 +962,7 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 
 <header class="site-header">
   <div class="wrap">
-    <a class="mark" href="https://wkl.systeme.io/7523436a" aria-label="Sebastian CN Anderson Hiking &#x2014; home">
+    <a class="mark" href="https://wkl.systeme.io/7523436a" aria-label="Sebastian CN Anderson Hiking, home">
       <img class="mark-logo" src="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/assets/img/logo-mark-light.png" alt="" width="26" height="30" decoding="async">
       <b>Sebastian CN Anderson Hiking<span>The Pentlands &amp; the seven hills</span></b>
     </a>
@@ -1005,7 +1013,7 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
           </div>
           <div class="tour-body">
             <h3>The Pentland Hills</h3>
-            <p>The big one. Open ridge over Caerketton and Allermuir, on to Turnhouse, Carnethy and Scald Law if the day allows &#x2014; the reservoirs below and the Forth beyond.</p>
+            <p>The big one. Open ridge over Caerketton and Allermuir, on to Turnhouse, Carnethy and Scald Law if the day allows, with the reservoirs below and the Forth beyond.</p>
             <hr class="tour-rule">
             <a class="go" href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/tour-pentlands.html">About this tour &#x2192;</a>
           </div>
@@ -1039,13 +1047,13 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
     </div>
   </section>
 
-  <!-- ============ THE SECTION &#x2014; signature ============ -->
+  <!-- ============ THE SECTION: signature ============ -->
   <section class="section-band on-dark" id="section">
     <div class="wrap">
       <div class="head rise">
         <span class="eyebrow">Why here</span>
         <h2>A 579-metre hill, fourteen kilometres from the Royal Mile.</h2>
-        <p class="lede">This is the whole case for walking in Edinburgh. Most cities put their hills a day's drive away. Here the ground rises straight out of the streets &#x2014; an extinct volcano at two kilometres, real mountain country by nine.</p>
+        <p class="lede">This is the whole case for walking in Edinburgh. Most cities put their hills a day's drive away. Here the ground rises straight out of the streets, an extinct volcano at two kilometres, real mountain country by nine.</p>
       </div>
     </div>
 
@@ -1107,7 +1115,7 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
       </p>
       <div class="profile-note">
         <span class="datum">Section looking north-west &#xB7; true heights &amp; distances</span>
-        <span class="datum">Scald Law 579 m &#x2014; highest of the Pentlands</span>
+        <span class="datum">Scald Law 579 m, highest of the Pentlands</span>
       </div>
     </div>
   </section>
@@ -1116,7 +1124,7 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
     <div class="wrap rise">
       <span class="eyebrow" style="color:rgba(242,242,238,.85);">Custom routes</span>
       <h2>Somewhere else in mind?</h2>
-      <p>Bonaly, Threipmuir, the Kips, Corstorphine Hill, Calton Hill, Craiglockhart &#x2014; or the full seven hills in a day. Tell me what you'd like to do.</p>
+      <p>Bonaly, Threipmuir, the Kips, Corstorphine Hill, Calton Hill, Craiglockhart, or the full seven hills in a day. Tell me what you'd like to do.</p>
       <a class="btn btn-primary" href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/contact.html">Get in touch &#x2192;</a>
     </div>
   </section>
