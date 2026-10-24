@@ -808,6 +808,33 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 @media (max-width: 780px) { .foot-grid { grid-template-columns: 1fr 1fr; } .foot-grid > div:first-child { grid-column: span 2; } }
 
 /* ============================================================
+   FAQs - questions that open and close, and the pointer to them
+   ============================================================ */
+.wrap--narrow { max-width: 54rem; }
+.faq-item { border-top: 1px solid var(--stone-3); }
+.faq-item:last-child { border-bottom: 1px solid var(--stone-3); }
+.faq-q {
+  width: 100%; display: flex; justify-content: space-between; align-items: center;
+  gap: 1rem; padding: 1.15rem 0; text-align: left;
+  font-family: var(--font-display); font-size: 1.05rem; line-height: 1.3;
+}
+.faq-q span { color: var(--whin-ink); font-size: 1.3rem; line-height: 1; flex: none; }
+.faq-item[data-acc="open"] .faq-q span { transform: rotate(45deg); }
+.faq-q span { transition: transform .3s var(--ease-out); }
+.faq-panel { max-height: 0; overflow: hidden; transition: max-height .4s var(--ease-out); }
+.faq-panel p, .faq-panel ul { color: var(--muted); padding-bottom: 1.1rem; }
+.faq-panel p + p { padding-top: 0; }
+.faq-panel ul { padding-left: 1.1rem; display: grid; gap: .5rem; }
+.faq-panel li { position: relative; padding-left: 1rem; }
+.faq-panel li::before { content: "\2022 "; position: absolute; left: 0; color: var(--whin-ink); }
+.faq-foot { margin-top: 2rem; color: var(--muted); }
+.faq-foot a { color: var(--whin-ink); text-decoration: underline; }
+
+.faq-pointer { margin-top: 2.4rem; padding-top: 1.6rem; border-top: 1px solid var(--stone-3); }
+.faq-pointer h3 { font-size: 1.2rem; }
+.faq-pointer p { color: var(--muted); margin: .6rem 0 1.2rem; }
+
+/* ============================================================
    Interior page head
    ============================================================ */
 .page-head { background: var(--ink); color: var(--paper); padding: clamp(8rem,15vw,11rem) 0 clamp(3rem,6vw,4.5rem); position: relative; overflow: hidden; }
@@ -1017,14 +1044,13 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
   <section class="page-head on-dark">
     <div class="wrap">
       <p class="crumb"><a href="https://wkl.systeme.io/sebhikingtours">Tours</a> / Hermitage of Braid &amp; Blackford Hill</p>
-      <span class="eyebrow">Easy &#xB7; Local nature reserve</span>
+      <span class="eyebrow">Local nature reserve</span>
       <h1>Hermitage of Braid &amp; Blackford Hill</h1>
-      <p class="lede">A burn, a wooded glen and a short climb onto Blackford Hill, a local nature reserve almost entirely inside the city, and the best close view of the castle there is.</p>
+      <p class="lede">Braid Hill and Blackford Hill, with a wooded glen and burn nestled in between, this local nature reserve has it all! Both summits offer excellent views of Edinburgh and the Pentland Hills, yet the area stays far quieter and less touristy than nearby Arthur's Seat.</p>
       <div class="stat-row">
-        <div><b>164 m</b><span>High point</span></div>
-        <div><b>~4 km</b><span>From the centre</span></div>
-        <div><b>Half day</b><span>Duration</span></div>
-        <div><b>Easy</b><span>Grade</span></div>
+        <div><b>213 m</b><span>Highest point</span></div>
+        <div><b>1892</b><span>Royal Observatory construction date</span></div>
+        <div><b>2</b><span>Golf courses</span></div>
       </div>
     </div>
   </section>
@@ -1132,6 +1158,7 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
         <ul>
           <li><a href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/about.html">About Sebastian</a></li>
           <li><a href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/contact.html">Book a tour</a></li>
+          <li><a href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/faq.html">FAQs</a></li>
           <li><a href="mailto:seb@sebastiancnanderson.com">seb@sebastiancnanderson.com</a></li>
         </ul>
       </div>

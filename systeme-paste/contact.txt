@@ -808,6 +808,33 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 @media (max-width: 780px) { .foot-grid { grid-template-columns: 1fr 1fr; } .foot-grid > div:first-child { grid-column: span 2; } }
 
 /* ============================================================
+   FAQs - questions that open and close, and the pointer to them
+   ============================================================ */
+.wrap--narrow { max-width: 54rem; }
+.faq-item { border-top: 1px solid var(--stone-3); }
+.faq-item:last-child { border-bottom: 1px solid var(--stone-3); }
+.faq-q {
+  width: 100%; display: flex; justify-content: space-between; align-items: center;
+  gap: 1rem; padding: 1.15rem 0; text-align: left;
+  font-family: var(--font-display); font-size: 1.05rem; line-height: 1.3;
+}
+.faq-q span { color: var(--whin-ink); font-size: 1.3rem; line-height: 1; flex: none; }
+.faq-item[data-acc="open"] .faq-q span { transform: rotate(45deg); }
+.faq-q span { transition: transform .3s var(--ease-out); }
+.faq-panel { max-height: 0; overflow: hidden; transition: max-height .4s var(--ease-out); }
+.faq-panel p, .faq-panel ul { color: var(--muted); padding-bottom: 1.1rem; }
+.faq-panel p + p { padding-top: 0; }
+.faq-panel ul { padding-left: 1.1rem; display: grid; gap: .5rem; }
+.faq-panel li { position: relative; padding-left: 1rem; }
+.faq-panel li::before { content: "\2022 "; position: absolute; left: 0; color: var(--whin-ink); }
+.faq-foot { margin-top: 2rem; color: var(--muted); }
+.faq-foot a { color: var(--whin-ink); text-decoration: underline; }
+
+.faq-pointer { margin-top: 2.4rem; padding-top: 1.6rem; border-top: 1px solid var(--stone-3); }
+.faq-pointer h3 { font-size: 1.2rem; }
+.faq-pointer p { color: var(--muted); margin: .6rem 0 1.2rem; }
+
+/* ============================================================
    Interior page head
    ============================================================ */
 .page-head { background: var(--ink); color: var(--paper); padding: clamp(8rem,15vw,11rem) 0 clamp(3rem,6vw,4.5rem); position: relative; overflow: hidden; }
@@ -1016,9 +1043,9 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 
   <section class="page-head on-dark">
     <div class="wrap">
-      <span class="eyebrow">Book a tour</span>
-      <h1>Tell me what you'd like to do</h1>
-      <p class="lede">Whether you have a route in mind or just want a good day out on the hills, send me a few details and I'll come back to you, usually within a day.</p>
+      <span class="eyebrow">Contact Me</span>
+      <h1>Get in touch about booking a tour</h1>
+      <p class="lede">Whether you have a tour in mind, an idea about a route or a question about anything, please fill out the form and I'll be back in touch.</p>
     </div>
   </section>
 
@@ -1072,14 +1099,11 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
           <dd>Year-round, subject to safe conditions. Winter days are shorter, so we start earlier.</dd>
         </dl>
 
-        <div class="faq" style="margin-top:2.4rem;">
-          <div data-acc="closed" style="border-top:1px solid var(--stone-3);">
-            <button type="button" aria-expanded="false" style="width:100%;display:flex;justify-content:space-between;gap:1rem;align-items:center;padding:1.1rem 0;text-align:left;font-family:var(--font-display);font-size:1.02rem;">
-              Do I need any hill experience?<span aria-hidden="true" style="color:var(--whin-ink);">+</span>
-            </button>
-            <div data-panel style="max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.22,1,.36,1);">
-              <p style="padding-bottom:1.1rem;color:var(--muted);">No. The Hermitage and Blackford tour is genuinely easy, and I match pace and route to whoever is coming. Tell me how you feel about hills and I'll plan accordingly.</p>
-            </div>
+          <div class="faq-pointer">
+            <h3>Questions</h3>
+            <p>Tour sizes, dogs, children, weather, payment and cancellations are all covered on the FAQ page.</p>
+            <a class="btn btn-line" href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/faq.html">Read the FAQs &rarr;</a>
+          </div>
           </div>
           <div data-acc="closed" style="border-top:1px solid var(--stone-3);border-bottom:1px solid var(--stone-3);">
             <button type="button" aria-expanded="false" style="width:100%;display:flex;justify-content:space-between;gap:1rem;align-items:center;padding:1.1rem 0;text-align:left;font-family:var(--font-display);font-size:1.02rem;">
@@ -1116,6 +1140,7 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
         <ul>
           <li><a href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/about.html">About Sebastian</a></li>
           <li><a href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/contact.html">Book a tour</a></li>
+          <li><a href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/faq.html">FAQs</a></li>
           <li><a href="mailto:seb@sebastiancnanderson.com">seb@sebastiancnanderson.com</a></li>
         </ul>
       </div>

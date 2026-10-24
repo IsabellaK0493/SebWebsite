@@ -14,3 +14,4 @@ tour-hermitage   =
 tour-arthurs-seat =
 about            =
 contact          =
+faq              =

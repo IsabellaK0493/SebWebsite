@@ -32,6 +32,7 @@ PAGES = {
     "tour-arthurs-seat.html": "Arthur's Seat",
     "about.html": "About",
     "contact.html": "Contact",
+    "faq.html": "FAQs",
 }
 
 

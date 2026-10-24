@@ -808,6 +808,33 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 @media (max-width: 780px) { .foot-grid { grid-template-columns: 1fr 1fr; } .foot-grid > div:first-child { grid-column: span 2; } }
 
 /* ============================================================
+   FAQs - questions that open and close, and the pointer to them
+   ============================================================ */
+.wrap--narrow { max-width: 54rem; }
+.faq-item { border-top: 1px solid var(--stone-3); }
+.faq-item:last-child { border-bottom: 1px solid var(--stone-3); }
+.faq-q {
+  width: 100%; display: flex; justify-content: space-between; align-items: center;
+  gap: 1rem; padding: 1.15rem 0; text-align: left;
+  font-family: var(--font-display); font-size: 1.05rem; line-height: 1.3;
+}
+.faq-q span { color: var(--whin-ink); font-size: 1.3rem; line-height: 1; flex: none; }
+.faq-item[data-acc="open"] .faq-q span { transform: rotate(45deg); }
+.faq-q span { transition: transform .3s var(--ease-out); }
+.faq-panel { max-height: 0; overflow: hidden; transition: max-height .4s var(--ease-out); }
+.faq-panel p, .faq-panel ul { color: var(--muted); padding-bottom: 1.1rem; }
+.faq-panel p + p { padding-top: 0; }
+.faq-panel ul { padding-left: 1.1rem; display: grid; gap: .5rem; }
+.faq-panel li { position: relative; padding-left: 1rem; }
+.faq-panel li::before { content: "\2022 "; position: absolute; left: 0; color: var(--whin-ink); }
+.faq-foot { margin-top: 2rem; color: var(--muted); }
+.faq-foot a { color: var(--whin-ink); text-decoration: underline; }
+
+.faq-pointer { margin-top: 2.4rem; padding-top: 1.6rem; border-top: 1px solid var(--stone-3); }
+.faq-pointer h3 { font-size: 1.2rem; }
+.faq-pointer p { color: var(--muted); margin: .6rem 0 1.2rem; }
+
+/* ============================================================
    Interior page head
    ============================================================ */
 .page-head { background: var(--ink); color: var(--paper); padding: clamp(8rem,15vw,11rem) 0 clamp(3rem,6vw,4.5rem); position: relative; overflow: hidden; }
@@ -1018,8 +1045,8 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
     <div class="wrap head-split">
       <div>
         <span class="eyebrow">About your guide</span>
-        <h1>Twenty years on Edinburgh's hills, and still out most weeks</h1>
-        <p class="lede">I'm Sebastian. I was born and raised here, and I've been walking these hills since before I can properly remember.</p>
+        <h1>Twenty years exploring Edinburgh's hills</h1>
+        <p class="lede">I'm Sebastian and I was born and raised in Edinburgh. I've been walking and running the local hills throughout most of my life!</p>
       </div>
       <div class="guide-figs">
               <figure class="then">
@@ -1038,12 +1065,11 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
     <div class="wrap split">
       <div class="prose rise">
         <h2>How this started</h2>
-        <p>I've been walking Edinburgh's hills from a very young age, and I still get out on them regularly, usually a mixture of trail runs and long walks with my two chocolate Labradors, Daisy and Poppy.</p>
-        <p>People kept asking me to take them up Arthur's Seat, or out to the Pentlands, or to show them somewhere green that wasn't full of other visitors. Enough of them asked that I started doing it properly.</p>
+        <p>I've been walking Edinburgh's hills, particularly the Pentland Hills, from a very young age, as we used to live very close by to them and had a chocolate Labrador called Ginty. I still get out on the hills regularly, usually a mixture of trail runs and long walks with my two chocolate Labradors, Daisy and Poppy.</p>
+        <p>Various friends started asking me to show them the Pentlands, and then some clients from my personal training business also became interested in seeing the Pentlands and more of Edinburgh, so I started running tours more officially.</p>
 
-        <h2>What I do outside Edinburgh</h2>
-        <p>I walk, run and explore the outdoors in the Highlands and abroad. I've completed a number of trail races, walks with a running club, the Arrochar Alps, the Glenshee 9, and a UTMB in Switzerland.</p>
-        <p>None of that is the point of these tours, but it does mean I'm comfortable on rough ground in bad weather, and I know when a day isn't worth pushing.</p>
+        <h2>My passion for the outdoors</h2>
+        <p>I love walking, running and exploring the outdoors in the Scottish Highlands and abroad. I've completed a number of trail races including the Arrochar Alps, the Glenshee 9, and a UTMB in Switzerland. Recently I also did a 24-hour challenge climbing the 7 highest peaks in Scotland in 24 hours for charity. Currently I'm gradually working through all the Munros in Scotland: I am on 37 out of the 282!</p>
 
         <h2>How the tours work</h2>
         <p>Every tour is private. That means either one-to-one, or a small group you organise yourself. There will be no strangers, and you can walk at your own pace. I plan the route around who is coming and what the weather is doing, and I always have a lower-level alternative in mind before we set off.</p>
@@ -1087,6 +1113,7 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
         <ul>
           <li><a href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/about.html">About Sebastian</a></li>
           <li><a href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/contact.html">Book a tour</a></li>
+          <li><a href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/faq.html">FAQs</a></li>
           <li><a href="mailto:seb@sebastiancnanderson.com">seb@sebastiancnanderson.com</a></li>
         </ul>
       </div>
