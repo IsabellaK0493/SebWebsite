@@ -534,9 +534,10 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 /* Two photographs offset and overlapping \2014  the boy on the hill behind,
    the same person on the same hills now in front. The gap between the
    two pictures is the twenty years. */
-.guide-figs { position: relative; padding-bottom: 3.5rem; padding-right: 2rem; }
-.guide-figs figure {
-  overflow: hidden;
+.guide-figs { position: relative; padding-bottom: 5.4rem; padding-right: 2rem; }
+.guide-figs figure { margin: 0; }
+.guide-figs .fig-frame {
+  display: block; overflow: hidden;
   background: linear-gradient(150deg, var(--basalt-2), var(--ink));
   box-shadow: 0 18px 44px -20px rgba(20,28,33,.5);
 }
@@ -544,14 +545,14 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 
 /* Both photographs are portrait, so the boxes match their sources rather
    than cropping them square. */
-.guide-figs .then {
-  width: 62%;
-  aspect-ratio: 3/4;
-}
+.guide-figs .then { width: 62%; }
+.guide-figs .then .fig-frame { aspect-ratio: 3/4; }
 .guide-figs .now {
   position: absolute;
   right: 0; bottom: 0;
   width: 56%;
+}
+.guide-figs .now .fig-frame {
   aspect-ratio: 3/4;
   border: 6px solid var(--stone);
   box-shadow: 0 22px 50px -18px rgba(20,28,33,.55);
@@ -567,8 +568,8 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
   gap: clamp(2rem, 6vw, 4.5rem);
   align-items: center;
 }
-.head-split .guide-figs { padding-bottom: 2.5rem; }
-.on-dark .guide-figs .now { border-color: var(--ink); }
+.head-split .guide-figs { padding-bottom: 4.4rem; }
+.on-dark .guide-figs .now .fig-frame { border-color: var(--ink); }
 @media (max-width: 860px) {
   .head-split { grid-template-columns: 1fr; }
   .head-split .guide-figs { margin-top: 1.5rem; max-width: 24rem; }
@@ -599,11 +600,9 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 }
 
 .guide-figs figcaption {
-  position: absolute; left: 0; right: 0; bottom: 0;
-  padding: 1.6rem .7rem .5rem;
-  font-family: var(--font-caps); font-size: .52rem;
+  padding-top: .7rem;
+  font-family: var(--font-caps); font-size: .58rem;
   letter-spacing: .14em; text-transform: uppercase; color: var(--paper);
-  background: linear-gradient(180deg, transparent, rgba(20,28,33,.75));
 }
 @media (max-width: 520px) {
   .guide-figs { padding-bottom: 2.5rem; padding-right: 1rem; }
@@ -734,6 +733,10 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 /* Photographs inside a testimonial: a pair under the quote, cropped to a
    common shape so a portrait and a landscape shot still sit level. */
 .says-shots { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; }
+/* With one photograph rather than a pair, give it a wider frame centred in
+   the card instead of leaving a gap where the second used to be. */
+.says-shots--one { grid-template-columns: minmax(0, 74%); justify-content: center; }
+.says-shots--one img { aspect-ratio: 1/1; }
 .says-shots img {
   width: 100%; height: auto; aspect-ratio: 4/5;
   object-fit: cover; display: block; background: var(--stone-2);
@@ -882,6 +885,18 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 .book-card li { display: flex; gap: .6rem; }
 .book-card li::before { content: "\B7 "; color: var(--bracken-ink); flex: none; }
 .book-card .btn { width: 100%; }
+/* The groups note sits on its own under the options, with room before the
+   button so the two do not crowd each other. */
+.book-card .group-note {
+  margin-top: 1.1rem; font-size: .82rem; font-style: italic; color: var(--muted);
+}
+.book-card .group-note + .btn { margin-top: 1.5rem; }
+/* Credit line under the photograph strip. */
+.carousel-credit {
+  margin-top: 1.1rem; font-family: var(--font-caps); font-size: .62rem;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--muted);
+}
+
 
 /* Two stacked cards \2014  what you get, then what it costs. The pair sticks as
    one unit, so the inner cards give up their own sticky positioning. */
@@ -964,9 +979,9 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 
 <header class="site-header">
   <div class="wrap">
-    <a class="mark" href="https://wkl.systeme.io/7523436a" aria-label="Sebastian CN Anderson Hiking, home">
+    <a class="mark" href="https://wkl.systeme.io/7523436a" aria-label="Sebastian C N Anderson Hiking, home">
       <img class="mark-logo" src="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/assets/img/logo-mark-light.png" alt="" width="26" height="30" decoding="async">
-      <b>Sebastian CN Anderson Hiking<span>The Pentlands &amp; the seven hills</span></b>
+      <b>Sebastian C N Anderson Hiking<span>The Pentlands &amp; the seven hills</span></b>
     </a>
     <nav class="nav" aria-label="Primary">
       <ul class="nav-links">
@@ -1102,7 +1117,7 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <a class="mark" href="https://wkl.systeme.io/7523436a"><img class="mark-logo" src="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/assets/img/logo-mark-light.png" alt="" width="26" height="30" decoding="async"><b>Sebastian CN Anderson Hiking<span>The Pentlands &amp; the seven hills</span></b></a>
+        <a class="mark" href="https://wkl.systeme.io/7523436a"><img class="mark-logo" src="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/assets/img/logo-mark-light.png" alt="" width="26" height="30" decoding="async"><b>Sebastian C N Anderson Hiking<span>The Pentlands &amp; the seven hills</span></b></a>
         <p>Private guided hill tours on the Pentland Hills and Edinburgh's seven hills. Year-round, weather permitting.</p>
       </div>
       <div>
@@ -1123,7 +1138,7 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
         </ul>
       </div>
     </div>
-    <div class="foot-base"><span>&copy; 2026 Sebastian CN Anderson Hiking</span><span>Edinburgh, Scotland</span></div>
+    <div class="foot-base"><span>&copy; 2026 Sebastian C N Anderson Hiking</span><span>Edinburgh, Scotland</span></div>
   </div>
 </footer>
 </div>
