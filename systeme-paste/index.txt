@@ -1052,6 +1052,34 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 
   <!-- ============ ASSURANCES ============ -->
 
+  <section class="assure on-dark">
+    <div class="wrap">
+      <ul class="stagger">
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 11a3 3 0 100-6 3 3 0 000 6zM3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M17 8.5a2.5 2.5 0 100-5M21 19.5c0-2.5-1.7-4.6-4-5.3" stroke-linecap="round"/></svg>
+          <div>
+            <h3>Private tours only</h3>
+            <p>All tours are done privately, either 1-1 or in small groups organised by the booker, so there will be no strangers and you can walk at your own pace.</p>
+          </div>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 19l7-11 4 6.5 3-4.5 6 9z" stroke-linejoin="round"/><circle cx="17" cy="5" r="2"/></svg>
+          <div>
+            <h3>Born and raised here</h3>
+            <p>Your guide, Sebastian, was born and raised in Edinburgh. He has spent over 20 years exploring the local hills and knows them very well.</p>
+          </div>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5.5a1.8 1.8 0 100-3.5 1.8 1.8 0 000 3.5zM8 22l2.5-6 -1.5-3 1-4 4 1.5 2.5 2M9 10L5.5 11M14 15l3 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div>
+            <h3>All abilities</h3>
+            <p>From shorter, gentler walks to full-day excursions across several hills, there are a range of tours to suit different fitness levels and abilities.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
   <!-- ============ VISTA BAND: breaks the dark run ============ -->
   <figure class="vista">
     <img src="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/assets/img/vista.jpg" alt="Layered Pentland ridges under a wide, cloud-filled sky." width="1280" height="720" loading="lazy" decoding="async">
