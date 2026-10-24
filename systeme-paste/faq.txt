@@ -1005,7 +1005,7 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 <header class="site-header">
   <div class="wrap">
     <a class="mark" href="https://wkl.systeme.io/7523436a" aria-label="Sebastian C N Anderson Hiking, home">
-      <img class="mark-logo" src="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/assets/img/logo-mark-light.png" alt="" width="26" height="30" decoding="async">
+      <img class="mark-logo" src="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/assets/img/logo-mark-outline.png" alt="" width="26" height="30" decoding="async">
       <b>Sebastian C N Anderson Hiking<span>The Pentlands &amp; the seven hills</span></b>
     </a>
     <nav class="nav" aria-label="Primary">
@@ -1103,7 +1103,7 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <a class="mark" href="https://wkl.systeme.io/7523436a"><img class="mark-logo" src="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/assets/img/logo-mark-light.png" alt="" width="26" height="30" decoding="async"><b>Sebastian C N Anderson Hiking<span>The Pentlands &amp; the seven hills</span></b></a>
+        <a class="mark" href="https://wkl.systeme.io/7523436a"><img class="mark-logo" src="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/assets/img/logo-mark-outline.png" alt="" width="26" height="30" decoding="async"><b>Sebastian C N Anderson Hiking<span>The Pentlands &amp; the seven hills</span></b></a>
         <p>Private guided hill tours on the Pentland Hills and Edinburgh's seven hills. Year-round, weather permitting.</p>
       </div>
       <div>
