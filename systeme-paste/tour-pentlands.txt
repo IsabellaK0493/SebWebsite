@@ -885,12 +885,10 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 .book-card li { display: flex; gap: .6rem; }
 .book-card li::before { content: "\B7 "; color: var(--bracken-ink); flex: none; }
 .book-card .btn { width: 100%; }
-/* The groups note sits on its own under the options, with room before the
-   button so the two do not crowd each other. */
-.book-card .group-note {
-  margin-top: 1.1rem; font-size: .82rem; font-style: italic; color: var(--muted);
-}
-.book-card .group-note + .btn { margin-top: 1.5rem; }
+/* Each note sits tight under the prices it belongs to, and the button
+   keeps clear air above it. */
+.book-card .options-notes + .options { margin-top: 1.3rem; }
+.book-card .options-notes + .btn { margin-top: 1.6rem; }
 /* Credit line under the photograph strip. */
 .carousel-credit {
   margin-top: 1.1rem; font-family: var(--font-caps); font-size: .62rem;
@@ -1091,13 +1089,17 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
           <ul class="options">
             <li>Group Half Day (4 hours) / <b>&pound;79 per person</b></li>
             <li>Group Full Day (8 hours) / <b>&pound;159 per person</b></li>
+          </ul>
+          <ul class="options-notes">
+            <li>Groups must be a minimum of 3 people</li>
+          </ul>
+          <ul class="options">
             <li>Solo Half Day (4 hours) / <b>&pound;197</b></li>
             <li>Solo Full Day (8 hours) / <b>&pound;397</b></li>
           </ul>
           <ul class="options-notes">
             <li>You can bring a friend/family member for free on solo hikes</li>
           </ul>
-          <p class="group-note">Groups must be a minimum of 3 people.</p>
           <a class="btn btn-primary" href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/contact.html">Enquire about a tour &#x2192;</a>
           <p class="form-note">Please specify your preferred dates &amp; tour option.</p>
           <p class="form-note">Tours run year-round, subject to suitable, safe weather conditions on the day.</p>

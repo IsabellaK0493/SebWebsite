@@ -878,12 +878,10 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 .book-card li { display: flex; gap: .6rem; }
 .book-card li::before { content: "·"; color: var(--bracken-ink); flex: none; }
 .book-card .btn { width: 100%; }
-/* The groups note sits on its own under the options, with room before the
-   button so the two do not crowd each other. */
-.book-card .group-note {
-  margin-top: 1.1rem; font-size: .82rem; font-style: italic; color: var(--muted);
-}
-.book-card .group-note + .btn { margin-top: 1.5rem; }
+/* Each note sits tight under the prices it belongs to, and the button
+   keeps clear air above it. */
+.book-card .options-notes + .options { margin-top: 1.3rem; }
+.book-card .options-notes + .btn { margin-top: 1.6rem; }
 /* Credit line under the photograph strip. */
 .carousel-credit {
   margin-top: 1.1rem; font-family: var(--font-caps); font-size: .62rem;
