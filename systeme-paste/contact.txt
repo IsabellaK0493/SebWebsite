@@ -853,6 +853,9 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 .faq-foot { margin-top: 2rem; color: var(--muted); }
 .faq-foot a { color: var(--bracken-ink); text-decoration: underline; }
 
+/* The mark, centred under the name on the contact page. */
+.contact-logo { display: block; width: 86px; height: auto; margin: 1.6rem auto 0; }
+
 .faq-pointer { margin-top: 2.4rem; padding-top: 1.6rem; border-top: 1px solid var(--stone-3); }
 .faq-pointer h3 { font-size: 1.2rem; }
 .faq-pointer p { color: var(--muted); margin: .6rem 0 1.2rem; }
@@ -1132,13 +1135,10 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 
       <div class="rise">
         <h2>Sebastian C N Anderson Hiking</h2>
+        <img class="contact-logo" src="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/assets/img/logo-mark.png" alt="" width="261" height="300" loading="lazy" decoding="async">
         <dl class="contact-list" style="margin-top:1.6rem;">
           <dt>Email</dt>
           <dd><a href="mailto:seb@sebastiancnanderson.com">seb@sebastiancnanderson.com</a></dd>
-          <dt>Where I walk</dt>
-          <dd>The Pentland Hills Regional Park and all seven hills of Edinburgh.</dd>
-          <dt>When</dt>
-          <dd>Year-round, subject to safe conditions. Winter days are shorter, so we start earlier.</dd>
         </dl>
 
           <div class="faq-pointer">

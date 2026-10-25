@@ -853,6 +853,9 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 .faq-foot { margin-top: 2rem; color: var(--muted); }
 .faq-foot a { color: var(--bracken-ink); text-decoration: underline; }
 
+/* The mark, centred under the name on the contact page. */
+.contact-logo { display: block; width: 86px; height: auto; margin: 1.6rem auto 0; }
+
 .faq-pointer { margin-top: 2.4rem; padding-top: 1.6rem; border-top: 1px solid var(--stone-3); }
 .faq-pointer h3 { font-size: 1.2rem; }
 .faq-pointer p { color: var(--muted); margin: .6rem 0 1.2rem; }
