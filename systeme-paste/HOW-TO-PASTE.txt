@@ -19,12 +19,12 @@ Then for each page in Systeme.io:
   6. Save and preview.
 
 Files (plain text, so they open ready to copy):
-  Home                         index.txt                      81 KB
+  Home                         index.txt                      82 KB
   Tours                        tours.txt                      71 KB
   The Pentland Hills           tour-pentlands.txt             74 KB
   Hermitage & Blackford Hill   tour-hermitage.txt             69 KB
   Arthur's Seat                tour-arthurs-seat.txt          69 KB
-  About                        about.txt                      66 KB
+  About                        about.txt                      67 KB
   Contact                      contact.txt                    67 KB
   FAQs                         faq.txt                        70 KB
 
