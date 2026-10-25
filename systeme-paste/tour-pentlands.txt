@@ -1199,6 +1199,7 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
         </ul>
       </div>
     </div>
+    <p class="foot-credit">All photos on this site were taken by Sebastian C N Anderson. Copyright 2026.</p>
     <div class="foot-base"><span>&copy; 2026 Sebastian C N Anderson Hiking</span><span>Edinburgh, Scotland</span></div>
   </div>
 </footer>
