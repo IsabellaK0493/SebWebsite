@@ -23,10 +23,10 @@ Files (plain text, so they open ready to copy):
   Tours                        tours.txt                      72 KB
   The Pentland Hills           tour-pentlands.txt             75 KB
   Hermitage & Blackford Hill   tour-hermitage.txt             71 KB
-  Arthur's Seat                tour-arthurs-seat.txt          70 KB
+  Arthur's Seat                tour-arthurs-seat.txt          71 KB
   About                        about.txt                      68 KB
   Contact                      contact.txt                    68 KB
-  FAQs                         faq.txt                        71 KB
+  FAQs                         faq.txt                        72 KB
 
 Notes:
   - Page titles and search-engine descriptions are set in Systeme.io's
