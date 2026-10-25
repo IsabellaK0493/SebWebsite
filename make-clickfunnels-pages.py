@@ -26,6 +26,9 @@ PAGES = {
     "tour-arthurs-seat.html":("/arthurs-seat",             25636450, "cfp_BrlNYqncOXKkkMka1oYqiD6A"),
     "about.html":            ("/about",                    25636451, "cfp_YNKEaAyUdw34gbaXUdPKB11b"),
     "contact.html":          ("/contact",                  25636452, "cfp_AA6h2eI6rDvmoYx58o218LiL"),
+    # The FAQ step has not been made in ClickFunnels yet, so it carries no
+    # token. Add its id and token here once the step exists and rebuild.
+    "faq.html":              ("/faq",                      None,     None),
 }
 SDK = '<script src="https://sdk.myclickfunnels.com/sdk.js" defer></script>'
 
@@ -53,7 +56,11 @@ def build(page):
     # links between pages -> ClickFunnels step paths
     def link(m):
         t = m.group(1)
-        return 'href="%s"' % PAGES[t][0] if t in PAGES else m.group(0)
+        if t in PAGES:
+            return 'href="%s"' % PAGES[t][0]
+        # anything not yet a ClickFunnels step points at the hosted copy, so a
+        # link is never left relative and broken
+        return 'href="%s%s"' % (BASE, t)
     s = re.sub(r'href="([a-z0-9-]+\.html)"', link, s)
 
     # The stylesheet and script stay as links to the hosted copies rather than
@@ -62,8 +69,9 @@ def build(page):
 
     # ClickFunnels page token + SDK, and no canonical pointing elsewhere
     s = re.sub(r'\n<link rel="canonical"[^>]*>', '', s)
-    s = s.replace("</head>",
-                  '<meta name="cf-page-token" content="%s">\n%s\n</head>' % (token, SDK))
+    head = ('<meta name="cf-page-token" content="%s">\n%s\n</head>' % (token, SDK)
+            if token else '%s\n</head>' % SDK)
+    s = s.replace("</head>", head)
     return s
 
 
