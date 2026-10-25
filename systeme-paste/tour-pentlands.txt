@@ -959,6 +959,13 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 .book-card .options { gap: .55rem; font-size: .93rem; }
 .book-card .options li::before { content: "\203A "; color: var(--whin-ink); font-weight: 700; flex: none; }
 .book-card .options b { font-weight: 700; }
+.book-card .options .opt-price { white-space: nowrap; }
+/* On a phone the row is too narrow for label and price side by side, so let
+   the line run as ordinary text instead of two flex columns. */
+@media (max-width: 620px) {
+  .book-card .options li { display: block; }
+  .book-card .options li::before { margin-right: .5rem; }
+}
 .book-card .options-notes { gap: .4rem; margin-top: .9rem; padding-left: 1.1rem; font-size: .82rem; font-style: italic; color: var(--muted); }
 .book-card .options-notes li::before { content: "\2192 "; color: var(--whin-ink); flex: none; }
 .book-note {
@@ -1134,15 +1141,15 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
         <div class="book-card">
           <h3 class="book-title">Tour Options</h3>
           <ul class="options">
-            <li>Group Half Day (4 hours) / <b>&pound;79 per person</b></li>
-            <li>Group Full Day (8 hours) / <b>&pound;159 per person</b></li>
+            <li>Group Half Day (4 hours) <span class="opt-price">/ <b>&pound;79 per person</b></span></li>
+            <li>Group Full Day (8 hours) <span class="opt-price">/ <b>&pound;159 per person</b></span></li>
           </ul>
           <ul class="options-notes">
             <li>Groups must be a minimum of 3 people</li>
           </ul>
           <ul class="options">
-            <li>Solo Half Day (4 hours) / <b>&pound;197</b></li>
-            <li>Solo Full Day (8 hours) / <b>&pound;397</b></li>
+            <li>Solo Half Day (4 hours) <span class="opt-price">/ <b>&pound;197</b></span></li>
+            <li>Solo Full Day (8 hours) <span class="opt-price">/ <b>&pound;397</b></span></li>
           </ul>
           <ul class="options-notes">
             <li>You can bring a friend/family member for free on solo hikes</li>

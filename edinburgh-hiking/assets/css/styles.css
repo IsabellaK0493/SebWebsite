@@ -952,6 +952,13 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 .book-card .options { gap: .55rem; font-size: .93rem; }
 .book-card .options li::before { content: "›"; color: var(--whin-ink); font-weight: 700; flex: none; }
 .book-card .options b { font-weight: 700; }
+.book-card .options .opt-price { white-space: nowrap; }
+/* On a phone the row is too narrow for label and price side by side, so let
+   the line run as ordinary text instead of two flex columns. */
+@media (max-width: 620px) {
+  .book-card .options li { display: block; }
+  .book-card .options li::before { margin-right: .5rem; }
+}
 .book-card .options-notes { gap: .4rem; margin-top: .9rem; padding-left: 1.1rem; font-size: .82rem; font-style: italic; color: var(--muted); }
 .book-card .options-notes li::before { content: "→"; color: var(--whin-ink); flex: none; }
 .book-note {
