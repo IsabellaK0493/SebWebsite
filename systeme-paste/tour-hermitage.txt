@@ -1130,11 +1130,15 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
           <ul class="options">
             <li>Group Half Day (4 hours) / <b>&pound;79 per person</b></li>
             <li>Group Full Day (8 hours) / <b>&pound;159 per person</b></li>
+          </ul>
+          <ul class="options-notes">
+            <li>Groups must be a minimum of 3 people</li>
+          </ul>
+          <ul class="options">
             <li>Solo Half Day (4 hours) / <b>&pound;197</b></li>
             <li>Solo Full Day (8 hours) / <b>&pound;397</b></li>
           </ul>
           <ul class="options-notes">
-            <li>Groups must be a minimum of 3 people</li>
             <li>You can bring a friend/family member for free on solo hikes</li>
           </ul>
           <a class="btn btn-primary" href="https://isabellak0493.github.io/SebWebsite/edinburgh-hiking/contact.html">Enquire about a tour &#x2192;</a>
