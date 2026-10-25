@@ -902,11 +902,21 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 .prose p { color: var(--muted); max-width: 62ch; }
 .prose > * + h2 { margin-top: 2.6rem; }
 
-.stage { display: grid; grid-template-columns: 5rem 1fr; gap: 1.3rem; padding: 1.5rem 0; border-bottom: 1px solid var(--stone-3); }
-.stage .n { font-family: var(--font-caps); font-size: .64rem; letter-spacing: .1em; color: var(--bracken-ink); padding-top: .2rem; }
+.stage { display: grid; grid-template-columns: 7rem 1fr; gap: 1.3rem; padding: 1.5rem 0; border-bottom: 1px solid var(--stone-3); }
+/* The step markers carry the eye down the day, so they are set large. */
+.stage .n {
+  font-family: var(--font-caps); font-size: 1.9rem; font-weight: 600;
+  letter-spacing: .02em; line-height: 1; color: var(--bracken-ink); padding-top: .1rem;
+}
 .stage h3 { margin-bottom: .35rem; }
 .stage p { color: var(--muted); font-size: .95rem; }
-@media (max-width: 620px) { .stage { grid-template-columns: 1fr; gap: .4rem; } }
+@media (max-width: 620px) { .stage { grid-template-columns: 1fr; gap: .4rem; }
+  .stage .n { font-size: 1.5rem; } }
+/* The note under the day: clear of the last rule, and quieter than the steps. */
+.itin-note {
+  margin-top: 1.6rem; max-width: 62ch;
+  font-size: .82rem; line-height: 1.55; color: var(--muted);
+}
 
 .book-card { background: var(--paper); border: 1px solid var(--stone-3); padding: 1.6rem; position: sticky; top: 5.5rem; }
 .book-card .price { font-family: var(--font-display); font-size: 2rem; margin: .5rem 0 1rem; }
