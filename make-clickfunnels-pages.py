@@ -26,9 +26,7 @@ PAGES = {
     "tour-arthurs-seat.html":("/arthurs-seat",             25636450, "cfp_BrlNYqncOXKkkMka1oYqiD6A"),
     "about.html":            ("/about",                    25636451, "cfp_YNKEaAyUdw34gbaXUdPKB11b"),
     "contact.html":          ("/contact",                  25636452, "cfp_AA6h2eI6rDvmoYx58o218LiL"),
-    # The FAQ step has not been made in ClickFunnels yet, so it carries no
-    # token. Add its id and token here once the step exists and rebuild.
-    "faq.html":              ("/faq",                      None,     None),
+    "faq.html":              ("/hikingtoursfaqs",          25766946, "cfp_bBpHGwmpgYmArk5KiadP3zzi"),
 }
 SDK = '<script src="https://sdk.myclickfunnels.com/sdk.js" defer></script>'
 
