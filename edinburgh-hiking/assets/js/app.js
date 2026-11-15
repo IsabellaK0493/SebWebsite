@@ -247,8 +247,12 @@
   /* ---------------- enquiry form ---------------- */
   var form = document.querySelector("#enquiry");
   if (form) {
+    // coming back with the Back button: re-enable the button
+    window.addEventListener("pageshow", function () {
+      var b = form.querySelector("button[type=submit]");
+      if (b) b.disabled = false;
+    });
     form.addEventListener("submit", function (e) {
-      e.preventDefault();
       var status = form.querySelector(".form-status");
       var submit = form.querySelector("button[type=submit]");
       var action = form.getAttribute("action") || "";
@@ -263,6 +267,7 @@
       };
 
       if (!d.name || !d.email) {
+        e.preventDefault();
         if (status) { status.setAttribute("data-state", "error"); status.textContent = "Add your name and email so Sebastian can reply."; }
         return;
       }
@@ -277,7 +282,17 @@
         if (status) { status.removeAttribute("data-state"); status.textContent = "Opening your email app to send this to Sebastian…"; }
       };
 
-      if (!live) { fallback(); return; }
+      if (!live) { e.preventDefault(); fallback(); return; }
+
+      // Jotform: let the browser post the form normally. Jotform stores it,
+      // emails Sebastian, and sends the visitor on to the Thank You page.
+      if (action.indexOf("jotform.com") !== -1) {
+        if (submit) submit.disabled = true;
+        if (status) { status.removeAttribute("data-state"); status.textContent = "Sending…"; }
+        return;
+      }
+
+      e.preventDefault();
 
       if (submit) submit.disabled = true;
       if (status) { status.removeAttribute("data-state"); status.textContent = "Sending…"; }

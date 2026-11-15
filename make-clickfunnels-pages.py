@@ -27,6 +27,7 @@ PAGES = {
     "about.html":            ("/about",                    25636451, "cfp_YNKEaAyUdw34gbaXUdPKB11b"),
     "contact.html":          ("/contact",                  25636452, "cfp_AA6h2eI6rDvmoYx58o218LiL"),
     "faq.html":              ("/hikingtoursfaqs",          25766946, "cfp_bBpHGwmpgYmArk5KiadP3zzi"),
+    "thank-you.html":        ("/thank-you",                25636453, "cfp_841bEJbaYp6bfqp4XXumRy0C"),
 }
 SDK = '<script src="https://sdk.myclickfunnels.com/sdk.js" defer></script>'
 
