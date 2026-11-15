@@ -359,8 +359,11 @@
           <footer><b>Claudia</b><span>Placeholder wording, her own quote to come</span></footer>
         </blockquote>
         <blockquote>
-          <p>I was worried about holding everyone up. He set the pace around me from the first ten minutes and never once made it feel like a problem. I have booked again for the autumn.</p>
-          <footer><b>Angus</b><span>Placeholder wording, his own quote to come</span></footer>
+          <p>The pentlands tour I did with Seb was brilliant. Seb was enthusiastic, knowledgable and engaging throughout. He was happy to keep things at my pace so there was no pressure in how fast we were running or walking at anytime.</p>
+          <p>He had pre planned the route we would take and showed me prior to us starting. We pin pointed certain landmarks and peaks so we always had a goal in mind.</p>
+          <p>Seb has a unique way of keeping things professional but also having fun at the same time. This made me feel at ease from the outset. He even brought us a small bag of sweeties and chocolate to eat on our breaks. This sugar boost was well needed, as the instant energy helped with the steep hill climbs. I thought that was thoughtful and a nice touch.</p>
+          <p>I would massively recommend seb’s pentland tours if you are keen on exploring the hills as a novice…. Or simply just want a different kind of fitness challenge that’s outside your local gym 😃💪🏼</p>
+          <footer><b>Angus</b><span>Pentlands Tour</span></footer>
         </blockquote>
         <blockquote class="says--shots">
           <p>I had a wonderful time with Seb on a Pentlands Tour. Despite being born in Edinburgh, Seb planned a fantastic day of exploring new routes I had never been on before. He is very knowledgeable on the route and I learnt a lot! I will definitely be coming back to explore some more of the Pentland Hills and recommend Seb and his expertise.</p>

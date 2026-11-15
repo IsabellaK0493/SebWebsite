@@ -728,8 +728,13 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.18; }
 }
 .says p {
   font-family: var(--font-display); font-size: 1.02rem; line-height: 1.42;
-  margin: 0; flex: 1;
+  margin: 0;
 }
+/* A quote can run to several paragraphs: only the last one stretches, so
+   the name lines still sit level across the cards. Paragraphs within one
+   quote sit closer together than the card's general spacing. */
+.says p:last-of-type { flex: 1; }
+.says p + p { margin-top: -.45rem; }
 /* Photographs inside a testimonial: a pair under the quote, cropped to a
    common shape so a portrait and a landscape shot still sit level. */
 .says-shots { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; }
