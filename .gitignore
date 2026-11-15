@@ -14,3 +14,7 @@
 
 # Claude Code — machine-local settings (shared settings belong in .claude/settings.json)
 .claude/settings.local.json
+
+# original phone photos (carry location data); only resized copies go in assets/img
+*.HEIC
+*.heic
